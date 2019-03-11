@@ -23,7 +23,7 @@ for i in range(5):
         for k in range(2):
             if k == 0 :
                 limit_check += item[item_select][k]
-                if limit_check > bag_limit :
+                if limit_check > bag_limit+1 :
                     check = True
                     break
             chromo[i][k][j] = item[item_select][k]
@@ -56,7 +56,7 @@ while(1):
             # 교차
             if random.random() > mutation :
                 temp = random.randint(0,1)
-                if limit_check + chromo[select[temp]][0][j] < 10 :
+                if limit_check + chromo[select[temp]][0][j] < bag_limit+1 :
                     limit_check += chromo[select[temp]][0][j]
                     new_chromo[i][0][j] = chromo[select[temp]][0][j]
                     new_chromo[i][1][j] = chromo[select[temp]][1][j]
@@ -68,7 +68,7 @@ while(1):
             # 돌연변이
             else :
                 temp = random.randint(0, len(item)-1)
-                if limit_check + item[temp][0] < 10 :
+                if limit_check + item[temp][0] < bag_limit+1 :
                     limit_check += item[temp][0]
                     new_chromo[i][0][j] = item[temp][0]
                     new_chromo[i][1][j] = item[temp][1]
