@@ -27,7 +27,6 @@ char** Jsplit(char* tmp, char ch)
     char **return_array = (char**)malloc(sizeof(char) * ch_count);
     for(int i=0; i<ch_count; i++) {
         return_array[i] = (char*) malloc(sizeof(char) * max_length);
-        printf("%d\n",index);
         for(int j=0; j<max_length; j++) {
             return_array[i][j] = *(tmp + index);
             index++;
