@@ -1,4 +1,5 @@
 from models.infomaion import *
+from models.funtion import *
 
 # LOW(0)가 모터쪽이다!!!
     
