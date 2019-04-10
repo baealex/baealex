@@ -1,4 +1,28 @@
-from infomaion import *
+from time import sleep
+import pigpio
+
+X = {
+    'STEP' : 20,
+    'DIR'  : 21
+}
+
+Y = {
+    'STEP' : 17,
+    'DIR'  : 18
+}
+
+Z = {
+    'STEP' : 5,
+    'DIR'  : 6
+}
+
+pi = pigpio.pi()
+pi.set_mode(X['STEP'], pigpio.OUTPUT)
+pi.set_mode(X['DIR'], pigpio.OUTPUT)
+pi.set_mode(Y['STEP'], pigpio.OUTPUT)
+pi.set_mode(Y['DIR'], pigpio.OUTPUT)
+pi.set_mode(Z['STEP'], pigpio.OUTPUT)
+pi.set_mode(Z['DIR'], pigpio.OUTPUT)
 
 def MoveX(MOVE_DIR, MOVE_MENT, DELAY):
     pi.write(X['DIR'], MOVE_DIR)
@@ -23,20 +47,3 @@ def MoveZ(MOVE_DIR, MOVE_MENT, DELAY):
         sleep(DELAY)
         pi.write(Z['STEP'], pigpio.LOW)
         sleep(DELAY)
-        
-def initPos() :
-    while 1:
-        # if SENSOR1 != 1
-        #    MoveZ(0,200,.000006)
-        # if SENSOR2 != 1
-        #    MoveY(0,200,.000006)
-        # if SENSOR3 != 1
-        #    MoveX(0,200,.000006)
-
-def MoveStart(X_VALUE, Y_VALUE, Z_VALUE, SPEED):
-    MoveX(1, X_VALUE, SPEED)
-    MoveY(1, Y_VALUE, SPEED)
-    MoveZ(1, Z_VALUE, SPEED)
-
-def MoveStop():
-    initPos()
