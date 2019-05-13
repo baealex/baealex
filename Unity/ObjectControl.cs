@@ -12,9 +12,6 @@ public class Controller : MonoBehaviour
     GameObject cube_green;
     GameObject cube_yellow;
 
-    GameObject new_cube;
-    Vector3 positionValue;
-
     void Start()
     {
         this.cube_red = GameObject.Find("Cube_Red");
