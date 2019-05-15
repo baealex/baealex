@@ -98,4 +98,4 @@ for text in read_text:
 
 print("Sum : " + str(mSum))
 print("Avg : " + str(mSum/len(read_text)))
-"""
+# """
