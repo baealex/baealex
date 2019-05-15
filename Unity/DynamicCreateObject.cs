@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DinamicCreateObject : MonoBehaviour
+public class DynamicCreateObject : MonoBehaviour
 {
     GameObject cube_red;
     GameObject cube_blue;
