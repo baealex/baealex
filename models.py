@@ -48,7 +48,7 @@ def MoveZ(MOVE_DIR, MOVE_MENT, DELAY):
         pi.write(Z['STEP'], pigpio.LOW)
         sleep(DELAY)
         
-def btn_start_click_function(X_VALUE, Y_VALUE, Z_VALUE):
-    MoveX(Z_VALUE, X_VALUE, .000004)
-    MoveY(Z_VALUE, Y_VALUE, .000004)
+def btn_start_click_function(X_VALUE, Y_VALUE, Z_VALUE, Pulse):
+    MoveX(Z_VALUE, X_VALUE, 1/Pulse)
+    MoveY(Z_VALUE, Y_VALUE, 1/Pulse)
     # MoveZ(1, Z_VALUE, .000004)

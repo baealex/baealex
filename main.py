@@ -2,8 +2,8 @@ from views import *
     
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    TestBox = QtWidgets.QDialog()
-    ui = Ui_TestBox()
-    ui.setupUi(TestBox)
-    TestBox.show()
+    ControlPanel = QtWidgets.QDialog()
+    ui = Ui_ControlPanel()
+    ui.setupUi(ControlPanel)
+    ControlPanel.show()
     sys.exit(app.exec_())
