@@ -32,8 +32,9 @@ var PlayerBall= function(ele_id) {
     };
 }
 
-var OtherBall = function(ele_id) {
+var OtherBall = function(ele_id, player) {
     this.mObject = document.getElementById(ele_id);
+    this.mPlayer = player;
     this.x = parseInt(Math.random()*mapWidth)
     this.y = parseInt(Math.random()*mapHeight)
     this.w = 30;
@@ -72,8 +73,22 @@ var OtherBall = function(ele_id) {
             var sc = parseInt(Math.random()*10 + 1);
             this.sy = sc * (this.sy < 0 ? 1 : -1)
         }
+        this.Collision();
+        
         var Self = this;
         setTimeout(function(){ Self.Render(); }, 0);
+    };
+    this.Collision = function() {
+        if(this.mPlayer.x > this.x && this.mPlayer.y > this.y) {
+            if(this.mPlayer.x - (this.x + this.w) < 0 && this.mPlayer.y - (this.y + this.h) < 0) {
+                alert("충돌");
+            }
+        }
+        else if(this.mPlayer.x < this.x && this.mPlayer.y < this.y) {
+            if(this.x - (this.mPlayer.x + this.mPlayer.w) < 0 && this.y - (this.mPlayer.y + this.mPlayer.h) < 0) {
+                alert("충돌");
+            }
+        }
     };
     this.Render = function() {
         this.mObject.style.top = this.y + 'px';

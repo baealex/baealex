@@ -5,7 +5,7 @@ window.addEventListener("load", function(e) {
     player = new PlayerBall('my-div');
     player.init();
 
-    balls = new OtherBall('ball-div');
+    balls = new OtherBall('ball-div', player);
     balls.init();
 }, false);
 
