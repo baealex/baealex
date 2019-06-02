@@ -2,65 +2,73 @@ import requests
 import urllib.request
 from bs4 import BeautifulSoup as bs
 
-import private_infomation # Custom Lib
+from private_infomation import * # Custom Lib
 
-execpt_text = ['ipynb', 'zip', 'xlsx', 'csv', 'youtube']
+Download_Resource = ['ipynb', 'zip', 'xlsx', 'csv']
+Skip_Keyword = ['youtube']
 
 with requests.Session() as s:
-    login_req = s.post(private_infomation.LOGIN_PAGE , data=private_infomation.LOGIN_INFO)
+    login_req = s.post(LOGIN_PAGE , data=LOGIN_INFO)
+    
     print('Status Code : ' + str(login_req.status_code))
-
     if login_req.status_code != 200:
         raise Exception('Login Faild!')
 
-    board = s.get(private_infomation.POST_LIST)
-    soup = bs(board.text, 'html.parser')
-    title_list = soup.select('tr > td > a')
-    count = 0
+    board = s.get(POST_LIST)
+    board_parser = bs(board.text, 'html.parser')
+    
+    post_list = board_parser.select('tr > td > a')
+
     total = 0
-    for title in title_list:
-        if title.text.find(execpt_text[0]) != -1 or \
-           title.text.find(execpt_text[1]) != -1 or \
-           title.text.find(execpt_text[2]) != -1 or \
-           title.text.find(execpt_text[3]) != -1 or \
-           title.get('href').find(execpt_text[4]) != -1 :
+    for post in post_list:
+        if post.text.find(Download_Resource[0]) != -1 or \
+           post.text.find(Download_Resource[1]) != -1 or \
+           post.text.find(Download_Resource[2]) != -1 or \
+           post.text.find(Download_Resource[3]) != -1 :
+            continue
+        if post.get('href').find(Skip_Keyword[0]) != -1 :
             continue
         total += 1
-    for title in title_list:
-        if title.text.find(execpt_text[0]) != -1 or \
-           title.text.find(execpt_text[1]) != -1 or \
-           title.text.find(execpt_text[2]) != -1 or \
-           title.text.find(execpt_text[3]) != -1 :
-            # urllib.request.urlretrieve(private_infomation.ASSETS_URL + title.get('href'), 'private_craw/resource/data/' + title.text.strip())
-            res = s.get(private_infomation.ASSETS_URL + title.get('href'))
-            with open('private_craw/resource/data/' + title.text.strip(), 'wb') as f:
+
+    count = 0
+    for post in post_list:
+        if post.text.find(Download_Resource[0]) != -1 or \
+           post.text.find(Download_Resource[1]) != -1 or \
+           post.text.find(Download_Resource[2]) != -1 or \
+           post.text.find(Download_Resource[3]) != -1 :
+            res = s.get(ASSETS_URL + post.get('href'))
+            save_dir = 'private_craw/resource/data/' + post.text.strip()
+            with open(save_dir, 'wb') as f:
                 f.write(res.content)
             continue
-        elif title.get('href').find(execpt_text[4]) != -1:
+        elif post.get('href').find(Skip_Keyword[0]) != -1:
             continue
         else:
-            split_link = title.get('href').split('f_read(')
-            # print(split_link)
-            link = split_link[1].split(')')
+            get_resource_split_link = post.get('href').split('f_read(')[1]
+            get_resource_link = get_resource_split_link.split(')')[0]
 
-            post = s.get(private_infomation.READ_POST(link[0]))
-            post_soup = bs(post.text, 'html.parser')
-            post_soup_content = post_soup.select('table > tr')
+            contents = s.get(READ_POST(get_resource_link))
+            contents_parser = bs(contents.text, 'html.parser')
+            content = contents_parser.select('table > tr')
 
-            save_html = open('private_craw/'+ title.text + '.html', 'w')
-            save_html.write(str(post_soup_content[1]))
+            save_dir = 'private_craw/' + post.text + '.html'
+            save_html = open(save_dir, 'w')
+            save_html.write(str(content[1]))
             save_html.close()
 
             img_count = 0
             apply_link = ''
             img_type = ''
-            for img in post_soup_content[1].select('img'):
-                if img.get('src').find(private_infomation.ASSETS_URL) != -1:
+            for img in content[1].select('img'):
+                # src에 주소가 있으면
+                if img.get('src').find(ASSETS_URL) != -1:
                     apply_link = img.get('src')
+                # 관련 없는 이미지 건너뜀
                 elif img.get('src').find('http') != -1:
                     continue
+                # src에 주소가 없으면 주소 추가
                 else:
-                    apply_link = private_infomation.ASSETS_URL + img.get('src')
+                    apply_link = ASSETS_URL + img.get('src')
 
                 if apply_link.find('jpg') != -1 or apply_link.find('jpg') != -1:
                     img_type = '.jpg'
@@ -70,12 +78,10 @@ with requests.Session() as s:
                     img_type = '.png'
                 else:
                     img_type = '.unknown'
-
-                # urllib.request.urlretrieve(apply_link, 'private_craw/resource/img/' + str(count) + '-' + str(img_count) + img_type)
-                print(apply_link)
-                print(img_type)
+                
                 res = s.get(apply_link)
-                with open('private_craw/resource/img/' + str(count) + '-' + str(img_count) + img_type, 'wb') as f:
+                save_dir = 'private_craw/resource/img/' + str(count) + '-' + str(img_count) + img_type
+                with open(save_dir, 'wb') as f:
                     f.write(res.content)
                 img_count += 1
 
