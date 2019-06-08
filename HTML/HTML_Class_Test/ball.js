@@ -35,6 +35,12 @@ window.addEventListener('keydown', function(e){
 		case 40: // down
 			keyStat[3] = 1;
 			break;
+
+		case 81: MeMe.h += 5; break;
+		case 87: if(MeMe.h > 0) MeMe.h -= 5; break;
+		case 65: MeMe.w += 5; break;
+		case 83: if(MeMe.w > 0) MeMe.w -= 5; break;
+
 		case 49: modeKey = 1; break;
 		case 50: modeKey = 2; break;
 		case 51: modeKey = 3; break;
@@ -181,48 +187,91 @@ var MYBALL = function(){
 		ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, true);
 		ctx.fill();
 	};
-	this.Collision = function(){
+	this.Collision = function(){ // 돌아다니는 공
+		// 상하좌우 체크
 		var left = false;
 		var right = false;
 		var top = false;
 		var bottom = false;
-		if(this.y > MeMe.y && this.y < MeMe.y + MeMe.h && this.x > MeMe.x && this.x < MeMe.x + MeMe.w)
-		{
-			if(this.y < MeMe.y + MeMe.h/10) {
-				top = true;
+
+		if(this.y + this.r > MeMe.y && this.y - this.r < MeMe.y + MeMe.h && this.x + this.r > MeMe.x && this.x - this.r < MeMe.x + MeMe.w)
+		{ // 충돌 감지
+			if(this.y + this.r < MeMe.y + MeMe.h/10) {
+				top = true; // 위쪽에서 접근한 공
 			}
-			if(this.y > MeMe.y + MeMe.h - MeMe.h/10) {
-				bottom = true;
+			if(this.y - this.r > MeMe.y + MeMe.h - MeMe.h/10) {
+				bottom = true; // 아래에서 접근한 공
 			}
-			if(this.x < MeMe.x + MeMe.w/10) {
-				left = true;
+			if(this.x + this.r < MeMe.x + MeMe.w/10) {
+				left = true; // 왼쪽에서 접근한 공
 			}
-			if(this.x > MeMe.x + MeMe.w - MeMe.w/10) {
-				right = true;
+			if(this.x - this.r > MeMe.x + MeMe.w - MeMe.w/10) {
+				right = true; // 오른쪽에서 접근한 공
 			}
 
-			// 모서리에서 부딪혔을 때
-			if((top && left) || (top && right) || (bottom && left) || (bottom && right)) {
-				this.y -= this.sy;
-				this.sy = (parseInt(Math.random()*10) + 2) * (this.sy>0?-1:1);
-				this.x -= this.sx;
-				this.sx = (parseInt(Math.random()*10) + 2) * (this.sx>0?-1:1);
+			// MeMe가 움직이지 않는 경우
+			if(keyStat[0] + keyStat[1] + keyStat[2] + keyStat[3] == 0) {
+				// 모서리에서 부딪혔을 때 -> 상하좌우 방향 변경
+				if((top && left) || (top && right) || (bottom && left) || (bottom && right)) {
+					this.y -= this.sy;
+					this.sy = (parseInt(Math.random()*10) + 2) * (this.sy>0?-1:1);
+					this.x -= this.sx;
+					this.sx = (parseInt(Math.random()*10) + 2) * (this.sx>0?-1:1);
+				}
+				// 위 또는 아래 -> 상하 방향 변경
+				else if(top || bottom) {
+					this.y -= this.sy;
+					this.sy = this.sy * -1;
+				}	
+				// 왼쪽 또는 오른쪽 -> 좌우 방향 변경
+				else if(left || right) {
+					this.x -= this.sx;
+					this.sx = this.sx * -1;
+				}
+				else {
+					this.sy = (parseInt(Math.random()*10) + 2) * (this.sy>0?-1:1);
+					this.sx = (parseInt(Math.random()*10) + 2) * (this.sx>0?-1:1);
+					this.y += this.sy;
+					this.x += this.sx;
+				}
 			}
-			// 위 또는 아래
-			else if(top || bottom) {
-				this.y -= this.sy;
-				this.sy = this.sy * -1;
-			}	
-			// 좌 또는 우
-			else if(left || right) {
-				this.x -= this.sx;
-				this.sx = this.sx * -1;
-			}
+
+			// MeMe가 움직이고 있는 경우
 			else {
-				this.y = this.oy;
-				this.sy = (parseInt(Math.random()*10) + 2) * (this.sy>0?-1:1);
-				this.x = this.ox;
-				this.sx = (parseInt(Math.random()*10) + 2) * (this.sx>0?-1:1);
+				if(top && keyStat[1]) {
+					// MeMe가 밀고있는 개체는 속도를 같게 맞춤
+					this.sy = MeMe.sy;
+					this.sx = MeMe.sx;
+					this.y = MeMe.y - this.r;
+				} else if(top) {
+					// 아닌 개체는 튕겨나감
+					this.y -= this.sy;
+					this.sy = this.sy * -1;
+				}
+				if(bottom && keyStat[3]) {
+					this.sy = MeMe.sy;
+					this.sx = MeMe.sx;
+					this.y = MeMe.y + MeMe.h + this.r;
+				} else if(bottom) {
+					this.y -= this.sy;
+					this.sy = this.sy * -1;
+				}
+				if(left && keyStat[0]) {
+					this.sy = MeMe.sy;
+					this.sx = MeMe.sx;
+					this.x = MeMe.x - this.r;
+				} else if(left) {
+					this.x -= this.sx;
+					this.sx = this.sx * -1;
+				}
+				if(right && keyStat[2]) {
+					this.sy = MeMe.sy;
+					this.sx = MeMe.sx;
+					this.x = MeMe.x + MeMe.w + this.r;
+				} else if(right) {
+					this.x -= this.sx;
+					this.sx = this.sx * -1;
+				}
 			}
 			CanvasPrintText(top +" "+ bottom +" "+ left +" "+ right, 120, 60, '22px');
 		}
@@ -347,6 +396,7 @@ var MYFALL = function(cnt){
 			}
 		};
 		this.Colision = function(){
+			// 낙하공 여러개
 			/*
 			if(isCollision(this.x - this.r, this.y - this.r, this.r*2, this.r*2, MeMe.x, MeMe.y, MeMe.w, MeMe.h)){
 				var ox = this.ox;
