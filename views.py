@@ -2,6 +2,15 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from models import *
 import sys
 
+x_pos = 0
+y_pos = 0
+
+def temp_func(asd):
+    print(asd)
+    x_pos = 10
+    y_pos = 20
+    print(x_pos, y_pos)
+
 class Ui_ControlPanel(object):
 
     def setupUi(self, ControlPanel):
@@ -112,39 +121,37 @@ class Ui_ControlPanel(object):
     def btn_start_click(self):
         need_pulse = False
         
-        if self.X_VALUE_INPUT.toPlainText() == '':
-            self.X_VALUE_INPUT.setPlainText('0')
-        if self.Y_VALUE_INPUT.toPlainText() == '':
-            self.Y_VALUE_INPUT.setPlainText('0')
-        if self.Z_VALUE_INPUT.toPlainText() == '':
-            self.PULSE_VALUE_INPUT.setPlainText('0')
+        if self.X_VALUE_INPUT.text() == '':
+            self.X_VALUE_INPUT.setText('0')
+        if self.Y_VALUE_INPUT.text() == '':
+            self.Y_VALUE_INPUT.setText('0')
+        if self.Z_VALUE_INPUT.text() == '':
+            self.PULSE_VALUE_INPUT.setText('0')
         
-        if self.PULSE_VALUE_INPUT.toPlainText() == '':
+        if self.PULSE_VALUE_INPUT.text() == '':
             need_pulse = True
-            if self.SPEED_VALUE_INPUT.toPlainText() == '':
-                self.PULSE_VALUE_INPUT.setPlainText('0')
+            if self.SPEED_VALUE_INPUT.text() == '':
+                self.PULSE_VALUE_INPUT.setText('0')
             else:
                 # TransFrom Speed to Pulse
                 xz = 0
         
-        if self.SPEED_VALUE_INPUT.toPlainText() == '':
-            if self.PULSE_VALUE_INPUT.toPlainText() == '':
-                self.SPEED_VALUE_INPUT.setPlainText('0')
+        if self.SPEED_VALUE_INPUT.text() == '':
+            if self.PULSE_VALUE_INPUT.text() == '':
+                self.SPEED_VALUE_INPUT.setText('0')
             else:
                 # TransFrom Pulse to Speed
                 xz = 0
         
-        mXvalue = int(self.X_VALUE_INPUT.toPlainText())
-        mYvalue = int(self.Y_VALUE_INPUT.toPlainText())
-        mZvalue = int(self.Z_VALUE_INPUT.toPlainText())
+        mXvalue = int(self.X_VALUE_INPUT.text())
+        mYvalue = int(self.Y_VALUE_INPUT.text())
+        mZvalue = int(self.Z_VALUE_INPUT.text())
         
-        if nedd_pulse:
-            mPulse = int(self.PULSE_VALUE_INPUT.toPlainText())
+        if need_pulse:
+            mPulse = int(self.PULSE_VALUE_INPUT.text())
         else:
-            mPulse = int(self.PULSE_VALUE_INPUT.toPlainText())
+            mPulse = int(self.PULSE_VALUE_INPUT.text())
         
         btn_start_click_function(mXvalue, mYvalue, mZvalue, mPulse)
-        
-        
-        
+        MoveInit()
         
