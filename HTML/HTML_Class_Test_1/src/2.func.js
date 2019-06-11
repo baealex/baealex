@@ -3,9 +3,10 @@ function CanvasClear() {
     ctx.fillRect(0,0,canvas.width,canvas.height);
 }
 
-function CanvasPrint(text, x, y, size='30px', color='#fff', font='나눔고딕') {
+function CanvasPrint(text, x, y, align='left', size='30px', color='#fff', font='나눔고딕') {
     ctx.fillStyle = color;
     ctx.font = size+' '+font;
+    ctx.textAlign = align;
     ctx.fillText(text, x, y);
 }
 

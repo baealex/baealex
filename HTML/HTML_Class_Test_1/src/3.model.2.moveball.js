@@ -93,8 +93,8 @@ var MoveBall = function(){
 			else {
 				if(top && keyStat[1]) {
 					if(this.sy < MeMe.sy) {
-						// MeMe가 느리면 밀어주는
-						this.sy -= MeMe.sy;	
+						// MeMe가 느리면 밀어주는 역할 수행
+						this.sy -= MeMe.sy;
 					}
 					else {
 						// MeMe가 빠르면 밀고있는 개체는 속도를 같게 맞춤
@@ -145,7 +145,6 @@ var MoveBall = function(){
 					this.sx = this.sx * -1;
 				}
 			}
-			CanvasPrint(top +" "+ bottom +" "+ left +" "+ right, 120, 60, '22px');
 		}
 	};
 };
