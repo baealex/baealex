@@ -38,7 +38,7 @@ function getReflectionDir(dx, dy, x1, y1, w, h, mx1, my1, mw, mh) {
         if(x1<mx1 && y1<my1) { dirH = -1; dirV = -1; }
     } else if(dx>0 && dy<0) {
         if(y2<my2 && x1<mx1) { dirH = -1; }
-        if(x1>mx1 && y1<my1) { dirV = 1; }
+        if(x1>mx1 && y2>my2) { dirV = 1; }
         if(x1<mx1 && y2>my2) { dirH = -1; dirV = 1; }
     } else if(dx<0 && dy<0) {
         if(y2<my2 && x2>mx2) { dirH = 1; }
@@ -46,8 +46,8 @@ function getReflectionDir(dx, dy, x1, y1, w, h, mx1, my1, mw, mh) {
         if(x2<mx2 && y2<my2) { dirH = 1; dirV = 1; }
     } else {
         if(y1>my1 && x2>mx2) { dirH = 1; }
-        if(x2>mx2 && y1<my1) { dirV = -1; }
-        if(x2<mx2 && y1<my1) { dirH = -1; dirV = 1; }
+        if(x2<mx2 && y1<my1) { dirV = -1; }
+        if(x2<mx2 && y1>my1) { dirH = 1; dirV = 1; }
     }
     return {sx:dirH, sy:dirV};
 }
