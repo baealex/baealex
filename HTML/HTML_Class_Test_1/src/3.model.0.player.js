@@ -1,6 +1,6 @@
 var Player = function(){
-	this.w = 100;
-	this.h = 100;
+	this.w = 200;
+	this.h = 50;
 	this.x = CanvasW / 2 - this.w/2;
 	this.y = CanvasH * 2 / 3 - this.h/2;
 	this.sx = 0;

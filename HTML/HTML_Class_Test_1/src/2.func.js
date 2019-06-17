@@ -24,4 +24,30 @@ function isCollision(x1, y1, w1, h1, x2, y2, w2, h2){
 	}else{
 		return false;
 	}
-} 
+}
+function getReflectionDir(dx, dy, x1, y1, w, h, mx1, my1, mw, mh) {
+    var x2 = x1 + w;
+    var y2 = y1 + h;
+    var mx2 = mx1 + mw;
+    var my2 = my1 + mh;
+    var dirV = 0;
+    var dirH = 0;
+    if(dx>0 && dy>0) {
+        if(y1>my1 && x1<mx1) { dirH = -1; }
+        if(x1>mx1 && y1<my1) { dirV = -1; }
+        if(x1<mx1 && y1<my1) { dirH = -1; dirV = -1; }
+    } else if(dx>0 && dy<0) {
+        if(y2<my2 && x1<mx1) { dirH = -1; }
+        if(x1>mx1 && y1<my1) { dirV = 1; }
+        if(x1<mx1 && y2>my2) { dirH = -1; dirV = 1; }
+    } else if(dx<0 && dy<0) {
+        if(y2<my2 && x2>mx2) { dirH = 1; }
+        if(x2<mx2 && y2>my2) { dirV = 1; }
+        if(x2<mx2 && y2<my2) { dirH = 1; dirV = 1; }
+    } else {
+        if(y1>my1 && x2>mx2) { dirH = 1; }
+        if(x2>mx2 && y1<my1) { dirV = -1; }
+        if(x2<mx2 && y1<my1) { dirH = -1; dirV = 1; }
+    }
+    return {sx:dirH, sy:dirV};
+}

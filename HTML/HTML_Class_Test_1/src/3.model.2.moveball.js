@@ -28,121 +28,37 @@ var MoveBall = function(){
 		ctx.fill();
 	};
 	this.Collision = function(){ // 돌아다니는 공
-		// 상하좌우 체크
-		var left = false;
-		var right = false;
-		var top = false;
-		var bottom = false;
+		var dx = this.x - this.ox;
+		var dy = this.y - this.oy;
+		var inclination = dx / dy;
+		if(Math.abs(dx) > Math.abs(dy)) {
+			for(var x=0; dx>0 ? x<=dx : x>=dx; dx>0 ? x++ : x--) {
+				var y = x * inclination;
+				if(isCollision((this.ox+x)-this.r,(this.oy+y)-this.r,this.r*2,this.r*2,MeMe.x,MeMe.y,MeMe.w,MeMe.h)) {
+					var ss = getReflectionDir(dx, dy, (this.ox+x)-this.r,(this.oy+y)-this.r,this.r*2,this.r*2,MeMe.x,MeMe.y,MeMe.w,MeMe.h)
 
-		if(this.y + this.r > MeMe.y && this.y - this.r < MeMe.y + MeMe.h && this.x + this.r > MeMe.x && this.x - this.r < MeMe.x + MeMe.w)
-		{ // 충돌 감지
-			if(this.y + this.r < MeMe.y + MeMe.h/10) {
-				top = true; // 위쪽에서 접근한 공
-			}
-			if(this.y - this.r > MeMe.y + MeMe.h - MeMe.h/10) {
-				bottom = true; // 아래에서 접근한 공
-			}
-			if(this.x + this.r < MeMe.x + MeMe.w/10) {
-				left = true; // 왼쪽에서 접근한 공
-			}
-			if(this.x - this.r > MeMe.x + MeMe.w - MeMe.w/10) {
-				right = true; // 오른쪽에서 접근한 공
-			}
+					if(ss.sx<0) {this.sx *= ss.sx; this.x = MeMe.x - this.r;}
+					if(ss.sx>0) {this.sx *= -ss.sx; this.x = MeMe.x + MeMe.w + this.r;}
 
-			// MeMe가 움직이지 않는 경우
-			if(keyStat[0] + keyStat[1] + keyStat[2] + keyStat[3] == 0) {
-				// 모서리에서 부딪혔을 때 -> 상하좌우 방향 변경
-				if((top && left && this.sy > 0 && this.sx > 0)
-				|| (top && right && this.sy > 0 && this.sx < 0)
-				|| (bottom && left && this.sy < 0 && this.sx > 0)
-				|| (bottom && right && this.sy < 0 && this.sx < 0)) {
-					this.y -= this.sy;
-					this.sy = (parseInt(Math.random()*10) + 2) * (this.sy>0?-1:1);
-					this.x -= this.sx;
-					this.sx = (parseInt(Math.random()*10) + 2) * (this.sx>0?-1:1);
-				}
-				// 위 또는 아래 -> 상하 방향 변경
-				else if(top || bottom) {
-					// 모서리에 맞았으나 좌우 방향을 변경해야 하는 경우
-					if((top && left && this.sy < 0 && this.sx > 0)
-					|| (top && right && this.sy < 0 && this.sx < 0)
-					|| (bottom && left && this.sy > 0 && this.sx > 0)
-					|| (bottom && right && this.sy > 0 && this.sx < 0)) {
-						this.x -= this.sx;
-						this.sx = this.sx * -1;
-					}
-					else {
-						this.y -= this.sy;
-						this.sy = this.sy * -1;
-					}
-				}	
-				// 왼쪽 또는 오른쪽 -> 좌우 방향 변경
-				else if(left || right) {
-					this.x -= this.sx;
-					this.sx = this.sx * -1;
-				}
-				else {
-					this.sy = (parseInt(Math.random()*10) + 2) * (this.sy>0?-1:1);
-					this.sx = (parseInt(Math.random()*10) + 2) * (this.sx>0?-1:1);
-					this.y += this.sy;
-					this.x += this.sx;
+					if(ss.sy<0) {this.sy *= ss.sy; this.y = MeMe.y - this.r;}
+					if(ss.sy>0) {this.sy *= -ss.sy; this.y = MeMe.y + MeMe.h + this.r;}
+
+					return;
 				}
 			}
+		} else {
+			for(var y=0; dy>0 ? y<=dy : y>=dy; dy>0 ? y++ : y--) {
+				var x = y * inclination;
+				if(isCollision((this.ox+x)-this.r,(this.oy+y)-this.r,this.r*2,this.r*2,MeMe.x,MeMe.y,MeMe.w,MeMe.h)) {
+					var ss = getReflectionDir(dx, dy, (this.ox+x)-this.r,(this.oy+y)-this.r,this.r*2,this.r*2,MeMe.x,MeMe.y,MeMe.w,MeMe.h)
 
-			// MeMe가 움직이고 있는 경우
-			else {
-				if(top && keyStat[1]) {
-					if(this.sy < MeMe.sy) {
-						// MeMe가 느리면 밀어주는 역할 수행
-						this.sy -= MeMe.sy;
-					}
-					else {
-						// MeMe가 빠르면 밀고있는 개체는 속도를 같게 맞춤
-						this.sy = MeMe.sy;
-						this.sx = MeMe.sx;
-						this.y = MeMe.y - this.r;
-					}
-				} else if(top) {
-					// 아닌 개체는 튕겨나감
-					this.y -= this.sy;
-					this.sy = this.sy * -1;
-				}
-				if(bottom && keyStat[3]) {
-					if(this.sy > MeMe.sy) {
-						this.sy += MeMe.sy;	
-					}
-					else {
-						this.sy = MeMe.sy;
-						this.sx = MeMe.sx;
-						this.y = MeMe.y + MeMe.h + this.r;
-					}
-				} else if(bottom) {
-					this.y -= this.sy;
-					this.sy = this.sy * -1;
-				}
-				if(left && keyStat[0]) {
-					if(this.sx < MeMe.sx) {
-						this.sx -= MeMe.sx;	
-					}
-					else {
-						this.sy = MeMe.sy;
-						this.sx = MeMe.sx;
-						this.x = MeMe.x - this.r;
-					}
-				} else if(left) {
-					this.x -= this.sx;
-					this.sx = this.sx * -1;
-				}
-				if(right && keyStat[2]) {
-					if(this.sx > MeMe.sx) {
-						this.sx += MeMe.sx;	
-					}
-					this.sy = MeMe.sy;
-					this.sx = MeMe.sx;
-					this.x = MeMe.x + MeMe.w + this.r;
-				} else if(right) {
-					this.x -= this.sx;
-					this.sx = this.sx * -1;
+					if(ss.sx<0) {this.sx *= ss.sx; this.x = MeMe.x - this.r;}
+					if(ss.sx>0) {this.sx *= -ss.sx; this.x = MeMe.x + MeMe.w + this.r;}
+
+					if(ss.sy<0) {this.sy *= ss.sy; this.y = MeMe.y - this.r;}
+					if(ss.sy>0) {this.sy *= -ss.sy; this.y = MeMe.y + MeMe.h + this.r;}
+
+					return;
 				}
 			}
 		}
