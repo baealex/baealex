@@ -20,7 +20,7 @@
 <h2 id="1">접근방법</h2>
 <p>저는 반사라는 개념을 스스로 이해하는 내에서 만들기 위해서 다수의 <code>if</code>문을 사용하여 해결하고자 하였습니다. 노란색 박스(이하 Player)로 다수의 공이 접근해 올 때, 이 공이 어디서 접근하였는지 알 수 있게 하기 위해서 Player 안에 그것을 구분하기 위한 공간을 만들어 해결하고자 하였습니다.</p>
 <p><img src="https://baealex.iptime.org/%EC%A0%9C%EB%AA%A9%20%EC%97%86%EC%9D%8C.png" alt=""></p>
-<p>그림으로 표현하면 위와 같습니다.</p>
+<p>그림으로 표현하면 위와 같습니다. 또한 빠른 속도로 움직여 내부로 들어오는 공을 없애기 위하여 공간의 범위를 조정하여 해결하였습니다.</p>
 <p><br></p>
 <h2 id="2">변수설명</h2>
 <p>우선 충돌이라는 개념은 <code>isCollision</code>이라는 함수를 통해서 판단할 수 있었지만 이를 반사시키기 위해서는 스스로 이해할 수 있는 코드가 필요하였고 저는 코드를 재구성하였습니다. 실제로 변경된 코드는 <code>3.model.2.moveball.js.bak</code> 뿐 입니다.</p>
@@ -71,9 +71,9 @@
 <p><br></p>
 <h3 id="55-63">55~63</h3>
 <pre><code><span class="hljs-keyword">if</span>((top &amp;&amp; left &amp;&amp; <span class="hljs-keyword">this</span>.sy &gt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.sx &gt; <span class="hljs-number">0</span>)
-    || (top &amp;&amp; right &amp;&amp; <span class="hljs-keyword">this</span>.sy &gt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.sx &lt; <span class="hljs-number">0</span>)
-    || (bottom &amp;&amp; left &amp;&amp; <span class="hljs-keyword">this</span>.sy &lt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.sx &gt; <span class="hljs-number">0</span>)
-    || (bottom &amp;&amp; right &amp;&amp; <span class="hljs-keyword">this</span>.sy &lt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.sx &lt; <span class="hljs-number">0</span>)) {
+|| (top &amp;&amp; right &amp;&amp; <span class="hljs-keyword">this</span>.sy &gt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.sx &lt; <span class="hljs-number">0</span>)
+|| (bottom &amp;&amp; left &amp;&amp; <span class="hljs-keyword">this</span>.sy &lt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.sx &gt; <span class="hljs-number">0</span>)
+|| (bottom &amp;&amp; right &amp;&amp; <span class="hljs-keyword">this</span>.sy &lt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.sx &lt; <span class="hljs-number">0</span>)) {
     <span class="hljs-keyword">this</span>.y -= <span class="hljs-keyword">this</span>.sy;
     <span class="hljs-keyword">this</span>.sy = (parseInt(Math.random()*<span class="hljs-number">10</span>) + <span class="hljs-number">2</span>) * (<span class="hljs-keyword">this</span>.sy&gt;<span class="hljs-number">0</span>?<span class="hljs-number">-1</span>:<span class="hljs-number">1</span>);
     <span class="hljs-keyword">this</span>.x -= <span class="hljs-keyword">this</span>.sx;
@@ -96,7 +96,7 @@
         <span class="hljs-keyword">this</span>.sy = <span class="hljs-keyword">this</span>.sy * <span class="hljs-number">-1</span>;
     }
 }
-</code></pre><p>이후 공이 모서리로 접근했으나 정방향에서 맞은 경우가 아닌 것을 감지하여 적절한 방향으로 반사시킵니다.</p>
+</code></pre><p>위 아래에서 먼저 공의 접근 여부를 판단하기 때문에 몇몇 특이한 경우가 발생하여 현재 보이는 코드의 3,4,5,6을 통해서 공이 모서리로 접근했으나 정방향에서 맞은 경우가 아닌 것을 감지하여 적절한 방향으로 반사시킵니다. 그리고 그게 아닌 위 아래에서 접근한 공은 <code>sy</code>에 -1을 곱해 반사시킵니다.</p>
 <p><br></p>
 <h3 id="94-108">94~108</h3>
 <pre><code><span class="hljs-keyword">if</span>(top &amp;&amp; keyStat[<span class="hljs-number">1</span>]) {
