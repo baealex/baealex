@@ -1,11 +1,29 @@
 .container {
-    margin-top: 100px;
+    margin-top: 30px;
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
     max-width: 800px;
+    margin-bottom: 30px;
+}
+
+.mobile-disable {
+  display: none;
+}
+.pc-disable {
+  display: block;
+}
+@media only screen and (min-width: 992px) {
+  .mobile-disable {
+    display: block;
+  }
+  .pc-disable {
+    display: none;
+  }
+  .container {
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
 }
 
 .navbar {
@@ -38,33 +56,38 @@
     color:#fff;
 }
 
+/* 
+ * https://github.com/sindresorhus/github-markdown-css
+ * License MIT © Sindre Sorhus
+ */
+
 .markdown-body .octicon {
-    display: inline-block;
-    fill: currentColor;
-    vertical-align: text-bottom;
-  }
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
   
-  .markdown-body .anchor {
-    float: left;
-    line-height: 1;
-    margin-left: -20px;
-    padding-right: 4px;
-  }
+.markdown-body .anchor {
+  float: left;
+  line-height: 1;
+  margin-left: -20px;
+  padding-right: 4px;
+}
   
-  .markdown-body .anchor:focus {
-    outline: none;
-  }
+.markdown-body .anchor:focus {
+  outline: none;
+}
   
-  .markdown-body h1 .octicon-link,
-  .markdown-body h2 .octicon-link,
-  .markdown-body h3 .octicon-link,
-  .markdown-body h4 .octicon-link,
-  .markdown-body h5 .octicon-link,
-  .markdown-body h6 .octicon-link {
-    color: #1b1f23;
-    vertical-align: middle;
-    visibility: hidden;
-  }
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: #1b1f23;
+  vertical-align: middle;
+  visibility: hidden;
+}
   
   .markdown-body h1:hover .anchor,
   .markdown-body h2:hover .anchor,
