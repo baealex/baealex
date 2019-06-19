@@ -32,22 +32,27 @@ function getReflectionDir(dx, dy, x1, y1, w, h, mx1, my1, mw, mh) {
     var my2 = my1 + mh;
     var dirV = 0;
     var dirH = 0;
-    if(dx>0 && dy>0) {
-        if(y1>my1 && x1<mx1) { dirH = -1; }
-        if(x1>mx1 && y1<my1) { dirV = -1; }
-        if(x1<mx1 && y1<my1) { dirH = -1; dirV = -1; }
-    } else if(dx>0 && dy<0) {
-        if(y2<my2 && x1<mx1) { dirH = -1; }
-        if(x1>mx1 && y2>my2) { dirV = 1; }
-        if(x1<mx1 && y2>my2) { dirH = -1; dirV = 1; }
-    } else if(dx<0 && dy<0) {
-        if(y2<my2 && x2>mx2) { dirH = 1; }
-        if(x2<mx2 && y2>my2) { dirV = 1; }
-        if(x2<mx2 && y2<my2) { dirH = 1; dirV = 1; }
-    } else {
-        if(y1>my1 && x2>mx2) { dirH = 1; }
-        if(x2<mx2 && y1<my1) { dirV = -1; }
-        if(x2<mx2 && y1>my1) { dirH = 1; dirV = 1; }
+    // 충돌했을 때 어디로 반사할 것이냐!
+    if(dx>=0 && dy>=0) {
+        // 왼쪽 위에서 떨어지는 공
+        /* 왼　　 면에 맞은 공 */ if(x1<mx1 && y1>my1) { dirH = -1; } // 가로 방향을 변경
+        /* 윗　　 면에 맞은 공 */ if(x1>mx1 && y1<my1) { dirV = -1; } // 세로 방향을 변경
+        /* 모서리 면에 맞은 공 */ if(x1<mx1 && y1<my1) { dirH = -1; dirV = -1; }
+    } else if(dx>=0 && dy<=0) {
+        // 왼쪽 아래에서 떨어지는 공
+        /* 왼　　 면에 맞은 공 */ if(x1<mx1 && y2<my2) { dirH = -1; }
+        /* 아랫　 면에 맞은 공 */ if(x1>mx1 && y2>my2) { dirV = 1; }
+        /* 모서리 면에 맞은 공 */ if(x1<mx1 && y2>my2) { dirH = -1; dirV = 1; }
+    } else if(dx<=0 && dy>=0) {
+        // 오른쪽 위에서 떨어지는 공
+        /* 오른　 면에 맞은 공 */ if(x2>mx2 && y1>my1) { dirH = 1; }
+        /* 윗　　 면에 맞은 공 */ if(x2<mx2 && y1<my1) { dirV = -1; }
+        /* 모서리 면에 맞은 공 */ if(x2<mx2 && y1>my1) { dirH = 1; dirV = -1; }
+    } else if(dx<=0 && dy<=0) {
+        // 오른쪽 아래에서 떨어지는 공
+        /* 오른　 면에 맞은 공 */ if(x2>mx2 && y2<my2) { dirH = 1; }
+        /* 아랫　 면에 맞은 공 */ if(x2<mx2 && y2>my2) { dirV = 1; }
+        /* 모서리 면에 맞은 공 */ if(x2<mx2 && y2<my2) { dirH = 1; dirV = 1; }
     }
     return {sx:dirH, sy:dirV};
 }

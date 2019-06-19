@@ -1,22 +1,117 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
-    <title>Document Index</title>
+    <title>2차 시도 | 배진오</title>
     <link href="../assets/css/style.css" rel="stylesheet">
 </head>
+
 <body>
     <div class="navbar mobile-disable">
-        <a href="../index.html">목차</a> / 
-        <a class="active" href="./index.html">2차 시도</a> / 
-        <a href="./index.html#1">접근 방법</a> / 
-        <a href="./index.html#2">변수 설명</a> / 
-        <a href="./index.html#3">함수 설명</a> / 
-        <a href="./index.html#4">해결한 과제</a> / 
-        <a href="./index.html#5">해결하지 못한 과제</a>
+        <a href="../index.html">목차</a> /
+        <a class="active" href="./index.html">2차 시도</a> /
+        <a href="./index.html#1">해결해야 하는 과제</a> /
+        <a href="./index.html#2">해결하는 과정</a> /
+        <a href="./index.html#3">해결한 과제</a>
     </div>
     <div class="container markdown-body">
 
+        <h2 id="1">해결해야 하는 과제</h2>
+        <p>교수님께서는 제시한 소스코드에서 아래 두가지 문제를 해결하라고 하셨습니다. 그래서 이 보고서에는 소스코드를 이해하는 과정과 문제를 해결하는 과정을 나열할 것입니다.</p>
+        <ul>
+            <li>기울기 문제가 있다. (218라인 검토)</li>
+            <li>Player가 움직이면 개체가 순간이동 한다.</li>
+        </ul>
+        <p><br></p>
+        <h2 id="2">해결하는 과정</h2>
+        <p>먼저 해결하기전 교수님의 코드를 이해하기 위해서 노력했습니다.</p>
+        <h4 id="getreflectiondir">2.func.js/getReflectionDir</h4>
+        <pre><code>function <span class="hljs-function"><span class="hljs-title">getReflectionDir</span></span>(dx, dy, x1, y1, w, h, mx1, my1, mw, mh) {
+    var <span class="hljs-attr">x2</span> = x1 + w;
+    var <span class="hljs-attr">y2</span> = y1 + h;
+    var <span class="hljs-attr">mx2</span> = mx1 + mw;
+    var <span class="hljs-attr">my2</span> = my1 + mh;
+    var <span class="hljs-attr">dirV</span> = <span class="hljs-number">0</span>;
+    var <span class="hljs-attr">dirH</span> = <span class="hljs-number">0</span>;
+    <span class="hljs-comment">// 충돌했을 때 어디로 반사할 것이냐!</span>
+    <span class="hljs-keyword">if</span>(dx&gt;<span class="hljs-number">0</span> &amp;&amp; dy&gt;<span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// 왼쪽 위에서 떨어지는 공</span>
+        <span class="hljs-comment">/* 왼　　 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x1&lt;mx1 &amp;&amp; y1&gt;my1) { <span class="hljs-attr">dirH</span> = -<span class="hljs-number">1</span>; } <span class="hljs-comment">// 가로 방향을 변경</span>
+        <span class="hljs-comment">/* 윗　　 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x1&gt;mx1 &amp;&amp; y1&lt;my1) { <span class="hljs-attr">dirV</span> = -<span class="hljs-number">1</span>; } <span class="hljs-comment">// 세로 방향을 변경</span>
+        <span class="hljs-comment">/* 모서리 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x1&lt;mx1 &amp;&amp; y1&lt;my1) { <span class="hljs-attr">dirH</span> = -<span class="hljs-number">1</span>; <span class="hljs-attr">dirV</span> = -<span class="hljs-number">1</span>; }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(dx&gt;<span class="hljs-number">0</span> &amp;&amp; dy&lt;<span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// 왼쪽 아래에서 떨어지는 공</span>
+        <span class="hljs-comment">/* 왼　　 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x1&lt;mx1 &amp;&amp; y2&lt;my2) { <span class="hljs-attr">dirH</span> = -<span class="hljs-number">1</span>; }
+        <span class="hljs-comment">/* 아랫　 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x1&gt;mx1 &amp;&amp; y2&gt;my2) { <span class="hljs-attr">dirV</span> = <span class="hljs-number">1</span>; }
+        <span class="hljs-comment">/* 모서리 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x1&lt;mx1 &amp;&amp; y2&gt;my2) { <span class="hljs-attr">dirH</span> = -<span class="hljs-number">1</span>; <span class="hljs-attr">dirV</span> = <span class="hljs-number">1</span>; }
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(dx&lt;<span class="hljs-number">0</span> &amp;&amp; dy&lt;<span class="hljs-number">0</span>) {
+        <span class="hljs-comment">// 오른쪽 아래에서 떨어지는 공</span>
+        <span class="hljs-comment">/* 오른　 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x2&gt;mx2 &amp;&amp; y2&lt;my2) { <span class="hljs-attr">dirH</span> = <span class="hljs-number">1</span>; }
+        <span class="hljs-comment">/* 아랫　 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x2&lt;mx2 &amp;&amp; y2&gt;my2) { <span class="hljs-attr">dirV</span> = <span class="hljs-number">1</span>; }
+        <span class="hljs-comment">/* 모서리 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x2&lt;mx2 &amp;&amp; y2&lt;my2) { <span class="hljs-attr">dirH</span> = <span class="hljs-number">1</span>; <span class="hljs-attr">dirV</span> = <span class="hljs-number">1</span>; }
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// 오른쪽 위에서 떨어지는 공</span>
+        <span class="hljs-comment">/* 윗　　 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x2&gt;mx2 &amp;&amp; y1&gt;my1) { <span class="hljs-attr">dirH</span> = <span class="hljs-number">1</span>; }
+        <span class="hljs-comment">/* 오른　 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x2&lt;mx2 &amp;&amp; y1&lt;my1) { <span class="hljs-attr">dirV</span> = -<span class="hljs-number">1</span>; }
+        <span class="hljs-comment">/* 모서리 면에 맞은 공 */</span> <span class="hljs-keyword">if</span>(x2&lt;mx2 &amp;&amp; y1&gt;my1) { <span class="hljs-attr">dirH</span> = <span class="hljs-number">1</span>; <span class="hljs-attr">dirV</span> = -<span class="hljs-number">1</span>; }
+    }
+    return {sx:dirH, sy:dirV};
+}
+</code></pre>
+        <p>먼저 제가 생각하기에 왼쪽 위에서 떨어지는 공이면 <code>x2</code>와 <code>mx1</code>이 비교가 되어야 정상이 아닌지 고민하고 코드를 변경했으나 비정상적으로 동작했습니다.
+        </p>
+        <p>혼란스러웠지만 <code>x1&lt;mx1</code>이 윗면에 도달하지 않는다는 의미라는 것을 곧 이해할 수 있었습니다.</p>
+        <p><br></p>
+        <h4 id="-">기울기 문제</h4>
+        <p>이후 교수님이 말씀하신 기울기 문제(218라인, 제 코드 상에선 <code>3.model.2.moveball.js</code>파일 코드는 삭제됨)을 검토하였습니다.</p>
+        <pre><code><span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> y=<span class="hljs-number">0</span>; dy&gt;<span class="hljs-number">0</span> ? y&lt;=dy : y&gt;=dy; dy&gt;<span class="hljs-number">0</span> ? y++ : y--) {
+    <span class="hljs-keyword">var</span> x = y / inclination;
+    <span class="hljs-keyword">if</span>(isCollision((<span class="hljs-keyword">this</span>.ox+x)-<span class="hljs-keyword">this</span>.r,(<span class="hljs-keyword">this</span>.oy+y)-<span class="hljs-keyword">this</span>.r,<span class="hljs-keyword">this</span>.r*<span class="hljs-number">2</span>,<span class="hljs-keyword">this</span>.r*<span class="hljs-number">2</span>,MeMe.x,MeMe.y,MeMe.w,MeMe.h)) {
+        ...
+    }
+}
+</code></pre>
+        <p>공의 이동 속도가 빠른 경우 감지되지 않는 것을 해결하기 위해서 <code>for</code>문이 사용되었음을 파악할 수 있었고 여기서 <code>x</code>값의 의미는
+            <code>y</code>값의 변화량 대비 <code>x</code>의 변화량을 의미한다는 것도 알 수 있었습니다.</p>
+        <p>그래서 단순하게 생각하기 위해서 <code>x</code>의 변화량이 4이고 <code>y</code>의 변화량이 8이라면 <code>y=(8/4)x</code> 이므로
+            <code>y=2x</code>, <code>x=y/2</code>이므로 위 식에서 <code>x</code>의 값을 파악하기 위해서 나눗셈을 사용해야 되는게 맞다고 판단했습니다.</p>
+        <p><br></p>
+        <h4 id="-">순간이동 문제</h4>
+        <p>순간이동 문제는 교수님이 주신 코드를 토대로 이전에 시도했던 방법을 동일하게 사용하고자 하였습니다.</p>
+        <pre><code><span class="hljs-function"><span class="hljs-title">DirH</span><span class="hljs-params">(sx)</span></span> == -<span class="hljs-number">1</span> : 왼쪽에서 맞은 공이다.
+<span class="hljs-function"><span class="hljs-title">DirH</span><span class="hljs-params">(sx)</span></span> ==  <span class="hljs-number">1</span> : 오른쪽에서 맞은 공이다.
+<span class="hljs-function"><span class="hljs-title">DirV</span><span class="hljs-params">(sy)</span></span> == -<span class="hljs-number">1</span> : 위쪽에서 맞은 공이다.
+<span class="hljs-function"><span class="hljs-title">DirV</span><span class="hljs-params">(sy)</span></span> ==  <span class="hljs-number">1</span> : 아랫쪽에서 맞은 공이다.
+</code></pre>
+        <p>코드에서 출력되는 값을 살펴보면 위와같이 분석할 수 있으므로 MeMe가 "움직이는 동안" 위 값을 이용해서 밀어주고자 하였습니다.</p>
+        <p><img src="../assets/1.gif" alt=""></p>
+        <pre><code><span class="hljs-keyword">if</span>(keyStat[<span class="hljs-number">0</span>] + keyStat[<span class="hljs-number">1</span>] + keyStat[<span class="hljs-number">2</span>] + keyStat[<span class="hljs-number">3</span>] &gt; <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">this</span>.sx = MeMe.sx;
+    <span class="hljs-keyword">this</span>.sy = MeMe.sy;
+}
+</code></pre>
+        <p>오른쪽으로 혹은 아랫쪽으로 혹은 위쪽으로 움직일때는 (일부) 물체가 정상적으로 움직였지만 왼쪽으로 움직일때는 여전히 텔레포트하는 현상이 있었습니다. 또한 <code>sx</code> 또는
+            <code>sy</code>가 0인 경우 제대로 반사되지 않는 경우도 있었습니다.</p>
+        <pre><code>if(<span class="hljs-name">dx&gt;0</span> <span class="hljs-symbol">&amp;&amp;</span> dy&gt;0)
+</code></pre>
+        <p>반사 방향을 구하는 함수의 모든 <code>if</code> 구문을</p>
+        <pre><code>if(<span class="hljs-name">dx&gt;=0</span> <span class="hljs-symbol">&amp;&amp;</span> dy&gt;=0)
+</code></pre>
+        <p>위와 같이 변경하여 해결하고자 하였습니다. <code>dy=0</code>인 상황에서는 정상적으로 동작했지만 <code>dx=0</code>인 상황에서는 여전히 동작하지 않았습니다.</p>
+        <p><br></p>
+        <h2 id="3">해결한 과제</h2>
+        <ul>
+            <li>기울기 문제</li>
+        </ul>
+        <p><br></p>
+        <h2 id="4">해결하지 못한 과제</h2>
+        <ul>
+            <li>순간이동 문제</li>
+        </ul>
+        <p><br></p>
+        <p><a style="float:left; color:#000; text-decoration: none;" href="../1/index.html">◀ 이전</a></p>
     </div>
 </body>
+
 </html>

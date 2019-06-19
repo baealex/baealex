@@ -1,16 +1,16 @@
 window.addEventListener('keydown', function(e){
 	switch(e.keyCode){
 		case 37: // left
-			keyStat[0] = 1;
+			keyStat[mkey.left] = 1;
 			break;
 		case 38: // up
-			keyStat[1] = 1;
+			keyStat[mkey.up] = 1;
 			break;
 		case 39: // right
-			keyStat[2] = 1;
+			keyStat[mkey.right] = 1;
 			break;
 		case 40: // down
-			keyStat[3] = 1;
+			keyStat[mkey.down] = 1;
 			break;
 
 		case 81: MeMe.h += 5; break;
@@ -26,16 +26,16 @@ window.addEventListener('keydown', function(e){
 window.addEventListener('keyup', function(e){
 	switch(e.keyCode){
 		case 37: // left
-			keyStat[0] = 0;
+			keyStat[mkey.left] = 0;
 			break;
 		case 38: // up
-			keyStat[1] = 0;
+			keyStat[mkey.up] = 0;
 			break;
 		case 39: // right
-			keyStat[2] = 0;
+			keyStat[mkey.right] = 0;
 			break;
 		case 40: // down
-			keyStat[3] = 0;
+			keyStat[mkey.down] = 0;
 			break;
 	}
 }, false);
@@ -47,7 +47,7 @@ window.addEventListener('load', function(e){
 
 	MeMe = new Player();
 	sFall = new FallBall(); // 1번 / 한개 떨어지는
-	Ball = new MoveBalls(50); // 2번 / 돌아다니는 공
+	Ball = new MoveBalls(200); // 2번 / 돌아다니는 공
 	Fall = new FallBalls(1000); // 3번 / 여러개 떨어지는
 	playS = sFall;
 	setInterval(function(){

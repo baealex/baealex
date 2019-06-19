@@ -1,11 +1,15 @@
 var Player = function(){
-	this.w = 200;
-	this.h = 50;
+	this.w = 100;
+	this.h = 100;
 	this.x = CanvasW / 2 - this.w/2;
 	this.y = CanvasH * 2 / 3 - this.h/2;
 	this.sx = 0;
 	this.sy = 0;
+	this.ox = 0;
+	this.oy = 0;
 	this.Update = function(){
+		this.ox = this.x;
+		this.oy = this.y;
 		if(keyStat[0]==1){
 			this.sx -= 0.5; 
 			if(this.sx<-20) this.sx = -20;

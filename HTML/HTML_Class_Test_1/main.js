@@ -10,6 +10,7 @@ include("src/2.func.js");
 include("src/3.model.0.player.js");
 include("src/3.model.1.fallball.js");
 include("src/3.model.2.moveball.js");
+// include("src/3.model.2.moveball.bak.js");
 include("src/3.model.3.fallballs.js");
 include("src/4.view.animation.js");
 include("src/5.main.loop.js");
