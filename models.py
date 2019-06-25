@@ -52,9 +52,6 @@ def MoveX(MOVE_DIR, MOVE_MENT, DELAY):
         sleep(DELAY)
         pi.write(X['STEP'], pigpio.LOW)
         sleep(DELAY)
-        Debug('X_DIR : ' + str(i))
-        if MOVE_DIR == 1:
-        else:
         
 def MoveY(MOVE_DIR, MOVE_MENT, DELAY):
     global y_move_total
