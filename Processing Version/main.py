@@ -20,13 +20,14 @@ try:
     while(True): 
         ser.flushInput()
         ser.flushOutput()
-        print("Send:", packet)
+        #print("Send:", packet)
         #패킷을 보낸다.
-        ser.write(packet.encode())
-        time.sleep(0.05)
+        #ser.write(packet.encode())
+        #time.sleep(0.05)
         #루프백을 통해 다시 들어온 패킷을 읽는다.
-        data = ser.read(ser.inWaiting())
-        print("Receive:", data)
+        data = ser.read()
+        if not data == b"":
+            print("Receive:", data)
 
 except (KeyboardInterrupt, SystemExit):
     print("Exit...")

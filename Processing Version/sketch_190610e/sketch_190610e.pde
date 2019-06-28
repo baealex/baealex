@@ -1,3 +1,5 @@
+import processing.serial.*;
+
 class J5Button {
   int x, y, w, h;
   String text;
@@ -182,12 +184,16 @@ J5Button [] mButton;
 J5InputBox [] mInputBox;
 J5InputBoxGroup mInputBoxGroup;
 
+Serial serial;
+
 public void settings() {
   size(800, 600);
 }
 
 void setup() {
   background(color(255));
+  
+  serial = new Serial(this, Serial.list()[0], 9600);
   
   mCanvas = new J5MoterCanvas( margin, margin, 800-inputbox_width-margin*5, 600-btn_height-margin*3 );
 
@@ -245,21 +251,20 @@ void mousePressed() {
     if (mButton[i].hover()) {
       switch(i) {
       case 0:
-        print("\n<Send>");
-        print("\nX : " + parseInt(mInputBox[0].getText()));
-        print("\nY : " + parseInt(mInputBox[1].getText()));
-        print("\nZ : " + parseInt(mInputBox[2].getText()));
-        print("\nObject : " + parseInt(mInputBox[3].getText()));
-        print("\nPulse : " + parseInt(mInputBox[4].getText()));
+        print("0");
+        serial.write("0");
         break;
       case 1:
-        print("\nForce Stop");
+        print("1");
+        serial.write("1");
         break;
       case 2:
-        print("Btn 3");
+        print("2");
+        serial.write("2");
         break;
       case 3:
-        print("Btn 4");
+        print("3");
+        serial.write("3");
         break;
       case 4:
         exit();
