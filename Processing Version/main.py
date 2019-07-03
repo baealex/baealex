@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
-import serial, time 
-import RPi.GPIO as GPIO
+import serial, time
+from models import *
 
 #루프백 테스트에 사용할 UART용 가상 파일 ttyAMA0(ttyS0)를 연다.
-if(GPIO.RPI_REVISION < 3):
+if(pigpio.RPI_REVISION < 3):
   ser = serial.Serial(port = "/dev/ttyAMA0", baudrate=9600, timeout=2)
 else:
   ser = serial.Serial(port = "/dev/ttyS0", baudrate=9600, timeout=2)
@@ -15,23 +15,21 @@ if (ser.isOpen() == False):
 ser.flushInput()
 ser.flushOutput()
 
-packet = "Hello World!"
 try:
     while(True): 
         ser.flushInput()
         ser.flushOutput()
-        #print("Send:", packet)
-        #패킷을 보낸다.
         #ser.write(packet.encode())
-        #time.sleep(0.05)
-        #루프백을 통해 다시 들어온 패킷을 읽는다.
         data = ser.read()
         if not data == b"":
             print("Receive:", data)
+            for i in range(4):
+                par_1 = ser.read()
+                par_2 = ser.read()
+                start_test(par_1, par_2)
 
 except (KeyboardInterrupt, SystemExit):
-    print("Exit...")
+    print("KeyboardInterrupt")
 
 finally:
     ser.close()
-print("Good by!")

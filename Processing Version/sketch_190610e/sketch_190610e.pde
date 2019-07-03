@@ -133,6 +133,7 @@ class J5MoterCanvas {
   int y;
   int w;
   int h;
+  int r = 30;
 
   int posX = 0;
   int posY = 0;
@@ -160,8 +161,29 @@ class J5MoterCanvas {
 
     stroke(0);
     fill(255, 0, 0);
-    ellipse(this.posX, this.posY, 30, 30);
+    ellipse(this.posX, this.posY, this.r, this.r);
   }
+  
+  int getPos(char pos) {
+    int result = 0;
+    switch(pos) {
+      case 'x':
+        result = this.x;
+        break;
+      case 'y':
+        result = this.y;
+        break;
+      case 'w':
+        result = this.w;
+        break;
+      case 'h':
+        result = this.h;
+        break;
+    }
+    return result;
+  }
+  
+  int 
 
   void update() {
   }
@@ -196,6 +218,7 @@ void setup() {
   serial = new Serial(this, Serial.list()[0], 9600);
   
   mCanvas = new J5MoterCanvas( margin, margin, 800-inputbox_width-margin*5, 600-btn_height-margin*3 );
+  mCanvas.setPos(mCanvas.getPos('x'),mCanvas.getPos('y'));
 
   mButton = new J5Button[5];
   for (int i=0; i<5; i++) {
@@ -252,19 +275,23 @@ void mousePressed() {
       switch(i) {
       case 0:
         print("0");
-        serial.write("0");
+        //serial.write("0");
+        //serial.write(mInputBox[0].getText());
+        //serial.write(mInputBox[1].getText());
+        //serial.write(mInputBox[2].getText());
+        //serial.write(mInputBox[3].getText());
         break;
       case 1:
         print("1");
-        serial.write("1");
+        //serial.write("1");
         break;
       case 2:
         print("2");
-        serial.write("2");
+        //serial.write("2");
         break;
       case 3:
         print("3");
-        serial.write("3");
+        //serial.write("3");
         break;
       case 4:
         exit();
