@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#-*- coding:utf-8 -*-
 
 import serial, time
 from models import *
 
-#루프백 테스트에 사용할 UART용 가상 파일 ttyAMA0(ttyS0)를 연다.
+#루프백을 이용한 시리얼 통신
 if(pigpio.RPI_REVISION < 3):
   ser = serial.Serial(port = "/dev/ttyAMA0", baudrate=9600, timeout=2)
 else:
@@ -11,25 +11,29 @@ else:
 
 if (ser.isOpen() == False):
     ser.open()
-#만약 ttyAMA0에 데이터가 남아있으면 비우고 새로 시작한다.
 ser.flushInput()
 ser.flushOutput()
+# ------------------
 
+# Main Loop
 try:
     while(True): 
         ser.flushInput()
         ser.flushOutput()
-        #ser.write(packet.encode())
+        # ser.write(packet.encode())
         data = ser.read()
         if not data == b"":
             print("Receive:", data)
-            for i in range(4):
-                par_1 = ser.read()
-                par_2 = ser.read()
-                start_test(par_1, par_2)
+        if data == b"0": # Start Btn Event
+            param = ser.readline()
+            par = param.decode.split(",")
+            start_test(par[0], par[1]) # Run Moter
+# ------------------
 
+# 키보드 인터럽트시 종료
 except (KeyboardInterrupt, SystemExit):
     print("KeyboardInterrupt")
+# ------------------
 
 finally:
     ser.close()

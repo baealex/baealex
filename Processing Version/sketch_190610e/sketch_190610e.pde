@@ -1,5 +1,8 @@
 import processing.serial.*;
 
+/* Button GUI */
+// Desc.
+// 버튼을 생성하기 위한 클래스입니다.
 class J5Button {
   int x, y, w, h;
   String text;
@@ -48,6 +51,10 @@ class J5Button {
   }
 }
 
+/* InputBoxGroup GUI */
+// Desc.
+// 외관을 향상시키기 위한 인터페이스 입니다.
+// 별도의 내부 동작은 없습니다.
 class J5InputBoxGroup {
   int x, y, w, h;
   String text;
@@ -75,6 +82,11 @@ class J5InputBoxGroup {
   }
 }
 
+/* InputBox GUI */
+// Desc.
+// 현재는 Tab을 이용한 전환만이 가능합니다.
+// ToDo.
+// 버튼의 hover을 추가할 필요가 있습니다.
 class J5InputBox {
   int x, y, w, h;
   String holder="";
@@ -128,6 +140,11 @@ class J5InputBox {
   }
 }
 
+/* MoterCanvas GUI */
+// Desc.
+// 모터의 움직임을 그래픽으로 보기위한 GUI입니다.
+// ToDo.
+// 현재 구현된 기능이 없으므로 구현해야 합니다.
 class J5MoterCanvas {
   int x;
   int y;
@@ -196,10 +213,9 @@ final int btn_width = 100;
 final int inputbox_number = 5;
 final int inputbox_height = 25;
 final int inputbox_width = 100;
+int inputbox_focus = 0;
 
 final int margin = 20;
-
-int inputbox_focus = 0;
 
 J5MoterCanvas mCanvas;
 J5Button [] mButton;
@@ -244,11 +260,11 @@ void setup() {
       inputbox_height
     );
   }
-  mInputBox[0].setHolderText("X");
-  mInputBox[1].setHolderText("Y");
-  mInputBox[2].setHolderText("Z");
-  mInputBox[3].setHolderText("Object");
-  mInputBox[4].setHolderText("Pulse");
+  mInputBox[0].setHolderText("Number");
+  mInputBox[1].setHolderText("Speed");
+  mInputBox[2].setHolderText("-");
+  mInputBox[3].setHolderText("-");
+  mInputBox[4].setHolderText("-");
   
   mInputBoxGroup = new J5InputBoxGroup( 800-inputbox_width-margin*3, margin*2, inputbox_width+margin*2, (inputbox_height+margin)*5+margin*2 );
   mInputBoxGroup.setText("DATA");
@@ -270,16 +286,13 @@ void draw() {
 }
 
 void mousePressed() {
+  // 각 Button에 대한 동작 구현
   for (int i=0; i<btn_number; i++) {
     if (mButton[i].hover()) {
       switch(i) {
       case 0:
-        print("0");
-        //serial.write("0");
-        //serial.write(mInputBox[0].getText());
-        //serial.write(mInputBox[1].getText());
-        //serial.write(mInputBox[2].getText());
-        //serial.write(mInputBox[3].getText());
+        serial.write("0");
+        serial.write(mInputBox[0].getText()+","+mInputBox[1].getText());
         break;
       case 1:
         print("1");
@@ -302,6 +315,7 @@ void mousePressed() {
 }
 
 void keyPressed() {
+  // 각 InputBox에 대한 동작 구현
   if (key==ENTER || key==RETURN || key==TAB) {
     inputbox_focus++;
     if (inputbox_focus >= inputbox_number) {
