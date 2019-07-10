@@ -1,0 +1,3 @@
+Value of boolean b1 is : true
+Value of boolean b1 is : false
+Value of boolean b1 is : true

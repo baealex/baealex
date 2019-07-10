@@ -1,0 +1,3 @@
+Your age is 25
+Your weight is 74.0
+Your height is 177.0

@@ -1,0 +1,7 @@
+5 == 10 : false
+5 != 10 : true
+10 < 15 : true
+k > i : true
+i <= k : true
+i >= j : false
+10 + 15 < 20 + 2 : false
