@@ -1,0 +1,1 @@
+Input number count is 5 and avg is 649.4

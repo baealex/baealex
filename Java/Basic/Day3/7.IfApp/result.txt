@@ -1,0 +1,2 @@
+k value is Drainage of 3 or Drainage of 5
+k value isn't Drainage of 3 and Drainage of 5

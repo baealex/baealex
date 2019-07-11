@@ -1,0 +1,3 @@
+Defalt Pay : 3000000
+Year Pay : 39000000
+Month Pay : 3250000
