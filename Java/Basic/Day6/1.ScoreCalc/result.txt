@@ -1,0 +1,22 @@
+-------------------
+Name : Nooni
+Kor : 80
+Eng : 95
+Math : 75
+Total : 250
+Avg : 83
+-------------------
+Name : Romi
+Kor : 100
+Eng : 80
+Math : 85
+Total : 265
+Avg : 88
+-------------------
+Name : Toto
+Kor : 85
+Eng : 70
+Math : 90
+Total : 245
+Avg : 81
+-------------------

@@ -1,0 +1,83 @@
+class Calculator {
+    private int num1;
+    private int num2;
+    private int result;
+    private int calCase;
+    private boolean stop;
+
+    boolean getStop() {
+        return stop;
+    }
+
+    public Calculator() {
+        stop = false;
+    }
+
+    public void Run() {
+        java.util.Scanner in = new java.util.Scanner(System.in);
+        System.out.print("첫번째 수를 입력하세요 : ");
+        num1 = in.nextInt();
+        System.out.print("두번째 수를 입력하세요 : ");
+        num2 = in.nextInt();
+        System.out.println("연산을 입력하세요.");
+        System.out.println("1. 더하기");
+        System.out.println("2. 빼기");
+        System.out.println("3. 곱하기");
+        System.out.println("4. 나누기");
+        System.out.print(": ");
+        calCase = in.nextInt();
+        switch(calCase) {
+        	default:
+        		stop = true;
+        		break;
+            case 1:
+                result = add();
+                break;
+            case 2:
+                result = sub();
+                break;
+            case 3:
+                result = mul();
+                break;
+            case 4:
+                result = div();
+                break;
+        }
+        NowState();
+    }
+
+    public void NowState() {
+        System.out.println("결과 값 : "+result);
+    }
+    
+    public int add() {
+        return num1+num2;
+    }
+
+    public int sub() {
+        return num1-num2;
+    }
+
+    public int mul() {
+        return num1*num2;
+    }
+
+    public int div() {
+    	if(num2 != 0) {
+    		return num1/num2;
+    	}
+    	else {
+    		System.out.println("0으로 나눌 수 없습니다.");
+    		return -1;
+    	}
+    }
+}
+
+public class CalRun {
+    public static void main(String [] args) {
+        Calculator CAL = new Calculator();
+        while(!CAL.getStop()) {
+            CAL.Run();
+        }
+    }
+}

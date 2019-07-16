@@ -1,0 +1,4 @@
+Name  : Nikon
+Price : 400000
+Stock : 30
+Sold  : 50
