@@ -1,0 +1,3 @@
+ScjpPass.BOUNS : 100
+sp.t1 : 85
+sp.BOUNS : 100

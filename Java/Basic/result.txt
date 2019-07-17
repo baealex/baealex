@@ -1,0 +1,12 @@
+Circle Radius      : 15
+Circle Round       : 94.25
+Circle Width       : 706.84
+Rectangle Horizon  : 20
+Rectangle Vertical : 35
+Rectangle Round    : 110
+Rectangle Width    : 700
+Triangle Side 1    : 2
+Triangle Side 2    : 3
+Triangle Side 3    : 4
+Triangle Round     : 9.0
+Triangle Width     : 2.9
