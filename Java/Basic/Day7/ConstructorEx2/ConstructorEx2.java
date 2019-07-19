@@ -1,5 +1,3 @@
-package Day07;
-
 class A2 {
 	public A2() {
 		System.out.println("생성자 A");

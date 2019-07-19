@@ -1,5 +1,3 @@
-package Day07;
-
 class Movie3 {
 	String part = "";
 

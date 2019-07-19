@@ -1,0 +1,27 @@
+--------------------------
+Name       : Nooni
+Korean     : 100
+English    : 100
+Mathmatics : 95
+Sum        : 295
+Avg        : 98.333336
+Grade      : Grade A!
+--------------------------
+--------------------------
+Name       : Romi
+Korean     : 22
+English    : 77
+Mathmatics : 54
+Sum        : 153
+Avg        : 51.0
+Grade      : Try!!!
+--------------------------
+--------------------------
+Name       : Toto
+Korean     : 85
+English    : 80
+Mathmatics : 75
+Sum        : 240
+Avg        : 80.0
+Grade      : Grade B!
+--------------------------

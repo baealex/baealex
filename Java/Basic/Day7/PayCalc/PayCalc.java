@@ -1,5 +1,3 @@
-package Day07;
-
 class Allowance extends Pay {
 	private int year;
 	private int child;

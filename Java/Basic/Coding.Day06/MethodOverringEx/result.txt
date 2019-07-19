@@ -1,0 +1,6 @@
+DObject draw
+Line
+Line
+Line
+Rect
+Circle

@@ -1,5 +1,3 @@
-package Day07;
-
 class A {
 	public int p;
 	private int n;

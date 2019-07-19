@@ -1,5 +1,3 @@
-package Day07;
-
 class Person {
 	String name;
 	String phone;

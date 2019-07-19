@@ -1,5 +1,3 @@
-package Day07;
-
 class TV2 {
 	public TV2() {
 		System.out.println("TV2");

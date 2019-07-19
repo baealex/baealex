@@ -5,8 +5,8 @@ Rectangle Horizon  : 20
 Rectangle Vertical : 35
 Rectangle Round    : 110
 Rectangle Width    : 700
-Triangle Side 1    : 2
-Triangle Side 2    : 3
-Triangle Side 3    : 4
-Triangle Round     : 9.0
-Triangle Width     : 2.9
+Triangle Side 1    : 15
+Triangle Side 2    : 19
+Triangle Side 3    : 23
+Triangle Round     : 57.0
+Triangle Width     : 141.79
