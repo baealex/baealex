@@ -1,8 +1,5 @@
 import processing.serial.*;
 
-/* Button GUI */
-// Desc.
-// 버튼을 생성하기 위한 클래스입니다.
 class J5Button {
   int x, y, w, h;
   String text;
@@ -51,10 +48,6 @@ class J5Button {
   }
 }
 
-/* InputBoxGroup GUI */
-// Desc.
-// 외관을 향상시키기 위한 인터페이스 입니다.
-// 별도의 내부 동작은 없습니다.
 class J5InputBoxGroup {
   int x, y, w, h;
   String text;
@@ -82,11 +75,6 @@ class J5InputBoxGroup {
   }
 }
 
-/* InputBox GUI */
-// Desc.
-// 현재는 Tab을 이용한 전환만이 가능합니다.
-// ToDo.
-// 버튼의 hover을 추가할 필요가 있습니다.
 class J5InputBox {
   int x, y, w, h;
   String holder="";
@@ -140,45 +128,102 @@ class J5InputBox {
   }
 }
 
-/* MoterCanvas GUI */
-// Desc.
-// 모터의 움직임을 그래픽으로 보기위한 GUI입니다.
-// ToDo.
-// 현재 구현된 기능이 없으므로 구현해야 합니다.
+class CanvasObject {
+  int x;
+  int y;
+  int r;
+  
+  CanvasObject(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+  
+  void show() {
+  }
+  
+  void setRadius(int r) {
+    this.r = r;
+  }
+  
+  void setPos(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+  
+  void movePos(int x, int y) {
+    this.x += x;
+    this.y += y;
+  }
+  
+  int getRadius() {
+    return this.r;
+  }
+}
+
+class CanvasMoterObject extends CanvasObject {
+  CanvasMoterObject(int x, int y) {
+    super(x+15, y+15);
+    setRadius(30);
+  }
+  
+  @Override
+  void show() {
+    stroke(0);
+    fill(255, 0, 0);
+    ellipse(this.x, this.y, this.r, this.r);
+  }
+}
+
+class CanvasDesObject extends CanvasObject {
+  CanvasDesObject(int x, int y) {
+    super(x, y);
+    setRadius(10);
+  }
+  
+  @Override
+  void show() {
+    stroke(0);
+    fill(0, 255, 0);
+    ellipse(this.x, this.y, this.r, this.r);
+  }
+}
+
 class J5MoterCanvas {
+  CanvasMoterObject moter;
+  CanvasDesObject [] des;
+  int desCount = 0;
+  
   int x;
   int y;
   int w;
   int h;
-  int r = 30;
-
-  int posX = 0;
-  int posY = 0;
 
   J5MoterCanvas(int x, int y, int w, int h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
-
-    this.posX = this.w+this.x;
-    this.posY = this.h-this.y;
-  }
-
-  void setPos(int x, int y) {
-    this.posX = x;
-    this.posY = y;
+    
+    moter = new CanvasMoterObject(this.x, this.y);
+    des = new CanvasDesObject[5];
+    des[desCount++] = new CanvasDesObject(100, 100);
+    des[desCount++] = new CanvasDesObject(120, 100);
+    des[desCount++] = new CanvasDesObject(140, 100);
+    des[desCount++] = new CanvasDesObject(160, 100);
+    des[desCount++] = new CanvasDesObject(180, 100);
   }
 
   void show() {
-    this.update();
+    update();
+    
     stroke(0);
     fill(255);
     rect(this.x, this.y, this.w, this.h);
-
-    stroke(0);
-    fill(255, 0, 0);
-    ellipse(this.posX, this.posY, this.r, this.r);
+    
+    moter.show();
+    for(int i=0;i<desCount;i++) {
+      des[i].show();
+    }
   }
   
   int getPos(char pos) {
@@ -200,9 +245,18 @@ class J5MoterCanvas {
     return result;
   }
   
-  int 
+  int desX = 0;
+  int desY = 0;
 
   void update() {
+    if(desY < 100) {
+      desY++;
+      moter.movePos(0,1);
+    }
+    else {
+      desX++;
+      moter.movePos(1,0);
+    }
   }
 }
 
@@ -234,7 +288,6 @@ void setup() {
   serial = new Serial(this, Serial.list()[0], 9600);
   
   mCanvas = new J5MoterCanvas( margin, margin, 800-inputbox_width-margin*5, 600-btn_height-margin*3 );
-  mCanvas.setPos(mCanvas.getPos('x'),mCanvas.getPos('y'));
 
   mButton = new J5Button[5];
   for (int i=0; i<5; i++) {
@@ -286,13 +339,12 @@ void draw() {
 }
 
 void mousePressed() {
-  // 각 Button에 대한 동작 구현
   for (int i=0; i<btn_number; i++) {
     if (mButton[i].hover()) {
       switch(i) {
       case 0:
-        serial.write("0");
-        serial.write(mInputBox[0].getText()+","+mInputBox[1].getText());
+        //serial.write("0");
+        //serial.write(mInputBox[0].getText()+","+mInputBox[1].getText());
         break;
       case 1:
         print("1");
@@ -315,7 +367,6 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  // 각 InputBox에 대한 동작 구현
   if (key==ENTER || key==RETURN || key==TAB) {
     inputbox_focus++;
     if (inputbox_focus >= inputbox_number) {
