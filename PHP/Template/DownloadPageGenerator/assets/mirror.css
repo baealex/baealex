@@ -1,0 +1,57 @@
+@charset "UTF-8";
+/* reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,textarea,p,blockquote,th,td,input,select,tex
+tarea,button{margin:0;padding:0;outline:none}
+fieldset,img{border:0 none}
+dl,ul,ol,menu,li {list-style:none}
+blockquote, q {quotes: none}
+blockquote:before, blockquote:after,q:before, q:after {content:'';content:none}
+input,select,textarea,button {vertical-align:middle}
+input::-ms-clear {display:none}
+button {border:0 none;background-color:transparent;cursor:pointer}
+body {background:#fff}
+body,th,td,input,select,textarea,button {font-size:14px;line-height:1.5;font-family:'Noto Sans', sans-serif;color:#666} /* color값은 디자인가이드에 맞게사용 */
+pre {font-family:'Noto Sans';}
+a {color:#333;text-decoration:none}
+a:active, a:hover {text-decoration:none}
+a:active {background-color:transparent}
+address,caption,cite,code,dfn,em,var {font-style:normal;font-weight:normal}
+body { font-family: 'Noto Sans';}
+
+@keyframes linkAnimation {0% {box-shadow: inset 0 -4px 0 #0dbe98;}100% {box-shadow: inset 0 -35px 0 #0dbe98;}}
+@-moz-keyframes linkAnimation {0% {box-shadow: inset 0 -4px 0 #0dbe98;}100% {box-shadow: inset 0 -35px 0 #0dbe98;}}
+@-webkit-keyframes linkAnimation {0% {box-shadow: inset 0 -4px 0 #0dbe98;}100% {box-shadow: inset 0 -35px 0 #0dbe98;}}
+@-o-keyframes linkAnimation {0% {box-shadow: inset 0 -4px 0 #0dbe98;}100% {box-shadow: inset 0 -35px 0 #0dbe98;}}
+
+a { 
+    text-decoration: none;
+    color:#fff;
+    font-size: 2em;
+    box-shadow: inset 0 -4px 0 #0dbe98;
+}
+
+a:hover {
+    animation: linkAnimation .5s 1;
+	-moz-animation: linkAnimation .5s 1;
+	-webkit-animation: linkAnimation .5s 1;
+    -o-animation: linkAnimation .5s 1;
+    box-shadow: inset 0 -35px 0 #0dbe98;
+}
+
+h1 {
+    color:#fff;
+    font-size:4em;
+}
+
+.back_img_mask {
+    background-color: rgba(0,0,0,0.5);
+    width:100%;
+    height:100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.title {
+    width:100%;padding:0;margin:0 auto 20px 0;text-align:center; margin-top:37vh;
+}
