@@ -1,0 +1,5 @@
+aaa 디렉토리 생성:true
+bbb가 이미 존재함
+bbb 디렉토리 생성:false
+디렉토리명 변경:true
+디렉토리 삭제:true
