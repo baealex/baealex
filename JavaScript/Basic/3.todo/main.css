@@ -1,0 +1,29 @@
+.tl-list {
+    margin: 15px;
+    padding: 30px;
+    list-style:none;
+    font-size:1.5em;
+    background: #fff;
+    border: 1px solid #eee;
+    box-shadow: 1px 0 5px 0 rgba(100,100,100,0.5);
+}
+
+.tl-item {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.tl-item .tl-done {
+    text-decoration: line-through;
+    opacity: 0.4;
+}
+
+.tl-list .tl-text {
+    font-weight: 600;
+    color: #333;
+}
+
+.tl-list .tl-date {
+    font-size: 0.5rem;
+    color: #888;
+}

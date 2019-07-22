@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <ul id="myTodoList">
+        <li class="tl-item">
+            <span class="tl-text"></span>
+            <span class="tl-date"></span>
+        </li>
+    </ul>
+
+    <form id="myTodoListForm">
+        <input type="text" name="item" placeholder="Enter Item!">
+        <input type="submit" name="add" vlaue="Add">
+        <input type="button" name="do" value="Do All">
+        <input type="button" name="undo" value="Undo All">
+        <input type="button" name="clearDone" value="Clear Done">
+        <input type="button" name="clearAll" value="Clear All">
+    </form>
+    <script src="main.js"></script>
+</body>
+</html>
