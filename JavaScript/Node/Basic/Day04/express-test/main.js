@@ -1,3 +1,11 @@
+// express 사용하기 
+express = require('express');
+app = express();
+
+// ejs 사용하기
+app.set('view engine', 'ejs');
+app.set('views', 'templates');
+
 // 라우팅, .post .put .delete .all, ...
 app.get('/', (req, res) => {
     res.send("Hello!");

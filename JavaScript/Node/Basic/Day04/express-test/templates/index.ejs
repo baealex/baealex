@@ -1,5 +1,8 @@
 <html>
     <body>
+
+        <% include ./nav %>
+
         <%
         // Server-Side JavaScript [Node.js]
         console.log("Hi!"); // 쉘에서 출력됨
@@ -13,8 +16,12 @@
         <% } %>
         </ul>
 
-        <% users.forEach(user => {
-            
-        }) %>
+        <% users.forEach(user => { %>
+           <span><%=user%></span>
+        <% }) %>
+
+        <script>
+        doc<%'u'%>ment.title = "this is client-side javascript!";
+        </script>
     </body>
 </html>
