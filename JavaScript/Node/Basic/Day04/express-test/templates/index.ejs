@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <%
+        // Server-Side JavaScript [Node.js]
+        console.log("Hi!"); // 쉘에서 출력됨
+        %>
+
+        <h1><%=title%></h1>
+
+        <ul>
+        <% for(var i=0;i<10;i++) { %>
+            <li><%=i%></li>
+        <% } %>
+        </ul>
+
+        <% users.forEach(user => {
+            
+        }) %>
+    </body>
+</html>

@@ -28,7 +28,7 @@ http.createServer((req, res) => {
                 res.statusCode = 404;
                 res.end("Page Not Found");
             } else {
-                res.write(dta);
+                res.write(data);
                 res.end();
             }
         });
