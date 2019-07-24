@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Chat</title>
+	<meta name="theme-color" content="#000">
+	<style>
+		::-webkit-scrollbar {
+			display: none;
+		}
+
+		body {
+			background-color: #eee;
+			margin: 0;
+			padding: 0;
+		}
+
+		#chatLog {
+			max-width: 850px;
+			width:95%;
+			margin-right: auto;
+			margin-left: auto;
+			max-height: 90vh;
+			overflow: scroll;
+		}
+		@media(max-width:450px) {
+			#chatLog {
+				max-height: 75vh;
+			}
+		}
+
+		#chatLog > p {
+			padding: 15px;
+			background-color: #fff;
+			border-radius: 10px;
+		}
+
+		.chat-fixed {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			padding: 20px;
+			background-color: #000;
+			text-align: center;
+		}
+		
+		.chat-fixed > form {
+			display:inline;
+		}
+
+		.name {
+			height: 30px;
+			width: 10%;
+		}
+
+		.message {
+			height: 30px;
+			width: 35%;
+		}
+
+		.chat, .rename {
+			background-color: #fff;
+			border: none;
+			height: 33px;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="chatLog">
+		<p>매너있는 채팅 부탁드립니다 :)</p>
+	</div>
+	<div class="chat-fixed">
+		<form id="chat">
+			<input id="name" class="name" type="text" readonly>
+			<input id="message" class="message" type="text" autocomplete="off">
+			<input type="submit" class="chat" value="전송" />
+		</form>
+		<form id="rename">
+			<input type="submit" class="rename" value="닉변" />
+		</form>
+	</div>
+	<div id="box" class="box">
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.js"></script>
+		<script>
+			var socket = io();
+			$('#chat').on('submit', function(e) {
+				socket.emit('send message', $('#name').val(), $('#message').val());
+				$('#message').val("");
+				$("#message").focus();
+				e.preventDefault();
+			});
+			socket.on('receive message', function(msg) {
+				var P_Tag = document.createElement('p');
+				var Text = document.createTextNode(msg);
+				P_Tag.appendChild(Text);
+				document.getElementById('chatLog').appendChild(P_Tag);
+				var objDiv = document.getElementById("chatLog");
+				objDiv.scrollTop = objDiv.scrollHeight;
+			});
+			socket.on('change name', function(name) {
+				$('#name').val(name);
+			});
+			$('#rename').on('submit', function(e) {
+				socket.emit('rename', $('#name').val(), $('#message').val());
+				$('#message').val("");
+				$("#message").focus();
+				e.preventDefault();
+			});
+		</script>
+	</div>
+</body>
+
+</html>

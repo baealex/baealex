@@ -27,5 +27,5 @@ app.get('/get2', (req,res) => {
     res.send("웹 브라우저가 보낸 쿠키: " + req.cookies.key1);
 });
 
-app.listen(8000);
-console.log("Server on port 8000.");
+app.listen(8080);
+console.log("Server on port 8080.");
