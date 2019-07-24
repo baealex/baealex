@@ -1,0 +1,55 @@
+::-webkit-scrollbar {
+	display: none;
+}
+
+body {
+	background-color: #eee;
+	margin: 0;
+	padding: 0;
+}
+
+#chatLog {
+	max-width: 850px;
+	width: 95%;
+	margin-right: auto;
+	margin-left: auto;
+	max-height: 90vh;
+	overflow: scroll;
+}
+@media (max-width: 450px) {
+	#chatLog {
+		max-height: 75vh;
+	}
+}
+
+#chatLog > p {
+	padding: 15px;
+	background-color: #fff;
+	border-radius: 10px;
+}
+
+.chat-input-box {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 20px;
+	background-color: #000;
+	text-align: center;
+}
+
+.name {
+	height: 30px;
+	width: 10%;
+}
+
+.message {
+	height: 30px;
+	width: 35%;
+}
+
+button {
+	background-color: #fff;
+	border: none;
+	height: 33px;
+}
