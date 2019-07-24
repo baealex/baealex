@@ -1,6 +1,10 @@
 class SuperObject {
     protected String name;
 
+    public void paint() {
+        draw();
+    }
+
     public void draw() {
         System.out.println(name);
     }
@@ -8,10 +12,6 @@ class SuperObject {
 
 public class SubObject extends SuperObject {
     protected String name;
-
-    public void paint() {
-        draw();
-    }
 
     public void draw() {
         name = "Sub";
