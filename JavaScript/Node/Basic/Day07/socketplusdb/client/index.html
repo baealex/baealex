@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head lang="ko">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, sharink-to-fit=no">
+		<title>REAL CHAT</title>
+		<meta name="theme-color" content="#000">
+		<link rel="stylesheet" href="/main.css">
+	</head>
+	<body>
+		<div id="chatLog" class="chatLog">
+			<p>매너 있는 채팅 부탁드립니다 :)</p>
+		</div>
+		<div class="chatBox">
+			<input id="name" class="name" type="text" readonly>
+			<button class="name" onclick="rename()">변경</button>
+			<input id="message" class="message" onkeydown="javascript:checkEnter();" type="text" autocomplete="off">
+			<button class="chat" onclick="chat()">전송</button>
+		</div>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.1.js"></script>
+		<script src="/main.js"></script>
+	</body>
+</html>

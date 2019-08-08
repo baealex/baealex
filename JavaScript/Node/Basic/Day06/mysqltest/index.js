@@ -3,18 +3,37 @@ var connection = mysql.createConnection({
 	host: 'localhost',
 	user: 'baealex',
 	password: '1234',
-	prot: 3306,
+	port: 3306,
 	database: 'testcase'
 });
 
 connection.connect();
 
-connection.query('SELECT * FROM MEMO', (err, rows, filds)=> {
+selectAll = () => {
+	connection.query('SELECT PK, USER, CONTENT FROM CHAT', (err, rows, filds)=> {
+		if(!err) {
+			console.log(rows);
+		} else {
+			console.log(err);
+		}
+	});
+};
+
+selectAll();
+
+/*
+let name = '그라탕';
+let content = '그래요 반가워요'
+
+connection.query('INSERT INTO CHAT(USER, CONTENT) VALUES(\''+name+'\',\''+content+'\')', (err, rows, filds) => {
 	if(!err) {
 		console.log(rows);
 	} else {
 		console.log(err);
 	}
 });
+
+selectAll();
+*/
 
 connection.end();
