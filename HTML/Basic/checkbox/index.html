@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        input[type="checkbox"] {
+            display: none;
+        }
+
+        input[type="checkbox"]+label {
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]+label:before {
+            color: #fa0;
+            content: '☆';
+            font-size: 25px;
+        }
+
+        input[type="checkbox"]:checked+label:before {
+            content: '★'
+        }
+    </style>
+    <input id="1" type="checkbox" onclick="t()"><label for="1">1</label>
+    <input id="2" type="checkbox"><label for="2">2</label>
+    <input id="3" type="checkbox"><label for="3">3</label>
+    <input id="4" type="checkbox"><label for="4">4</label>
+    <script>
+    function t() {
+        alert("Click");
+    }
+    </script>
+</body>
+
+</html>
