@@ -2,7 +2,18 @@ import requests
 import urllib.request
 from bs4 import BeautifulSoup as bs
 
-from private_infomation import * # Custom Lib
+LOGIN_INFO = {
+
+}
+
+LOGIN_PAGE = ""
+
+POST_LIST = ""
+
+ASSETS_URL = ""
+
+def READ_POST(link):
+
 
 Download_Resource = ['ipynb', 'zip', 'xlsx', 'csv']
 Skip_Keyword = ['youtube']
