@@ -2,7 +2,7 @@
 <%@ include file="ssi/ssi.jsp" %>
 <% 
    MemoDAO dao = new MemoDAO();
-   List<MemoDTO> list = dao.list(); 
+   List<MemoDTO> list = dao.list();
 %> 
  
 <!DOCTYPE html> 
