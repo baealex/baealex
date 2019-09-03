@@ -27,9 +27,12 @@ class CircleLinkedList:
 
     def insertFirst(self, data):
         new_node = Node(data)
+        if self.tail == None:
+            self.tail = self.head
         temp_node = self.head
         self.head = new_node
         self.head.next = temp_node
+        self.tail.next = new_node
         self.list_size += 1
 
     def insertMiddle(self, num, data):

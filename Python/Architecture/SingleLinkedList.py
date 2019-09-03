@@ -32,6 +32,9 @@ class SingleLinkedList:
         self.list_size += 1
 
     def insertMiddle(self, num, data):
+        if self.head.next == None:
+            insertLast(data)
+            return
         node = self.selectNode(num)
         new_node = Node(data)
         temp_next = node.next
