@@ -43,9 +43,8 @@ if __name__ == "__main__":
     node.append(Node('D'))
 
     m_tree = Tree()
-    m_tree.makeRoot(node[0],node[1],node[2])
-    m_tree.makeRoot(node[1],node[3],node[4])
-    m_tree.makeRoot(node[2],node[5],node[6])
+    for i in range(int(len(node)/2)):
+        m_tree.makeRoot(node[i],node[i*2+1],node[i*2+2])
 
     print(       '전위 순회 : ', end='') ; m_tree.preorderTraversal(m_tree.root)
     print('\n' + '중위 순회 : ', end='') ; m_tree.inorderTraversal(m_tree.root)

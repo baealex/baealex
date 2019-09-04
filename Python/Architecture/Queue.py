@@ -36,14 +36,6 @@ class Queue:
 
     def enQueue(self, data):
         new_node = Node(data)
-        if self.rear == None:
-            self.rear = new_node
-            self.front.link = self.rear
-            return
-        if self.front == None:
-            self.front = Node(data)
-            self.front.link = self.rear
-            return
         self.rear.link = new_node
         self.rear = new_node
 
