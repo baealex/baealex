@@ -4,18 +4,22 @@ import time
 import matplotlib.pyplot as plt
 
 def geneticSort(m_list, mode):
-    MAX_CHROMO = 50
-    mutation = 0.15
+    MAX_CHROMO = 100
+    mutation = 0.35
 
     chromo = [random.sample(m_list, len(m_list)) for i in range(MAX_CHROMO)]
     evoluation_value = [0 for i in range(MAX_CHROMO)]
     choice_chromo = [0,0]
     
+    done = 0
+    for i in range(len(m_list) - 1):
+        done += 1 * ( i + 1 )
+
     while True:
         for i in range(MAX_CHROMO):
             for j in range(len(m_list) - 1):
                 if chromo[i][j] < chromo[i][j+1]:
-                    evoluation_value[i] += 1
+                    evoluation_value[i] += 1 * ( j + 1 )
         
         evoluation_max = {
             'first'  : 0,
@@ -39,7 +43,7 @@ def geneticSort(m_list, mode):
             print(chromo[choice_chromo[0]])
             time.sleep(0.05)
 
-        if (len(m_list)-1) in evoluation_value:
+        if done in evoluation_value:
             break
 
         evoluation_value = [0 for i in range(MAX_CHROMO)]
@@ -62,11 +66,21 @@ def geneticSort(m_list, mode):
     return chromo[choice_chromo[0]]
     
 if __name__=="__main__":
+
+    x = []
+    y = []
+
     m_list = [3, 100, 40, 49, 65, 16, 43, 34, 77, 54]
     print('원본 리스트 :', m_list)
     
-    current_time = time.time()
-    sort_list = geneticSort(m_list, 'none')
-    print('정렬 리스트 :', sort_list)
-    run_time = float(time.time() - current_time)
-    print('실행 시간   :', '%0.2f' % run_time)
+    for i in range(100):
+        current_time = time.time()
+        sort_list = geneticSort(m_list, 'none')
+        print('정렬 리스트 :', sort_list)
+        run_time = float(time.time() - current_time)
+        print('실행 시간   :', '%0.2f' % run_time)
+        x.append(i)
+        y.append(run_time)
+    
+    plt.plot(x,y)
+    plt.show()
