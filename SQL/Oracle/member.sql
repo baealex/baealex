@@ -15,6 +15,9 @@ CREATE TABLE member (
 );
 
 INSERT INTO member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mdate, fname, grade)
+VALUES('admin', '1234', 'developer1', '123-1234', 'admin@mail.com', '123-123', 'Incheon', 'Namdong', 'A01', sysdate, 'man.jpg', 'A');
+
+INSERT INTO member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mdate, fname, grade)
 VALUES('user1', '1234', 'developer1', '123-1234', 'email1@mail.com', '123-123', 'Incheon', 'Namdong', 'A01', sysdate, 'man.jpg', 'H');
 
 INSERT INTO member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mdate, fname, grade)
