@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- <?xml-stylesheet type="text/xsl" href="teaminfo.xsl"?> -->
+<teaminfo>
+<team>
+  <name>홍길동</name>
+  <phone>010-2345-2345</phone>
+  <address>서울시 종로구</address>
+</team>
+<team>
+  <name>김길동</name>
+  <phone>010-1234-1234</phone>
+  <address>서울시 관악구</address>
+</team>
+<team>
+  <name>박길동</name>
+  <phone>010-9023-9023</phone>
+  <address>서울시 강남구</address>
+</team>
+<team>
+  <name>이길동</name>
+  <phone>010-0987-7890</phone>
+  <address>인천시 남동구</address>
+</team>
+<team>
+  <name>이길동</name>
+  <phone>010-0987-7890</phone>
+  <address>인천시 남동구</address>
+</team>
+</teaminfo>

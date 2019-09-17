@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>팀 목록</title>
+	<script type="text/javascript" src="../../httpRequest.js"></script>
+	<script type="text/javascript">
+		var xmlDoc = null;
+		var xslDoc = null;
+
+		function loadTeamInfo() {
+			sendRequest("teaminfo.xml", null, loadedTeamInfoXML, "GET");
+		}
+
+		function loadedTeamInfoXML() {
+			if (httpRequest.readyState == 4) {
+				if (httpRequest.status == 200) {
+					xmlDoc = httpRequest.responseXML;
+					// XSL 파일을 가져오기위해 재 요청
+					sendRequest("teaminfo_s.xml", null, loadedTeamInfoXSL, "GET");
+				}
+			}
+		}
+
+		function loadedTeamInfoXSL() {
+			if (httpRequest.readyState == 4) {
+				if (httpRequest.status == 200) {
+					xslDoc = httpRequest.responseXML;
+					doXSLT();
+				}
+			}
+		}
+
+		function doXSLT() {
+			// server로부터 loading이 되었는지 검사
+			if (xmlDoc == null || xslDoc == null) return;
+			// 출력할 DIV 태그 검색
+			var teamList = document.getElementById("teamList");
+			if (window.ActiveXObject) {
+				// IE
+				teamList.innerHTML = xmlDoc.transformNode(xslDoc);
+			} else {
+				// Firefox
+				var xsltProc = new XSLTProcessor();
+				xsltProc.importStylesheet(xslDoc);
+				var fragment = xsltProc.transformToFragment(xmlDoc, document);
+				teamList.appendChild(fragment);
+			}
+		}
+		window.onload = function() {
+			loadTeamInfo();
+		}
+	</script>
+</head>
+
+<body>
+	<h1>팀원 목록</h1>
+	<div id="teamList"></div>
+</body>
+
+</html>

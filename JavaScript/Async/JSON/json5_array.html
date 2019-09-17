@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="../httpRequest.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			sendRequest("http://dev-java.run.goorm.io/board/array.jsp", "", response, "POST");
+		}
+
+		function response() {
+			if (httpRequest.readyState == 4) {
+				if (httpRequest.status == 200) {
+					var data = eval(httpRequest.responseText);
+					//alert(data.length);
+					var html = "<table border='1'>";
+					html += "<tr><th>이름</th></tr>";
+					// alert(html);
+					for (var i = 0; i < data.length; i++) {
+						html += "<tr><td>" + data[i] + "</td></tr>";
+					}
+					html += "</table>";
+					var arrayjson = document.getElementById("arrayjson");
+					arrayjson.innerHTML = html;
+				}
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<div id="arrayjson"></div>
+</body>
+
+</html>
