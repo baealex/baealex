@@ -15,10 +15,14 @@ function show_file_list($dir, $name) {
         if($dh = opendir($dir)) {
             while(($file = readdir($dh)) !== false) {
                 if(!($file=='.' ||$file=='..' || $file=='index.php' || $file=='index.html' || strpos($file,'/t'))) {
-                    echo "<li><a href='".$dir.$file."'>".$file."</a></li>";
+                    $files[] = $file;
                 }
             }
-        closedir($dh);
+            closedir($dh);
+            natsort($files);
+            foreach($files as $file) {
+                echo "<li><a href='".$dir.$file."'>".$file."</a></li>";
+            }
         }
     } else {
         echo "<p>ERROR</p>";
