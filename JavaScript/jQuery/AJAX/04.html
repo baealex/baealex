@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+            url:"test_03.jsp",
+            dataType:"text",
+            success:function(data) {
+                result=eval("("+data+")");
+                //alert('Call Back Call: ' + result.name);
+                $("#panel").append(
+                    "<tr>"+
+                    "<td>이름</td>"+
+                    "<td>아이디</td>"+
+                    "<td>국어</td>"+
+                    "<td>영어</td>"+
+                    "</tr>"+
+                    "<tr>"+
+                    "<td>"+result.name+"</td>"+
+                    "<td>"+result.id+"</td>"+
+                    "<td>"+result.kuk+"</td>"+
+                    "<td>"+result.eng+"</td>"+
+                    "</tr>"
+                );
+            }
+        });
+    });
+ 
+    </script>
+    <style>
+        td {
+            border: 1px solid gray;
+        }
+    </style>    
+</head>
+<body>
+    <!-- 테이블로 출력 -->
+    <table id="panel"></table>
+</body>
+</html>

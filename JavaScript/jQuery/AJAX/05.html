@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>-->
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+          $.getJSON(
+            "test_04.jsp",
+            response
+        );
+    });
+ 
+    function response(result,textStatus) {
+        alert('Call Back Call: ' + textStatus);
+        $("#panel").append(
+            "<tr>"+
+            "<td>이름</td>"+
+            "</tr>"+
+            "<tr>"+
+            "<td>array.html 요청 처리에 성공 했습니다."+
+            "</td>"+
+            "</tr>"
+        );
+ 
+        var size = result.length;
+        // alert('size: ' + size);
+        
+        var i = 0;
+        
+        for(i=0; i<size; i++){
+            $("#panel").append(                    
+                "<tr>"+
+                "<td>"+result[i]+"</td>"+
+                "</tr>"
+            );
+            
+        }
+    }
+</script>
+<style>
+      td {
+          border: 1px solid gray;
+      }
+</style>    
+</head>
+<body>
+    <!-- 테이블로 출력 -->
+    <table id="panel"></table>
+ 
+</body>
+</html>
