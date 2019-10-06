@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<style type="text/css">
+		.red {
+			color: red;
+		}
+	</style>
+	<script type="text/javascript">
+		$(function() {
+			$("p:first").addClass("red");
+			$("p:last").removeClass("red");
+		});
+	</script>
+</head>
+
+<body>
+	<p> 텍스트 텍스트 텍스트 텍스트</p>
+	<p class="red"> 텍스트 텍스트 텍스트 텍스트 텍스트</p>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>HTML삽입</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("p#first").prepend("<strong> 앞부분에 삽입</strong>");
+			$("p#first").append("<strong> 뒷부분에 삽입</strong>");
+			$("p#second").before("<h1> 태그 앞에 삽입</h1>");
+			$("p#second").after("<h1> 태그 뒤에 삽입</h1>");
+		});
+	</script>
+</head>
+
+<body>
+	<p id="first"> 텍스트 텍스트</p>
+	<p id="second"> 텍스트 텍스트</p>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("strong").wrap("<h1></h1>"); //개별
+			$("div").wrapAll("<h1></h1>"); //전체
+			$("p").wrapInner("<strong></strong>"); //내부
+			$('article img').each( function() {
+			  $(this).wrapAll("<a href='"+ $(this).attr('src') +"'></a>");
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<strong> 텍스트텍스트111 </strong>
+	<strong> 텍스트텍스트222 </strong>
+
+	<div> 텍스트텍스트111 </div>
+	<div> 텍스트텍스트222 </div>
+	<div> 텍스트텍스트333 </div>
+
+	<p> 텍스트텍스트 </p>
+	<p> 텍스트텍스트 </p>
+	
+	<img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg">
+	<article>
+		<img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg">
+	</article>
+</body>
+
+</html>

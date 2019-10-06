@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("select").change(function() {
+				$("span").text($(this).val());
+			});
+		});
+	</script>
+</head>
+
+<body>
+	신청자：
+	<select>
+		<option value=" 이름">개인</option>
+		<option value=" 회사명"> 법인</option>
+	</select>
+	<p>
+		<span>이름</span>
+		<input type="text" />
+	</p>
+
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>텍스트</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("p#first").text("변경후");
+			$("p#second").text($("p#first").text());
+		});
+	</script>
+</head>
+
+<body>
+	<p id="first"> 변경전</p>
+	<p id="second">변경전</p>
+</body>
+
+</html>

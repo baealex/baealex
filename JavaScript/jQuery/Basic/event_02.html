@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("button").toggle(function() {
+				$("img").attr("src", "sea.jpg").attr("alt", "바다");
+			}, function() {
+				$("img").attr("src", "Jellyfish.jpg").attr("alt", "해파리");
+			}, function() {
+				$("img").attr("src", "building.jpg").attr("alt", "건물");
+			}, function() {
+				$("img").attr("src", "flower.jpg").attr("alt", "꽃");
+			});
+		});
+	</script>
+</head>
+
+<body>
+
+	<button>화면을 변경</button>
+
+	<p>
+		<img src="flower.jpg" alt="꽃" />
+	</p>
+
+</body>
+
+</html>

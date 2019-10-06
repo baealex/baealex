@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("p").css({
+				backgroundColor: "yellow",
+				fontWeight: "bold",
+				color: "red"
+			});
+			$("div").text($("p").css("color"));
+		});
+	</script>
+</head>
+
+<body>
+	<p> 텍스트 텍스트 텍스트 텍스트 텍스트 </p>
+
+	<div>텍스트</div>
+</body>
+
+</html>
