@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="memo-list">
+        <h3>MEMO</h3>
+        <div id="insert-list">
+            <div id="title"></div>
+            <div id="datetime"></div>
+            <div id="content"></div>
+            <div id="count"></div>
+        </div>
+        <p><a href="memo">목록으로</a> / <a href="javascript:delete_memo()">삭제</a> / <a href="javascript:modify_memo()">수정</a></p>
+    </div>
+    <script src="https://static.blex.kr/assets/js/lib/jquery-3.4.0.min.js"></script>
+    <script src="main.js"></script>
+    <script>
+        $.ajax({
+            url: "https://runner.blex.kr/memos/"+ getParameter('pk') +"/",
+            type: "GET",
+            success: function(data) {
+                $('#title').html('<h4>'+data.title+'</h4>');
+                $('#datetime').html("생성된 날자 : " + data.created_date.slice(0,10));
+                $('#content').html("내용 : " + data.content);
+                $('#count').html("조회수 : " + data.view_count);
+                $.ajax({
+                    url: "https://runner.blex.kr/memos/"+ getParameter('pk') +"/",
+                    type: "PUT",
+                    data: {
+                        title: data.title,
+                        content: data.content,
+                        view_count: data.view_count + 1,
+                    }
+                });
+            },
+        });
+
+        function delete_memo() {
+            if(confirm("정말 삭제합니까?")) {
+                $.ajax({
+                    url: "https://runner.blex.kr/memos/"+ getParameter('pk') +"/",
+                    type: "DELETE",
+                    success: function(data) {
+                        alert('삭제되었습니다.');
+                        location.href='memo';
+                    },
+                });
+            }
+        }
+
+        function modify_memo() {
+            location.href="memoForm?pk="+ getParameter('pk');
+        }
+    </script>
+</body>
+</html>

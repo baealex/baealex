@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.memo-list {
+    margin: 0 auto;
+    width: 700px;
+    max-width: 100%;
+}
+.memo-list h3 {
+    border-bottom: 1px solid #000;
+    padding: 10px;
+}
+.memo-list ul {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+.memo-list li {
+    list-style: none;
+    margin-left: 10px;
+    display: inline-block;
+}
+.memo-list a {
+    text-decoration: none;
+}
+.memo-list input {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+.memo-list textarea {
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    height: 400px;
+    border: 1px solid #ccc;
+}
+div#title {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+div#content {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+div#datetime {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+div#count {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
