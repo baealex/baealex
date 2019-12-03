@@ -1,5 +1,6 @@
 import os
 import pigpio
+import time
 
 class DefaultConf:
     window = {
@@ -59,10 +60,10 @@ class MoterConf:
         self.pi.set_mode(self.pinInfo['Z']['DIR' ], pigpio.OUTPUT)
     
     def setPulseAxis(self, axis, delay):
-        pi.write(self.pinInfo[axis]['STEP'], pigpio.HIGH)
-        sleep(delay)
-        pi.write(self.pinInfo[axis]['STEP'], pigpio.LOW)
-        sleep(delay)
+        self.pi.write(self.pinInfo[axis]['STEP'], pigpio.HIGH)
+        time.sleep(delay)
+        self.pi.write(self.pinInfo[axis]['STEP'], pigpio.LOW)
+        time.sleep(delay)
 
-    def setDirAxis(self, dir):
-        pi.write(self.pinInfo[axis]['DIR'], dir)
+    def setDirAxis(self, axis, direction):
+        self.pi.write(self.pinInfo[axis]['DIR'], direction)

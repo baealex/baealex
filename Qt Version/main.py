@@ -21,14 +21,14 @@ class Ui_MainControlPanel(object):
         )
 
         # BUTTON
-        self.layoutStartButton = self.makePushButton(window, 'START', [180,520,100,40])
-        self.layoutPauseButton = self.makePushButton(window, 'PAUSE', [290,520,100,40])
-        self.layoutSaveButton  = self.makePushButton(window, 'SAVE' , [400,520,100,40])
-        self.layoutExitButton  = self.makePushButton(window, 'EXIT' , [510,520,100,40])
+        self.layoutStartButton = self.makePushButton(window, 'START', [10,400,150,40])
+        self.layoutPauseButton = self.makePushButton(window, 'PAUSE', [10,450,150,40])
+        self.layoutSaveButton  = self.makePushButton(window, 'SAVE' , [10,500,150,40])
+        self.layoutExitButton  = self.makePushButton(window, 'EXIT' , [10,550,150,40])
 
         # INPUT BOX
-        self.layoutNumberInput = self.makeLineEdit(window, 'Object Number', [290,200,210,40])
-        self.layoutSpeedInput  = self.makeLineEdit(window, 'Pulse Speed'  , [290,250,210,40])
+        self.layoutNumberInput = self.makeLineEdit(window, 'Object Number', [10,10,150,40])
+        self.layoutSpeedInput  = self.makeLineEdit(window, 'Pulse Speed'  , [10,60,150,40])
         self.layoutNumberInput.setValidator(QtGui.QIntValidator())
         self.layoutSpeedInput.setValidator(QtGui.QIntValidator())
 
@@ -110,7 +110,7 @@ class Ui_MainControlPanel(object):
         return messageBox
 
     def initObjectPosition(self):
-        self.layoutCanvasBackground.setGeometry(QtCore.QRect(700,50,700,450))
+        self.layoutCanvasBackground.setGeometry(QtCore.QRect(170,10,620,580))
         self.layoutCanvasMoter.setGeometry(QtCore.QRect(-100,-100,30,30))
 
     def initObjectEvent(self):
@@ -127,8 +127,8 @@ class Ui_MainControlPanel(object):
         self.isStart = not self.isStart
 
     def btnStartEvent(self):
-        self.ControlManager()
-        t = threading.Thread(target=self.MoterRun, args=())
+        self.controlManager()
+        t = threading.Thread(target=self.moterRun, args=())
         t.start()
 
     def btnPauseEvent(self):
@@ -183,6 +183,7 @@ class Ui_MainControlPanel(object):
             for i in range(50000):
                 self.moterMoveControl('X', pulseDelay)
             # self.layoutCanvasMoter.move(60+pos/100,60)
+            break
         self.controlManager()
 
     def moterMoveControl(self, axis, delay):
