@@ -4,7 +4,6 @@ import threading
 import sys
 from config import DefaultConf, UserConf
 
-
 class Ui_MainControlPanel(object):
     isStart = False
     isPause = False
@@ -35,8 +34,18 @@ class Ui_MainControlPanel(object):
         # CANVAS
         self.layoutCanvasBackground = QLabel(window)
         self.layoutCanvasMoter = QLabel(window)
-        self.initObjectStyle()
+
+        self.layoutCanvasBackground.setStyleSheet("background:#eee;")
+        self.layoutCanvasMoter.setStyleSheet("background:#f00;border-width:1px;border-style:solid;border-radius:15px;")
+        
+        self.initObjectPosition()
         self.initObjectEvent()
+
+        # WINDOW STYLE SHEET
+        css = ''
+        for line in open('style.css', 'r').readlines():
+            css += line
+        window.setStyleSheet(css)
 
         if self.userConf.isRead:
             self.layoutNumberInput.setText(self.userConf.getConf(self.userConf.parser['input']['count']))
@@ -82,13 +91,6 @@ class Ui_MainControlPanel(object):
     def initObjectPosition(self):
         self.layoutCanvasBackground.setGeometry(QtCore.QRect(700,50,700,450))
         self.layoutCanvasMoter.setGeometry(QtCore.QRect(-100,-100,30,30))
-
-    def initObjectStyle(self):
-        """
-        self.CanvasBackground.setStyleSheet("background:#eee;")
-        self.CanvasMoter.setStyleSheet("background:#f00;border-width:1px;border-style:solid;border-radius:15px;")
-        """
-        pass
 
     def initObjectEvent(self):
         self.layoutStartButton.clicked.connect(self.BtnStart)
@@ -151,7 +153,6 @@ class Ui_MainControlPanel(object):
 
                 pos += 1
                 self.layoutCanvasMoter.move(60+pos/100,60)
-            print(i)
         self.ControlManager()
 
 if __name__ == "__main__":
