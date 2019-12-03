@@ -1,4 +1,5 @@
 import os
+import pigpio
 
 class DefaultConf:
     window = {
@@ -32,3 +33,36 @@ class UserConf:
                  return line.split(':')[1]
         return None
         
+class MoterConf:
+    pinInfo = {
+        'X' : {
+            'STEP' : 20,
+            'DIR'  : 21
+        },
+        'Y' : {
+            'STEP' : 20,
+            'DIR'  : 21
+        },
+        'Z' : {
+            'STEP' : 20,
+            'DIR'  : 21
+        }
+    }
+
+    def __init__(self):
+        self.pi = pigpio.pi()
+        self.pi.set_mode(self.pinInfo['X']['STEP'], pigpio.OUTPUT)
+        self.pi.set_mode(self.pinInfo['X']['DIR' ], pigpio.OUTPUT)
+        self.pi.set_mode(self.pinInfo['Y']['STEP'], pigpio.OUTPUT)
+        self.pi.set_mode(self.pinInfo['Y']['DIR' ], pigpio.OUTPUT)
+        self.pi.set_mode(self.pinInfo['Z']['STEP'], pigpio.OUTPUT)
+        self.pi.set_mode(self.pinInfo['Z']['DIR' ], pigpio.OUTPUT)
+    
+    def setPulseAxis(self, axis, delay):
+        pi.write(self.pinInfo[axis]['STEP'], pigpio.HIGH)
+        sleep(delay)
+        pi.write(self.pinInfo[axis]['STEP'], pigpio.LOW)
+        sleep(delay)
+
+    def setDirAxis(self, dir):
+        pi.write(self.pinInfo[axis]['DIR'], dir)

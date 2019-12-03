@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMessageBox, QDialog, QLineEdit, QLabel
 import threading
 import sys
-from config import DefaultConf, UserConf
+from config import DefaultConf, UserConf, MoterConf
 
 class Ui_MainControlPanel(object):
     isStart = False
@@ -10,9 +10,10 @@ class Ui_MainControlPanel(object):
     isForceStop = False
     defaultConf = DefaultConf()
     userConf = UserConf()
+    moterConf = MoterConf()
 
     def __init__(self, window):
-        window.setObjectName(self.defaultConf.window['config']['objectName'])
+        window.setObjectName( self.defaultConf.window['config']['objectName'])
         window.setWindowTitle(self.defaultConf.window['config']['title'])
         window.resize(
             self.defaultConf.window['size']['width'], 
@@ -35,8 +36,19 @@ class Ui_MainControlPanel(object):
         self.layoutCanvasBackground = QLabel(window)
         self.layoutCanvasMoter = QLabel(window)
 
-        self.layoutCanvasBackground.setStyleSheet("background:#eee;")
-        self.layoutCanvasMoter.setStyleSheet("background:#f00;border-width:1px;border-style:solid;border-radius:15px;")
+        self.layoutCanvasBackground.setStyleSheet(
+            """
+            background:#eee;
+            """
+        )
+        self.layoutCanvasMoter.setStyleSheet(
+            """
+            background:#f00;
+            border-width:1px;
+            border-style:solid;
+            border-radius:15px;
+            """
+        )
         
         self.initObjectPosition()
         self.initObjectEvent()
@@ -47,15 +59,24 @@ class Ui_MainControlPanel(object):
             css += line
         window.setStyleSheet(css)
 
+        # CONFIG READ
         if self.userConf.isRead:
-            self.layoutNumberInput.setText(self.userConf.getConf(self.userConf.parser['input']['count']))
-            self.layoutSpeedInput.setText( self.userConf.getConf(self.userConf.parser['input']['speed']))
+            self.layoutNumberInput.setText(
+                self.userConf.getConf(
+                    self.userConf.parser['input']['count']
+                )
+            )
+            self.layoutSpeedInput.setText (
+                self.userConf.getConf(
+                    self.userConf.parser['input']['speed']
+                )
+            )
     
     def getValidateInputValue(self, lineEdit):
         if len(lineEdit.text()) == 0:
-            return 0
+            return str(0)
         else:
-            return int(lineEdit.text())
+            return str(lineEdit.text())
 
     def makePushButton(self, parent, name, rect):
         pushButton = QPushButton(name, parent)
@@ -93,32 +114,27 @@ class Ui_MainControlPanel(object):
         self.layoutCanvasMoter.setGeometry(QtCore.QRect(-100,-100,30,30))
 
     def initObjectEvent(self):
-        self.layoutStartButton.clicked.connect(self.BtnStart)
-        self.layoutPauseButton.clicked.connect(self.BtnPause)
-        self.layoutSaveButton.clicked.connect(self.BtnSave)
-        self.layoutExitButton.clicked.connect(self.BtnExit)
+        self.layoutStartButton.clicked.connect(self.btnStartEvent)
+        self.layoutPauseButton.clicked.connect(self.btnPauseEvent)
+        self.layoutSaveButton.clicked.connect(self.btnSaveEvent)
+        self.layoutExitButton.clicked.connect(self.btnExitEvent)
 
-    def ControlManager(self):
+    def controlManager(self):
         if not self.isStart:
-            # START
-            self.layoutCanvasBackground.move(50,50)
             self.layoutStartButton.setEnabled(False)
         else:
-            # STOP
-            self.layoutCanvasBackground.move(700,50)
-            self.layoutCanvasMoter.move(-100,-100)
             self.layoutStartButton.setEnabled(True)
         self.isStart = not self.isStart
 
-    def BtnStart(self):
+    def btnStartEvent(self):
         self.ControlManager()
         t = threading.Thread(target=self.MoterRun, args=())
         t.start()
 
-    def BtnPause(self):
+    def btnPauseEvent(self):
         self.isPause = not self.isPause
 
-    def BtnSave(self):
+    def btnSaveEvent(self):
         messageBoxYorN = self.makeMessageBox(
             'is Sure?',
             '현재 입력된 정보를 저장하겠습니까?'
@@ -136,24 +152,48 @@ class Ui_MainControlPanel(object):
             ).exec_()
 
 
-    def BtnExit(self):
+    def btnExitEvent(self):
         self.isForceStop = True
         exit()
 
-    def MoterRun(self):
-        pos = 0
-        for i in range(50000):
-            if self.isPause:
-                while self.isPause:
-                    if self.isForceStop:
-                        exit()
-            else:
+    def moterRun(self):
+        objectNumber = int(self.getValidateInputValue(self.layoutNumberInput))
+        pulseDelay = float(self.getValidateInputValue(self.layoutSpeedInput))
+        while True:
+            self.moterConf.setDirAxis('X', 1)
+            for i in range(50000):
+                self.moterMoveControl('X', pulseDelay)
+            
+            self.moterConf.setDirAxis('Y', 1)
+            for i in range(objectNumber):
+                for i in range(50000/objectNumber):
+                    self.moterMoveControl('Y', pulseDelay)
+                self.moterConf.setDirAxis('Z', 1)
+                for i in range(5000):
+                    self.moterMoveControl('Z', pulseDelay)
+                self.moterConf.setDirAxis('Z', 0)
+                for i in range(5000):
+                    self.moterMoveControl('Z', pulseDelay)
+            
+            self.moterConf.setDirAxis('Y', 0)
+            for i in range(50000):
+                self.moterMoveControl('Y', pulseDelay)
+            
+            self.moterConf.setDirAxis('X', 0)
+            for i in range(50000):
+                self.moterMoveControl('X', pulseDelay)
+            # self.layoutCanvasMoter.move(60+pos/100,60)
+        self.controlManager()
+
+    def moterMoveControl(self, axis, delay):
+        if self.isPause:
+            while self.isPause:
                 if self.isForceStop:
                     exit()
-
-                pos += 1
-                self.layoutCanvasMoter.move(60+pos/100,60)
-        self.ControlManager()
+        else:
+            if self.isForceStop:
+                exit()
+            self.moterConf.setPulseAxis(axis, delay)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
