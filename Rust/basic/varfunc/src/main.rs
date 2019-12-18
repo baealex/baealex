@@ -3,10 +3,11 @@ fn main() {
         println!("{}", get_my_nickname(i));
     }
 
-    let s1 = String::from("hello");
-    let s2 = s1;
+    // let s1 = String::from("hello");
+    // let s2 = s1;
 
-    println!("{}, world!", s1);
+    // println!("{}, world!", s1);
+    // error
 }
 
 fn get_my_nickname(index: usize) -> String {
