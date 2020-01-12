@@ -4,6 +4,7 @@ package-lock.json
 *.class
 WEB-INF
 mvenv/
+docker/
 
 *.jpg
 *.png
