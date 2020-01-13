@@ -1,5 +1,6 @@
 
-# STATE : DONE
+# URL   : https://www.acmicpc.net/problem/17939
+# STATE : DONE(2020-01-13)
 
 def max_dict(lists):
     index = 0
@@ -19,7 +20,6 @@ if __name__ == '__main__':
     N = int(input())
     price_lists = list(map(int, input().split()))
     benefit = 0
-    index = 0
 
     while True:
         max_price = max_dict(price_lists)
