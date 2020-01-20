@@ -1,7 +1,11 @@
 
+# URL   : https://www.acmicpc.net/problem/1152
 # STATE : DONE
-# PYTHON2
 
+print(len(input().strip().split()))
+
+# PYTHON2
+"""
 mString = raw_input()
 mString = mString.strip()
 mStringSplit = mString.split(' ')
@@ -12,3 +16,4 @@ for i in mStringSplit :
         mCount += 1
 
 print(mCount)
+"""
