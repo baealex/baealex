@@ -1,27 +1,29 @@
 
-# STATE : NOT YET
+# URL   : https://www.acmicpc.net/problem/15926
+# STATE : 25 POINT(2020-01-21)
 
 import math
-import time
 
-#c_time = time.time()
-
-def is_prime(N):
-    for i in range(2, int(math.sqrt(N)), 1):
-        if N%i == 0:
-            return False
-    return True
-
-def prime_of_number(N):
-    count = 0
-    number = 1
+def prime_of_number(K):
+    if K == 0:
+        return None
+    prime_lists = list()
+    counter = 0
+    x = 2
     while True:
-        number += 1
-        if is_prime(number):
-            count += 1
-        if count == N:
-            break
-    return number
+        is_prime = True
+        for y in prime_lists:
+            if y > math.sqrt(x):
+                break
+            if x % y == 0:
+                is_prime = False
+                break
+        if is_prime:
+            prime_lists.append(x)
+            counter += 1
+            if counter >= K:
+                return prime_lists[counter - 1]
+        x += 1
 
-print(prime_of_number(int(input())))
-#print(time.time() - c_time)
+if __name__=='__main__':
+    print(prime_of_number(int(input())))
