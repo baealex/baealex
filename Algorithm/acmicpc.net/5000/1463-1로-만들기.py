@@ -7,7 +7,7 @@ min = lambda x, y : x < y and x or y
 if __name__=='__main__':
     N = int(input())
 
-    DP = [0 for _ in range((N + 1) * 3)]
+    DP = [0] * ((N + 1) * 3)
     for i in range(1, N+1):
         DP[i + 1] = min(DP[i + 1], DP[i] + 1)
         DP[i * 2] = min(DP[i * 2], DP[i] + 1)
