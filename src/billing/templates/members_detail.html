@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}MAIN{% endblock %}
+
+{% block content %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">회차</th>
+            <th scope="col">날짜</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        {% for result in data.results %}
+        <tr>
+            <td scope="col">{{ result.ep }}</th>
+            <td scope="col">{{ result.date }}</th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item {% if page == 1 %}disabled{% endif %}">
+            <a class="page-link" href="?page={{ page | add:-1}}" {% if page == 1 %}tabindex="-1" aria-disabled="true"
+                {% endif %}>Previous</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page | add:1 }}">Next</a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block script %}
+<script>
+    /*
+    $(document).ready(function() {
+        var counter = 1;
+        for(var i = 1; i <= 10; i++) {
+            appendDate(i);
+        }
+    });
+    function appendDate(ep) {
+        $.ajax({
+            url: location.pathname + '/' + ep,
+            method: 'GET',
+        }).done(function (data) {
+            $('#tbody').append('\
+            <tr>\
+                <td scope="col">'+ ep +'</th>\
+                <td scope="col">'+ data +'</th>\
+            </tr>\
+            ')
+        });
+    }
+    */
+</script>
+{% endblock %}
