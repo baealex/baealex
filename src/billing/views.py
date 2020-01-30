@@ -1,16 +1,18 @@
 import datetime
 
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from django.utils import timezone
+from django.core.cache import cache
 
-from .models import Membership
-from .lunarsolar import Solar, LunarSolarConverter
+from .models import Membership, Holiday
 
-def get_month_day(month):
+cache.set('holidays', Holiday.objects.all(), None)
+
+def get_month_day(year, month):
     if month == 4 or month == 6 or month == 9 or month == 11:
         return 30
     elif month == 2:
-        if today.year % 4 == 0 and today.year % 100 != 0 or today.year % 400 == 0:
+        if year % 4 == 0 and year % 100 != 0 or year % 400 == 0:
             return 29
         else:
             return 28
@@ -18,12 +20,12 @@ def get_month_day(month):
         return 31
 
 def get_total_day(year, month, day):
-    year_days = year*365 + ((year/4 - year/100) + year/400)
-    
-    month_days = 0
-    for i in range(month):
-        month_days += get_month_day(i + 1)
+    year_days = (year-1)*365 + ((int((year-1)/4) - int((year-1)/100)) + int((year-1)/400))
 
+    month_days = 0
+    for i in range(1, month):
+        month_days += get_month_day(year, i)
+    
     return year_days + month_days + day
 
 def get_weekday(day):
@@ -43,7 +45,7 @@ def get_weekday(day):
     if day == 6:
         return 'SAT'
 
-def is_holiday(date):
+def is_holiday(date, holidays):
     FIXED_HOLIDAY = (
         ( 1, 1 ),
         ( 3, 1 ),
@@ -60,6 +62,10 @@ def is_holiday(date):
 
     if date.weekday() == 6 or date.weekday() == 7:
         return True
+    
+    if holidays.filter(date=date):
+        return True
+    
     return False
 
 def members(request):
@@ -81,6 +87,15 @@ def members(request):
 
 def members_detail(request, pk):
     member = Membership.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        member.name = request.POST['name']
+        member.created_date = request.POST['date']
+        member.event = request.POST['event']
+        member.dues = request.POST['dues']
+        member.save()
+        return redirect('members_detail', pk=member.pk)
+    
     page = 1
     if request.GET.get('page'):
         page = int(request.GET['page'])
@@ -91,10 +106,13 @@ def members_detail(request, pk):
     date = member.created_date
     study_days_counter = 0
     page_counter = 0
+
+    holidays = cache.get('holidays')
     while page_counter < page * 10:
-        if not is_holiday(date):
+        date += datetime.timedelta(days=7)
+        if not is_holiday(date, holidays):
             study_days_counter += 1
-            if study_days_counter > 8:
+            if study_days_counter >= 8:
                 study_days_counter = 0
                 page_counter += 1
                 if page_counter > page * 10 - 10:
@@ -102,9 +120,29 @@ def members_detail(request, pk):
                         'ep': page_counter,
                         'date': date,
                     })
-        date += datetime.timedelta(days=7)
     
-    return render(request, 'members_detail.html', {'page': page, 'data': data})
+    return render(request, 'members_detail.html', {'member': member, 'page': page, 'data': data})
 
-def holiday(request):
-    return HttpResponse('0')
+def holiday(request, pk=None):
+    if not pk:
+        if request.method == 'POST':
+            new_holiday = Holiday(
+                name = request.POST['name'],
+                date = request.POST['date'],
+            )
+            new_holiday.save()
+            cache.set('holidays', Holiday.objects.all(), None)
+            return redirect('holiday')
+            
+        holidays = cache.get('holidays')
+            
+        sort = str()
+        if request.GET.get('sort'):
+            sort = request.GET['sort']
+            holidays = holidays.order_by(sort)
+        return render(request, 'holiday.html', {'holidays': holidays, 'sort': sort})
+    else:
+        if request.method == 'DELETE':
+            Holiday.objects.get(pk=pk).delete()
+            cache.set('holidays', Holiday.objects.all(), None)
+            return HttpResponse('DONE')

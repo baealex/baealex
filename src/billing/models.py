@@ -6,6 +6,7 @@ from django.utils import timezone
 class Membership(models.Model):
     name = models.CharField(max_length=200)
     created_date = models.DateField(default=timezone.now)
+    # updated_date = models.DateField(default=timezone.now)
     event = models.CharField(max_length=200)
     dues = models.IntegerField(default=0)
     

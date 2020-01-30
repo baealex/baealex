@@ -3,6 +3,19 @@
 {% block title %}MAIN{% endblock %}
 
 {% block content %}
+<ul class="nav mb-3">
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+            {{ member.name }} ({{ member.created_date }})
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal">수정</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">삭제</a>
+    </li>
+</ul>
 <table class="table">
     <thead>
         <tr>
@@ -23,38 +36,56 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <li class="page-item {% if page == 1 %}disabled{% endif %}">
-            <a class="page-link" href="?page={{ page | add:-1}}" {% if page == 1 %}tabindex="-1" aria-disabled="true"
-                {% endif %}>Previous</a>
+            <a class="page-link" href="?page={{ page | add:-1}}" {% if page == 1 %}tabindex="-1" aria-disabled="true"{% endif %}>Previous</a>
         </li>
         <li class="page-item">
             <a class="page-link" href="?page={{ page | add:1 }}">Next</a>
         </li>
     </ul>
 </nav>
-{% endblock %}
-
-{% block script %}
-<script>
-    /*
-    $(document).ready(function() {
-        var counter = 1;
-        for(var i = 1; i <= 10; i++) {
-            appendDate(i);
-        }
-    });
-    function appendDate(ep) {
-        $.ajax({
-            url: location.pathname + '/' + ep,
-            method: 'GET',
-        }).done(function (data) {
-            $('#tbody').append('\
-            <tr>\
-                <td scope="col">'+ ep +'</th>\
-                <td scope="col">'+ data +'</th>\
-            </tr>\
-            ')
-        });
-    }
-    */
-</script>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">수정</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST">
+            <div class="modal-body">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">이름</span>
+                    </div>
+                    <input type="text" class="form-control" name="name" value="{{ member.name }}" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">날짜</span>
+                    </div>
+                    <input type="date" class="form-control" name="date" value="{{ member.created_date | date:"Y-m-d" }}" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">종목</span>
+                    </div>
+                    <input type="text" class="form-control" name="event" value="{{ member.event }}" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">회비</span>
+                    </div>
+                    <input type="text" class="form-control" name="dues" value="{{ member.dues }}" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button type="submit">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
