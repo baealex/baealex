@@ -59,31 +59,55 @@ def is_holiday(date, holidays):
     )
     if (date.month, date.day) in FIXED_HOLIDAY:
         return True
-
-    if date.weekday() == 6 or date.weekday() == 7:
-        return True
     
     if holidays.filter(date=date):
         return True
     
     return False
 
-def members(request):
-    if request.method == 'POST':
-        new_member = Membership(
-            name = request.POST['name'],
-            created_date = request.POST['date'],
-            event = request.POST['event'],
-            dues = request.POST['dues'],
-        )
-        new_member.save()
+def members(request, weekday=None):
+    members = None
+    render_params = dict()
+
+    if not weekday:
+        if request.method == 'POST':
+            new_member = Membership(
+                name = request.POST['name'],
+                created_date = request.POST['date'],
+                event = request.POST['event'],
+                dues = request.POST['dues'],
+            )
+            new_member.save()
+        members = Membership.objects.all()
     
-    members = Membership.objects.all()
+    if weekday:
+        render_params['weekday'] = weekday
+        weekday_num = int()
+        if weekday == 'sun':
+            weekday_num = 1
+        if weekday == 'mon':
+            weekday_num = 2
+        if weekday == 'tue':
+            weekday_num = 3
+        if weekday == 'web':
+            weekday_num = 4
+        if weekday == 'thu':
+            weekday_num = 5
+        if weekday == 'fri':
+            weekday_num = 6
+        if weekday == 'sat':
+            weekday_num = 7
+        members = Membership.objects.filter(created_date__week_day=weekday_num)
+    
     sort = str()
     if request.GET.get('sort'):
         sort = request.GET['sort']
         members = members.order_by(sort)
-    return render(request, 'members.html', {'members': members, 'sort': sort})
+    
+    render_params['members'] = members
+    render_params['sort'] = sort
+    
+    return render(request, 'members.html', render_params)
 
 def members_detail(request, pk):
     member = Membership.objects.get(pk=pk)
@@ -108,14 +132,14 @@ def members_detail(request, pk):
     page_counter = 0
 
     holidays = cache.get('holidays')
-    while page_counter < page * 10:
+    while page_counter < page * 100:
         date += datetime.timedelta(days=7)
         if not is_holiday(date, holidays):
             study_days_counter += 1
             if study_days_counter >= 8:
                 study_days_counter = 0
                 page_counter += 1
-                if page_counter > page * 10 - 10:
+                if page_counter > page * 100 - 100:
                     data['results'].append({
                         'ep': page_counter,
                         'date': date,

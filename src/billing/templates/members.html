@@ -3,6 +3,64 @@
 {% block title %}MAIN{% endblock %}
 
 {% block content %}
+<ul class="nav mb-3">
+    <li class="nav-item">
+        {% if not weekday %}
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">전체</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'members' %}">전체</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if weekday == 'sun' %}
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">일요일</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'members_weekday' weekday='sun' %}">일요일</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if weekday == 'mon' %}
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">월요일</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'members_weekday' weekday='mon' %}">월요일</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if weekday == 'tue' %}
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">화요일</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'members_weekday' weekday='tue' %}">화요일</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if weekday == 'wed' %}
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">수요일</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'members_weekday' weekday='wed' %}">수요일</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if weekday == 'thu' %}
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">목요일</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'members_weekday' weekday='thu' %}">목요일</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if weekday == 'fri' %}
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">금요일</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'members_weekday' weekday='fri' %}">금요일</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if weekday == 'sat' %}
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">토요일</a>
+        {% else %}
+        <a class="nav-link" href="{% url 'members_weekday' weekday='sat' %}">토요일</a>
+        {% endif %}
+    </li>
+</ul>
 <table class="table">
     <thead>
         <tr>
