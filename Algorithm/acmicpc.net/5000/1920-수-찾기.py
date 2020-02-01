@@ -51,11 +51,6 @@ class SearchTree:
             elif node.data == data:
                 return True
 
-    def inorderTraversal(self, node):
-        if not node.left  == None : self.inorderTraversal(node.left)
-        print(node, end=' ')
-        if not node.right == None : self.inorderTraversal(node.right)
-
 if __name__ == '__main__':
     N = int(input())
     A = list(map(int, input().split()))
