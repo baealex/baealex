@@ -4,18 +4,18 @@
 
 function solution(skill, skill_trees) {
     var answer = 0;
-    for(var i in skill_trees) {
+    for(let skill_tree of skill_trees) {
         let check = true;
-        let preSkillIndex = -5;
-        for(var j in skill) {
-            let skillIndex = skill_trees[i].indexOf(skill[j]);
-            if(skillIndex != -1) {
-                if(preSkillIndex == -1 || skillIndex < preSkillIndex) {
+        let pre_skill_index = -5;
+        for(let skill_name of skill) {
+            let skill_index = skill_tree.indexOf(skill_name);
+            if(skill_index != -1) {
+                if(pre_skill_index == -1 || skill_index < pre_skill_index) {
                     check = false;
                     break;
                 }
             }
-            preSkillIndex = skillIndex;
+            pre_skill_index = skill_index;
         }
         if(check) {
             answer++;
