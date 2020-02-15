@@ -1,10 +1,12 @@
 import datetime
 
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
+from django.http import (
+    HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseNotFound, Http404, QueryDict)
 from django.utils import timezone
 from django.core.cache import cache
 
-from .models import Membership, Holiday
+from .models import Membership, Holiday, is_holiday
 
 cache.set('holidays', Holiday.objects.all(), None)
 
@@ -45,39 +47,23 @@ def get_weekday(day):
     if day == 6:
         return 'SAT'
 
-def is_holiday(date, holidays):
-    FIXED_HOLIDAY = (
-        ( 1, 1 ),
-        ( 3, 1 ),
-        ( 4, 8 ),
-        ( 5, 5 ),
-        ( 6, 6 ),
-        ( 8, 15),
-        (10, 3 ),
-        (10, 9 ),
-        (12, 25),
-    )
-    if (date.month, date.day) in FIXED_HOLIDAY:
-        return True
-    
-    if holidays.filter(date=date):
-        return True
-    
-    return False
-
 def members(request, weekday=None):
     members = None
-    render_params = dict()
+    render_params = {
+        'is_member': True,
+    }
+
+    if request.method == 'POST':
+        new_member = Membership(
+            name = request.POST['name'],
+            created_date = request.POST['date'],
+            updated_date = request.POST['date'],
+            event = request.POST['event'],
+            dues = request.POST['dues'],
+        )
+        new_member.save()
 
     if not weekday:
-        if request.method == 'POST':
-            new_member = Membership(
-                name = request.POST['name'],
-                created_date = request.POST['date'],
-                event = request.POST['event'],
-                dues = request.POST['dues'],
-            )
-            new_member.save()
         members = Membership.objects.all()
     
     if weekday:
@@ -120,6 +106,13 @@ def members_detail(request, pk):
         member.save()
         return redirect('members_detail', pk=member.pk)
     
+    if request.method == 'PUT':
+        put = QueryDict(request.body)
+        if put.get('updated_date'):
+            member.updated_date = put.get('updated_date')
+        member.save()
+        return HttpResponse('DONE')
+    
     page = 1
     if request.GET.get('page'):
         page = int(request.GET['page'])
@@ -140,14 +133,24 @@ def members_detail(request, pk):
                 study_days_counter = 0
                 page_counter += 1
                 if page_counter > page * 100 - 100:
-                    data['results'].append({
-                        'ep': page_counter,
-                        'date': date,
-                    })
+                    if date <= member.updated_date:
+                        data['results'].append({
+                            'ep': page_counter,
+                            'date': date,
+                            'done': True
+                        })
+                    else:
+                        data['results'].append({
+                            'ep': page_counter,
+                            'date': date,
+                        })
     
     return render(request, 'members_detail.html', {'member': member, 'page': page, 'data': data})
 
 def holiday(request, pk=None):
+    render_params = {
+        'is_holiday': True,
+    }
     if not pk:
         if request.method == 'POST':
             new_holiday = Holiday(
@@ -159,12 +162,15 @@ def holiday(request, pk=None):
             return redirect('holiday')
             
         holidays = cache.get('holidays')
+        render_params['holidays'] = holidays
             
         sort = str()
         if request.GET.get('sort'):
             sort = request.GET['sort']
             holidays = holidays.order_by(sort)
-        return render(request, 'holiday.html', {'holidays': holidays, 'sort': sort})
+        render_params['sort'] = sort
+
+        return render(request, 'holiday.html', render_params)
     else:
         if request.method == 'DELETE':
             Holiday.objects.get(pk=pk).delete()

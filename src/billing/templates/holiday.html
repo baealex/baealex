@@ -7,10 +7,18 @@
     음력 휴일, 자체 휴일, 대체 공휴일만 추가하면 됩니다.
 </div>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
-            <th scope="col">날자 <a href="?sort={% if sort == 'date' %}-date{% else %}date{% endif %}"><i class="fas fa-sort"></i></a></th>
-            <th scope="col">이름 <a href="?sort={% if sort == 'name' %}-name{% else %}name{% endif %}"><i class="fas fa-sort"></i></a></th>
+            <th scope="col">날짜
+                <a class="text-white" href="?sort={% if sort == 'date' %}-date{% else %}date{% endif %}">
+                    <i class="fas fa-sort{% if sort == 'date' %}-up{% elif sort == '-date' %}-down{% endif %}"></i>
+                </a>
+            </th>
+            <th scope="col">이름
+                <a class="text-white" href="?sort={% if sort == 'name' %}-name{% else %}name{% endif %}">
+                    <i class="fas fa-sort{% if sort == 'name' %}-up{% elif sort == '-name' %}-down{% endif %}"></i>
+                </a>
+            </th>
             <th scope="col">삭제</th>
         </tr>
     </thead>
@@ -64,16 +72,6 @@
 
 {% block script %}
 <script>
-    $(document).ready(function() {
-        var csrftoken = getCookie('csrftoken');
-        $.ajaxSetup({
-            beforeSend: function(xhr, settings) {
-                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
-                }
-            }
-        });
-    });
     function removeHoliday(pk) {
         if(confirm('정말 삭제합니까?')) {
             $.ajax({

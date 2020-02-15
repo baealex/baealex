@@ -17,32 +17,24 @@
     </li>
 </ul>
 <table class="table">
-    <thead>
+    <thead class="thead-dark">
         <tr>
             <th scope="col">회차</th>
             <th scope="col">날짜</th>
+            <th scope="col">결제</th>
         </tr>
     </thead>
     <tbody id="tbody">
         {% for result in data.results %}
-        <tr>
-            <td scope="col">{{ result.ep }}</th>
-            <td scope="col">{{ result.date }}</th>
+        <tr id="tr-{{ result.ep }}" style="transition:all 0.5s;" {% if result.done %}class="bg-success text-white"{% endif %}>
+            <th scope="col">{{ result.ep }}</th>
+            <td scope="col">{{ result.date }}</td>
+            <td scope="col"><a id="tr-a-{{ result.ep }}" {% if result.done %}class="text-white"{% endif %} href="javascript:void(0)" onclick="setUpdateDate('{{ result.date | date:"Y-m-d" }}', {{ result.ep }})"><i class="fas fa-check"></i></td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
 </div>
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center">
-        <li class="page-item {% if page == 1 %}disabled{% endif %}">
-            <a class="page-link" href="?page={{ page | add:-1}}" {% if page == 1 %}tabindex="-1" aria-disabled="true"{% endif %}>Previous</a>
-        </li>
-        <li class="page-item">
-            <a class="page-link" href="?page={{ page | add:1 }}">Next</a>
-        </li>
-    </ul>
-</nav>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -88,4 +80,29 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    function setUpdateDate(updated_date, ep) {
+        $.ajax({
+            url: location.pathname,
+            method: 'PUT',
+            data: {
+                updated_date: updated_date,
+            }
+        }).done(function (data) {
+            for(var i=1; i<=ep; i++) {
+                $('#tr-' + i).addClass('bg-success');
+                $('#tr-' + i).addClass('text-white');
+                $('#tr-a-' + i).addClass('text-white');
+            }
+            for(var i=ep+1; i<=100; i++) {
+                $('#tr-' + i).removeClass('bg-success');
+                $('#tr-' + i).removeClass('text-white');
+                $('#tr-a-' + i).removeClass('text-white');
+            }
+        });
+    }
+</script>
 {% endblock %}

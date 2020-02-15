@@ -3,80 +3,102 @@
 {% block title %}MAIN{% endblock %}
 
 {% block content %}
-<ul class="nav mb-3">
+<ul class="nav nav-tabs mb-3">
     <li class="nav-item">
         {% if not weekday %}
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">전체</a>
+        <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">전체</a>
         {% else %}
-        <a class="nav-link" href="{% url 'members' %}">전체</a>
+        <a class="nav-link text-black-50" href="{% url 'members' %}">전체</a>
         {% endif %}
     </li>
     <li class="nav-item">
         {% if weekday == 'sun' %}
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">일요일</a>
+        <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">일요일</a>
         {% else %}
-        <a class="nav-link" href="{% url 'members_weekday' weekday='sun' %}">일요일</a>
+        <a class="nav-link text-black-50" href="{% url 'members_weekday' weekday='sun' %}">일요일</a>
         {% endif %}
     </li>
     <li class="nav-item">
         {% if weekday == 'mon' %}
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">월요일</a>
+        <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">월요일</a>
         {% else %}
-        <a class="nav-link" href="{% url 'members_weekday' weekday='mon' %}">월요일</a>
+        <a class="nav-link text-black-50" href="{% url 'members_weekday' weekday='mon' %}">월요일</a>
         {% endif %}
     </li>
     <li class="nav-item">
         {% if weekday == 'tue' %}
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">화요일</a>
+        <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">화요일</a>
         {% else %}
-        <a class="nav-link" href="{% url 'members_weekday' weekday='tue' %}">화요일</a>
+        <a class="nav-link text-black-50" href="{% url 'members_weekday' weekday='tue' %}">화요일</a>
         {% endif %}
     </li>
     <li class="nav-item">
         {% if weekday == 'wed' %}
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">수요일</a>
+        <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">수요일</a>
         {% else %}
-        <a class="nav-link" href="{% url 'members_weekday' weekday='wed' %}">수요일</a>
+        <a class="nav-link text-black-50" href="{% url 'members_weekday' weekday='wed' %}">수요일</a>
         {% endif %}
     </li>
     <li class="nav-item">
         {% if weekday == 'thu' %}
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">목요일</a>
+        <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">목요일</a>
         {% else %}
-        <a class="nav-link" href="{% url 'members_weekday' weekday='thu' %}">목요일</a>
+        <a class="nav-link text-black-50" href="{% url 'members_weekday' weekday='thu' %}">목요일</a>
         {% endif %}
     </li>
     <li class="nav-item">
         {% if weekday == 'fri' %}
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">금요일</a>
+        <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">금요일</a>
         {% else %}
-        <a class="nav-link" href="{% url 'members_weekday' weekday='fri' %}">금요일</a>
+        <a class="nav-link text-black-50" href="{% url 'members_weekday' weekday='fri' %}">금요일</a>
         {% endif %}
     </li>
     <li class="nav-item">
         {% if weekday == 'sat' %}
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">토요일</a>
+        <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">토요일</a>
         {% else %}
-        <a class="nav-link" href="{% url 'members_weekday' weekday='sat' %}">토요일</a>
+        <a class="nav-link text-black-50" href="{% url 'members_weekday' weekday='sat' %}">토요일</a>
         {% endif %}
     </li>
 </ul>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
-            <th scope="col">이름 <a href="?sort={% if sort == 'name' %}-name{% else %}name{% endif %}"><i class="fas fa-sort"></i></a></th>
-            <th scope="col">등록일 <a href="?sort={% if sort == 'created_date' %}-created_date{% else %}created_date{% endif %}"><i class="fas fa-sort"></i></a></th>
-            <th scope="col">종목 <a href="?sort={% if sort == 'event' %}-event{% else %}event{% endif %}"><i class="fas fa-sort"></i></a></th>
-            <th scope="col">회비 <a href="?sort={% if sort == 'dues' %}-dues{% else %}dues{% endif %}"><i class="fas fa-sort"></i></a></th>
+            <th scope="col">이름
+                <a class="text-white" href="?sort={% if sort == 'name' %}-name{% else %}name{% endif %}">
+                    <i class="fas fa-sort{% if sort == 'name' %}-up{% elif sort == '-name' %}-down{% endif %}"></i>
+                </a>
+            </th>
+            <th scope="col">등록일
+                <a class="text-white" href="?sort={% if sort == 'created_date' %}-created_date{% else %}created_date{% endif %}">
+                    <i class="fas fa-sort{% if sort == 'created_date' %}-up{% elif sort == '-created_date' %}-down{% endif %}"></i>
+                </a>
+            </th>
+            <th scope="col">결제일
+                <a class="text-white" href="?sort={% if sort == 'updated_date' %}-updated_date{% else %}updated_date{% endif %}">
+                    <i class="fas fa-sort{% if sort == 'updated_date' %}-up{% elif sort == '-updated_date' %}-down{% endif %}"></i>
+                </a>
+            </th>
+            <th scope="col">종목
+                <a class="text-white" href="?sort={% if sort == 'event' %}-event{% else %}event{% endif %}">
+                    <i class="fas fa-sort{% if sort == 'event' %}-up{% elif sort == '-event' %}-down{% endif %}"></i>
+                </a>
+            </th>
+            <th scope="col">회비
+                <a class="text-white" href="?sort={% if sort == 'dues' %}-dues{% else %}dues{% endif %}">
+                    <i class="fas fa-sort{% if sort == 'dues' %}-up{% elif sort == '-dues' %}-down{% endif %}"></i>
+                </a>
+            </th>
         </tr>
     </thead>
     <tbody>
         {% for member in members %}
-        <tr>
+        <tr onclick="location.href='{% url 'members_detail' pk=member.pk %}'" style="cursor: pointer;">
             <th scope="row">{{ member.pk }}</th>
-            <td><a href="{% url 'members_detail' pk=member.pk %}">{{ member.name }}</a></td>
+            <td>{{ member.name }}</td>
             <td>{{ member.created_date }}</td>
+            <td>{{ member.next_date }}</td>
             <td>{{ member.event }}</td>
             <td>{{ member.dues }}</td>
         </tr>
