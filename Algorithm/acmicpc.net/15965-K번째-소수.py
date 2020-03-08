@@ -1,5 +1,5 @@
 
-# URL   : https://www.acmicpc.net/problem/15926
+# URL   : https://www.acmicpc.net/problem/15965
 # STATE : 25 POINT(2020-01-21)
 
 import math
