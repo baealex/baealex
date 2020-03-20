@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %}MAIN{% endblock %}
+
+{% block content %}
+<ul class="nav mb-3">
+    <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
+            {{ member.name }} ({{ member.created_date }})
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal">수정</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">삭제</a>
+    </li>
+</ul>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">회차</th>
+            <th scope="col">날짜</th>
+            <th scope="col">결제</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        {% for result in data.results %}
+        <tr id="tr-{{ result.ep }}" style="transition:all 0.5s;" {% if result.done %}class="bg-success text-white"{% endif %}>
+            <th scope="col">{{ result.ep }}</th>
+            <td scope="col">{{ result.date }}</td>
+            <td scope="col"><a id="tr-a-{{ result.ep }}" {% if result.done %}class="text-white"{% endif %} href="javascript:void(0)" onclick="setUpdateDate('{{ result.date | date:"Y-m-d" }}', {{ result.ep }})"><i class="fas fa-check"></i></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">수정</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST">
+            <div class="modal-body">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">이름</span>
+                    </div>
+                    <input type="text" class="form-control" name="name" value="{{ member.name }}" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">날짜</span>
+                    </div>
+                    <input type="date" class="form-control" name="date" value="{{ member.created_date | date:"Y-m-d" }}" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">종목</span>
+                    </div>
+                    <input type="text" class="form-control" name="event" value="{{ member.event }}" required>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">회비</span>
+                    </div>
+                    <input type="text" class="form-control" name="dues" value="{{ member.dues }}" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button type="submit">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    function setUpdateDate(updated_date, ep) {
+        $.ajax({
+            url: location.pathname,
+            method: 'PUT',
+            data: {
+                updated_date: updated_date,
+            }
+        }).done(function (data) {
+            for(var i=1; i<=ep; i++) {
+                $('#tr-' + i).addClass('bg-success');
+                $('#tr-' + i).addClass('text-white');
+                $('#tr-a-' + i).addClass('text-white');
+            }
+            for(var i=ep+1; i<=100; i++) {
+                $('#tr-' + i).removeClass('bg-success');
+                $('#tr-' + i).removeClass('text-white');
+                $('#tr-a-' + i).removeClass('text-white');
+            }
+        });
+    }
+</script>
+{% endblock %}
