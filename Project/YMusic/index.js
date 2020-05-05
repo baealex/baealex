@@ -16,11 +16,13 @@ const wait = 500;
 
 class YouTube {
     constructor() {
-        //
+        fs.mkdirSync('music', { recursive: true });
+        fs.mkdirSync('music/cover', { recursive: true });
     }
 
     async init(info) {
         this.info = info;
+        this.fileName = `${this.info.artist} - ${this.info.title}.mp3`;
 
         this.browser = await puppeteer.launch({headless: true, defaultViewport: {width: 800, height: 600}, args: ['--no-sandbox', '--disable-setuid-sandbox']});
         [this.page] = await this.browser.pages();
@@ -43,11 +45,8 @@ class YouTube {
         });
     }
 
-    async download(type) {
+    async getLink() {
         try {
-            const fileName = `${this.info.artist} - ${this.info.title}.mp3`;
-
-            console.log(`${fileName} ::: Start!`);
             await this.page.goto('https://www.y2mate.com/youtube-mp3' + `/${this.info.id}`, { waitUntil : "networkidle2" });
 
             await this.page.waitForSelector('.video-thumbnail img');
@@ -73,13 +72,20 @@ class YouTube {
                     link = await this.page.$eval('.has-success .btn-success', a => a.getAttribute('href'));
                     break;
                 } catch(e) {
-                    console.log(`${fileName} ::: Ready... ${++counter}`);
+                    console.log(`${this.fileName} ::: Ready... ${++counter}`);
                     // ERROR
                 }
             }
+            return link;
+        } catch(e) {
+            console.log(e);
+        }
+    }
 
-            console.log(`${fileName} ::: Search Metadata...`);
+    async getMeta() {
+        try {
             await this.page.goto('https://music.naver.com/home/index.nhn');
+
             await this.page.waitForSelector('#baseSearchForm #query');
             await this.page.type('#baseSearchForm #query', `${this.info.artist} ${this.info.title}`);
             await this.page.keyboard.press('Enter');
@@ -91,21 +97,45 @@ class YouTube {
                 tags.title = await this.page.$eval(`.name .ellipsis`, element => element.textContent.trim());
                 tags.artist = await this.page.$eval(`.artist .ellipsis`, element => element.textContent.trim());
                 tags.album = await this.page.$eval(`.album .ellipsis`, element => element.textContent.trim());
-                console.log(`${fileName} ::: Metadata Found :)`);
+                console.log(`${this.fileName} ::: Metadata Found :)`);
             } catch(e) {
                 tags.ttitle = this.info.title;
                 tags.artist = this.info.artist;
                 tags.album = this.info.title;
-                console.log(`${fileName} ::: Metadata Not Found :(`);
+                console.log(`${this.fileName} ::: Metadata Not Found :(`);
             }
             tags.image = `./cover/${this.info.id}.jpg`;
+            return tags
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    async setMeta(meta) {
+        try {
+            nodeID3.removeTags(`music/${this.fileName}`);
+            nodeID3.write(meta, `music/${this.fileName}`);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
+    async download(type) {
+        try {
             
+            console.log(`${this.fileName} ::: Start!`);
+            const link = await this.getLink();
+
+            console.log(`${this.fileName} ::: Search Metadata...`);
+            const meta = await this.getMeta();
+            console.log(JSON.stringify(meta));
+
             this.browser.close();
 
-            const file = fs.createWriteStream(`music/${fileName}`);
+            const file = fs.createWriteStream(`music/${this.fileName}`);
             http.get(link, (response) => {
                 const fileSize = response.headers["content-length"];
-                const meta = tags;
+                const metaData = meta;
                 let size = 0;
                 let percent = 0;
                 response.pipe(file);
@@ -116,7 +146,7 @@ class YouTube {
                         let tempPercent = Math.floor(size / fileSize * 100);
                         if(percent !== tempPercent) {
                             percent = tempPercent;
-                            console.log(`${fileName} ::: ${percent}%`);
+                            console.log(`${this.fileName} ::: ${percent}%`);
                         }
                     }
                     else
@@ -124,9 +154,8 @@ class YouTube {
                 });
         
                 response.on('end', () => {
-                    console.log(`${fileName} ::: Done!`);
-                    nodeID3.removeTags(`music/${fileName}`);
-                    nodeID3.write(meta, `music/${fileName}`);
+                    console.log(`${this.fileName} ::: Done!`);
+                    this.setMeta(metaData);
                     // process.exit(0);
                 });
             });
@@ -148,9 +177,6 @@ class YouTube {
             artist: `Maye`,
         }
     ];
-
-    fs.mkdirSync('music', { recursive: true });
-    fs.mkdirSync('music/cover', { recursive: true });
 
     for(let info of infoList) {
         const youTube = new YouTube();
