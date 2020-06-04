@@ -37,6 +37,9 @@ class Membership(models.Model):
         date = self.updated_date
         study_days_counter = 0
         holidays = cache.get('holidays')
+        if not holidays:
+            holidays = Holiday.objects.all()
+            cache.set('holidays', holidays, None)
         while study_days_counter < 8:
             date += datetime.timedelta(days=7)
             if not is_holiday(date, holidays):

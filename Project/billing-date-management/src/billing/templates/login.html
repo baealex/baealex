@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}로그인{% endblock %}
+
+{% block content %}
+<div class="col-lg-5 mx-auto">
+    {% if error %}
+    <div class="alert alert-danger">
+        {{ error }}
+    </div>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="test" class="form-control" id="username" name="username" autocomplete="off" placeholder="Enter the username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter the password" required>
+        </div>
+        <!--
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Remember Me</label>
+        </div>
+        -->
+        <button type="submit" class="btn btn-dark">로그인</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}MAIN{% endblock %}
+{% block title %}회원 상세{% endblock %}
 
 {% block content %}
 <ul class="nav mb-3">
@@ -13,7 +13,7 @@
         <a class="nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#exampleModal">수정</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">삭제</a>
+        <a class="nav-link" href="javascript:void(0)" onclick="memberDelete()">삭제</a>
     </li>
 </ul>
 <table class="table">
@@ -102,6 +102,15 @@
                 $('#tr-' + i).removeClass('text-white');
                 $('#tr-a-' + i).removeClass('text-white');
             }
+        });
+    }
+
+    function memberDelete() {
+        $.ajax({
+            url: location.pathname,
+            method: 'DELETE',
+        }).done(function (data) {
+            location.href = document.referrer;
         });
     }
 </script>
