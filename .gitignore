@@ -3,3 +3,7 @@ node_modules/
 
 # Python
 mvenv/
+
+# Rust
+target/
+Cargo.lock

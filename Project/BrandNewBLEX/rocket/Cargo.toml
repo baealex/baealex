@@ -1,5 +1,5 @@
 [package]
-name = "hello-rocket"
+name = "blex"
 version = "0.1.0"
 authors = ["baealex <im@baejino.com>"]
 edition = "2018"
