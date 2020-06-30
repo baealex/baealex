@@ -1,13 +1,13 @@
-version: "3"
+version: "2"
 
 services:
   rocket:
     build:
-      context: .
-      dockerfile: ./rocket/Dockerfile
+      context: ./rocket
+      dockerfile: ./Dockerfile
   nginx:
     image: nginx
     ports:
-      - 80:80
+      - 22000:80
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
