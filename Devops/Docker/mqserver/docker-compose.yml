@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  mq:
+    image: rabbitmq:management
+    ports:
+      - 5672:5672
+      - 9090:15672
+    volumes:
+      - ./rabbitmq/data:/var/lib/rabbitmq/
+      - ./rabbitmq/logs:/var/log/rabbitmq/
+    environment:
+      - RABBITMQ_DEFAULT_USER=username
+      - RABBITMQ_DEFAULT_PASS=password
+  
+  server:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    ports:
+      - 9091:3030
