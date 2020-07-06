@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+  #db:
+  #  image: postgres
+  #  volumes:
+  #    - ./db/data:/var/lib/postgresql/data
+  #  environment:
+  #    - POSTGRES_DB=basic
+  #    - POSTGRES_USER=user
+  #    - POSTGRES_PASSWORD=1234
+  #    - POSTGRES_INITDB_ARGS=--encoding=UTF-8
+  
+  server:
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    environment:
+      - ROCKET_ADDRESS=0.0.0.0
+      - ROCKET_PORT=12345
+
+  #proxy:
+  #  image: nginx
+  #  ports:
+  #    - 80:80
+  #  volumes:
+  #    - ./proxy/nginx.conf:/etc/nginx/nginx.conf

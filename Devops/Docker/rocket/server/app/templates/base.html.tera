@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="stylesheet" href="/assets/blexi.css">
+        {% block head %}{% endblock head %}
+        {% block style %}{% endblock style %}
+    </head>
+    <body>
+        {% block body %}{% endblock body %}
+        <script type="text/javascript" src="/assets/blexi.js"></script>
+        {% block script %}{% endblock script %}
+    </body>
+</html>

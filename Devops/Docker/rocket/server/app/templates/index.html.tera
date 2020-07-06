@@ -1,0 +1,5 @@
+{% extends "base" %}
+
+{% block body %}
+    <h1>Hello, {{ name }}.</h1>
+{% endblock body %}
