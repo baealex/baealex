@@ -27,7 +27,7 @@ class RabbitMQ {
     }
 
     public async assertQueue() {
-        const queue = await this.channel.assertQueue(this.queueName, {durable: false});
+        const queue = await this.channel.assertQueue(this.queueName, {durable: true});
         this.queue = queue;
     }
 

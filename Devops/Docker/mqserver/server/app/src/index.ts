@@ -15,7 +15,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.post('/msg/in/:id', async (req: Request, res: Response) => {
-    const url = 'amqp://username:password@192.168.110.130:5672';
+    const url = 'amqp://username:password@localhost:5672';
     const queueName = 'MQ_' + req.params.id;
     const rabbitMQ = new RabbitMQ(url, queueName);
 
@@ -29,7 +29,7 @@ app.post('/msg/in/:id', async (req: Request, res: Response) => {
 });
 
 app.get('/msg/out/:id', async (req: Request, res: Response) => {
-    const url = 'amqp://username:password@192.168.110.130:5672';
+    const url = 'amqp://username:password@localhost:5672';
     const queueName = 'MQ_' + req.params.id;
     const rabbitMQ = new RabbitMQ(url, queueName);
 
