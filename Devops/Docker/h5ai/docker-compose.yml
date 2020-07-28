@@ -1,0 +1,15 @@
+version: "2.0"
+
+services:
+  h5ai:
+    image: awesometic/h5ai
+    volumes:
+      - ./file:/h5ai
+      - ./config:/config
+    environment:
+      - TZ=Asia/Seoul
+      - HTPASSWD=true
+      - HTPASSWD_USER=baealex
+      - HTPASSWD_PW=lovencode
+    ports:
+      - 42000:80
