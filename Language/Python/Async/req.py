@@ -24,7 +24,8 @@ class async_requests:
 async def main():
     res = await async_requests.get('https://blex.me')
     # res = await async_requests.post('https://blex.me', data={'say': 'hello'})
-    print(res['text'])
+    async with aiofiles.open('test.txt', 'w') as f:
+        await f.write(res['text'])
 
 if __name__ == '__main__':
     loop = asyncio.get_event_loop()
