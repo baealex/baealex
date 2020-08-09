@@ -12,8 +12,18 @@ class async_requests:
                     'headers': res.raw_headers
                 }
 
+    async def post(url, data=None, json=None):
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, data=data, json=json) as res:
+                return {
+                    'text': await res.text(),
+                    'status_code': res.status,
+                    'headers': res.raw_headers
+                }
+
 async def main():
-    res = await async_requests.post('https://blex.me', 'd')
+    res = await async_requests.get('https://blex.me')
+    # res = await async_requests.post('https://blex.me', data={'say': 'hello'})
     print(res['text'])
 
 if __name__ == '__main__':
