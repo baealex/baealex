@@ -1,1 +1,7 @@
-Algorithm Study
+**리포 안내문**
+
+- Code
+  - 각종 코드 보관소
+- Issue
+  - Open : 공부할 내용들
+  - Close : 빠른 시일내로 블로그로 옮길 항목들
