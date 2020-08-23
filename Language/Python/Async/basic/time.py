@@ -15,5 +15,5 @@ if __name__ == '__main__':
 
     # python 3.6
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(set_interval(lambda: print('hello world'), 1000))
+    loop.run_until_complete(set_timeout(lambda: print('hello world'), 1000))
     loop.close()
