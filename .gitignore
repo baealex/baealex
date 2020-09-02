@@ -2,8 +2,10 @@
 node_modules/
 
 # Python
+__pycache__/
 mvenv/
 
 # Rust
 target/
 Cargo.lock
+db.sqlite3
