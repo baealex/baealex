@@ -22,4 +22,4 @@
 ### 공부했던 것
 
 - [BLOG](https://blex.me/@baealex)
-- [Closed Issue](https://github.com/baealex/TIL/issues?q=is%3Aissue+is%3Aclosed
+- [Closed Issue](https://github.com/baealex/TIL/issues?q=is%3Aissue+is%3Aclosed)
