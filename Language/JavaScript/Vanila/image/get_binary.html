@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="image" type="file" accept="image/*"/>
+    <script>
+        document.querySelector('#image').addEventListener('change', function(e) {
+            var reader = new FileReader();
+
+            reader.onload = (e) => {
+                console.log(e.target.result)
+            }
+
+            reader.readAsDataURL(this.files[0]);
+        })
+    </script>
+</body>
+</html>
