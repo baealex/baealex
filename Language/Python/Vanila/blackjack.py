@@ -169,5 +169,4 @@ class BlackJack:
             print('비겼습니다.')
 
 if __name__=='__main__':
-    black_jack_game = BlackJack()
-    black_jack_game.start()
+    BlackJack().start()
