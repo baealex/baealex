@@ -9,7 +9,7 @@
 
 <br>
 
-### 최근 작성한 글
+### 블로그 최신 글
 
 <!-- BLOG-POST-LIST:START -->
 - [서울대 의과대](https://blex.me/@baealex/%EC%84%9C%EC%9A%B8%EB%8C%80-%EC%9D%98%EA%B3%BC%EB%8C%80)
