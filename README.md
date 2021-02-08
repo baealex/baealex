@@ -5,9 +5,6 @@
 - ⚒ : Fix Code
 - 🎨 : Fix Design
 - ✏ : Write Docs
-</p>
-
-<br>
 
 ### Recent Blog Articles
 
