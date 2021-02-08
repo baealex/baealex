@@ -1,15 +1,15 @@
-### 커밋에 사용하는 이모지
+### Commit Emoji
 
-- ⭐ : 무언가 추가
-- 🛠 : 버그 고침
-- ⚒ : 코드 고침
-- 🎨 : 외관 고침
-- ✏ : 문서 작성
+- ⭐ : Add Something
+- 🛠 : Fix Bug
+- ⚒ : Fix Code
+- 🎨 : Fix Design
+- ✏ : Write Docs
 </p>
 
 <br>
 
-### 블로그 최신 글
+### Recent Blog Articles
 
 <!-- BLOG-POST-LIST:START -->
 - [파이썬으로 구현한 정렬](https://blex.me/@baealex/%ED%8C%8C%EC%9D%B4%EC%8D%AC%EC%9C%BC%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%9C-%EC%A0%95%EB%A0%AC)
