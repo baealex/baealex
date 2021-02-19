@@ -13,7 +13,7 @@
 - [C++ Qt :: Https Request](https://blex.me/@baealex/c-qt-https-request)
 - [나의 아저씨](https://blex.me/@baealex/%EB%82%98%EC%9D%98-%EC%95%84%EC%A0%80%EC%94%A8)
 - [이번주에 본 개발관련 자료들 #4](https://blex.me/@baealex/%EC%9D%B4%EB%B2%88%EC%A3%BC%EC%97%90-%EB%B3%B8-%EA%B0%9C%EB%B0%9C%EA%B4%80%EB%A0%A8-%EC%9E%90%EB%A3%8C%EB%93%A4-4-1)
-- [WireShark HTTPS Packet](https://blex.me/@baealex/wireshark-https-packet)
+- [Django : SQLite to PostgreSQL](https://blex.me/@baealex/django-sqlite-to-postgresql)
 <!-- BLOG-POST-LIST:END -->
 
 <p>
