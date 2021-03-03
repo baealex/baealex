@@ -1,10 +1,10 @@
 ### Commit Emoji
 
-- ⭐ : Add Something
-- 🛠 : Fix Bug
-- ⚒ : Fix Code
-- 🎨 : Fix Design
-- ✏ : Write Docs
+- ⭐ : Feature
+- 🛠 : Fix
+- ⚒ : Refactor
+- 🎨 : Style
+- ✏ : Docs
 
 ### Recent Blog Articles
 
