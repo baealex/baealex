@@ -2,6 +2,7 @@
 
 - ⭐ : Feature
 - 🛠 : Fix
+- 👏 : Chore
 - ⚒ : Refactor
 - 🎨 : Style
 - ✏ : Docs
