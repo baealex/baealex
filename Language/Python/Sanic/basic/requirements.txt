@@ -22,7 +22,7 @@ pexpect==4.8.0
 pickleshare==0.7.5
 prompt-toolkit==3.0.7
 ptyprocess==0.6.0
-Pygments==2.6.1
+Pygments==2.7.4
 rfc3986==1.4.0
 sanic==20.6.3
 sniffio==1.1.0
