@@ -65,4 +65,26 @@ function 글자_병합기(원자들) {
     );
 }
 
-console.log(글자_병합기(['ㅂ', 'ㅞ', 'ㄺ']));
+function shouldBe(func, input, expected) {
+    console.log(func, input, expected);
+    try {
+        const result = func(input);
+        if (JSON.stringify(expected) === JSON.stringify(result)) {
+            console.log('✅ 예상값과 결과가 같습니다.');
+            return true;
+        }
+        console.log('❌ 예상값과 결과가 다릅니다. =>', result);
+        return false;
+    } catch(e) {
+        console.log('🟡 알 수 없는 에러 발생. =>', e);
+        return false;
+    }
+}
+
+(function test() {
+    shouldBe(글자_병합기, ['ㅈ', 'ㅣ', 'ㄴ'], '진');
+    shouldBe(글자_병합기, ['ㅂ', 'ㅞ', 'ㄺ'], '뷁');
+    shouldBe(글자_병합기, [' '], ' ');
+    shouldBe(글자_병합기, ['a'], 'a');
+    shouldBe(글자_병합기, ['.'], '.');
+})();
