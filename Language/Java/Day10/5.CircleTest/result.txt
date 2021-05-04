@@ -1,3 +1,0 @@
-[1, 1] rad : 2.4
-[2, 2] rad : 4.8
-String implement Serializable

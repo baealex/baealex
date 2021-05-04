@@ -1,3 +1,0 @@
-Argument Type is class java.lang.Long / Value is10
-Argument Type is class java.lang.Character / Value isA
-Argument Type is class java.lang.String / Valau is 10L

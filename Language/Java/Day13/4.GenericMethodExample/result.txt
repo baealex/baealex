@@ -1,3 +1,0 @@
-Argument Type is class java.lang.Integer / Value is 10
-Argument Type is class java.lang.Character / Value is A
-Argument Type is class java.lang.Float / Value is 3.14

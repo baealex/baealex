@@ -1,8 +1,0 @@
-append 가능? :false
-read byte :123
-read char :K
-read double :34.56
-read float :345.23
-read int :123
-read long :345
-read utf :홍길동

@@ -1,5 +1,0 @@
-sw: true
-grade: A
-name: Bae Jino
-year: 2019
-ija: 0.04

@@ -1,3 +1,0 @@
-constructor A
-constructor B
-constructor C

@@ -1,7 +1,0 @@
-로컬 컴퓨터의 이름 : blex
-로컬 컴퓨터의 IP 주소 : 127.0.1.1
-java.sum.com 도메인 이름과 IP 주소 : java.sun.com/156.151.59.19
-node.blex.kr/104.24.125.91
-node.blex.kr/104.24.124.91
-node.blex.kr/2606:4700:30:0:0:0:6818:7d5b
-node.blex.kr/2606:4700:30:0:0:0:6818:7c5b

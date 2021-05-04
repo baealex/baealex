@@ -1,9 +1,0 @@
-name:Jone
-secretInfo:baby
-age:3
-secretNum:42
- >>>> 복원된 Personal
-name:Jone
-secretInfo:null
-age:3
-secretNum:0

@@ -1,5 +1,0 @@
-intArray[0]=0
-intArray[1]=1
-intArray[2]=3
-intArray[3]=6
-배열의 인덱스가 범위를 벗어났습니다.

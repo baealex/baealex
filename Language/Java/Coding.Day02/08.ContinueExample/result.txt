@@ -1,1 +1,0 @@
-Even sum is 2550 between 1 to 100

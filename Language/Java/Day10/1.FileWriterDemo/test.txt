@@ -1,5 +1,0 @@
-JAVA
-JSP
-EJB
-OJT
-가나다

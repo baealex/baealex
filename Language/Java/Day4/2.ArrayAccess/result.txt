@@ -1,1 +1,0 @@
-Max Value : 80, Min Value : 10

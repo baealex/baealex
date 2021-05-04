@@ -1,2 +1,0 @@
-Constructor A
-Constructor B

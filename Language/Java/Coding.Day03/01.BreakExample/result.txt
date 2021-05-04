@@ -1,1 +1,0 @@
-Input numer count : 4

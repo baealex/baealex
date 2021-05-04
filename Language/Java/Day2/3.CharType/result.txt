@@ -1,2 +1,0 @@
-Value of char varialbe ch1 : a
-Value of char varialbe ch1 : A
