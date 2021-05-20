@@ -1,0 +1,16 @@
+version: "2"
+services:
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM=
+    volumes:
+      - ./config:/config
+      - ./data:/data
+      - ./transcode:/transcode
+    restart: unless-stopped
