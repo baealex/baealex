@@ -1,11 +1,6 @@
-### Commit Emoji
+⭐ 🔧 👏 🔨 🎨 ✏️
 
-- ⭐ : Feature
-- 🛠 : Fix
-- 👏 : Chore
-- ⚒ : Refactor
-- 🎨 : Style
-- ✏ : Docs
+소비적인 활동보다는 생산적인 활동을 선호합니다. 웹 개발, 게임 개발, 어플리케이션 개발 다양한 분야에 관심을 가지고 있으며 Python을 가장 좋아하고 최근에는 Rust와 Deno를 관심있게 살펴보는 중입니다. 하나만 완벽하게 하는 사람보다는 원하는 것을 직접 만들 수 있는 사람이 되고 싶습니다.
 
 ### Recent Blog Articles
 
@@ -25,6 +20,6 @@
         <img src="http://img.shields.io/badge/BLOG-black?style=flat-square&logo=bloglovin">
     </a>
     <a href="https://www.youtube.com/channel/UCuupY_WlY6cPKEnpNNSVRpA">
-        <img src="https://img.shields.io/badge/Youtube-ff0000?style=flat-square&logo=youtube">
+        <img src="https://img.shields.io/badge/YouTube-ff0000?style=flat-square&logo=youtube">
     </a>
 </p>
