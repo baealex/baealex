@@ -1,7 +1,3 @@
-### About
-
-소비적인 활동보다는 생산적인 활동을 선호합니다. 웹 개발, 게임 개발, 어플리케이션 개발 다양한 분야에 관심을 가지고 있으며 `Python`을 가장 좋아하고 최근에는 `Rust`와 `Deno`를 관심있게 살펴보는 중입니다. 하나만 완벽하게 하는 사람보다는 원하는 것을 직접 만들 수 있는 사람이 되고 싶습니다. 
-
 <p>
     <a href="https://baejino.com">
         <img src="http://img.shields.io/badge/BaeJino-474787?style=flat-square&logo=stellar">
