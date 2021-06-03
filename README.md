@@ -1,15 +1,3 @@
-<p>
-    <a href="https://baejino.com">
-        <img src="http://img.shields.io/badge/BaeJino-474787?style=flat-square&logo=stellar">
-    </a>
-    <a href="https://blex.me/@baealex">
-        <img src="http://img.shields.io/badge/BLOG-black?style=flat-square&logo=bloglovin">
-    </a>
-    <a href="https://www.youtube.com/channel/UCuupY_WlY6cPKEnpNNSVRpA">
-        <img src="https://img.shields.io/badge/YouTube-ff0000?style=flat-square&logo=youtube">
-    </a>
-</p>
-
 ### Product
 
 - 가입형 블로그 서비스 [BLEX](https://blex.me) 운영중 (2019. 06 ~)
@@ -32,3 +20,15 @@
 - 🔨 — Refactor
 - 🎨 — Style
 - ✏️ — Docs
+
+<p>
+    <a href="https://baejino.com">
+        <img src="http://img.shields.io/badge/BaeJino-474787?style=flat-square&logo=stellar">
+    </a>
+    <a href="https://blex.me/@baealex">
+        <img src="http://img.shields.io/badge/BLOG-black?style=flat-square&logo=bloglovin">
+    </a>
+    <a href="https://www.youtube.com/channel/UCuupY_WlY6cPKEnpNNSVRpA">
+        <img src="https://img.shields.io/badge/YouTube-ff0000?style=flat-square&logo=youtube">
+    </a>
+</p>
