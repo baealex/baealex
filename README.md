@@ -1,7 +1,3 @@
-### Product
-
-- 가입형 블로그 서비스 [BLEX](https://blex.me) 운영중 (2019. 06 ~)
-
 ### Recent Blog Articles
 
 <!-- BLOG-POST-LIST:START -->
