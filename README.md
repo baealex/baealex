@@ -12,15 +12,6 @@
 - [마인크래프트 서버 + 디스코드 봇(JS)](https://blex.me/@baealex/%EB%A7%88%EC%9D%B8%ED%81%AC%EB%9E%98%ED%94%84%ED%8A%B8-%EC%84%9C%EB%B2%84%EB%A5%BC-%EC%9C%84%ED%95%9C-%EB%94%94%EC%8A%A4%EC%BD%94%EB%93%9C-%EB%B4%87)
 <!-- BLOG-POST-LIST:END -->
 
-### Commit emoji
-
-- ⭐ — Feat
-- 🔧 — Fix
-- 👏 — Chore
-- 🔨 — Refactor
-- 🎨 — Style
-- ✏️ — Docs
-
 <p>
     <a href="https://baejino.com">
         <img src="http://img.shields.io/badge/BaeJino-474787?style=flat-square&logo=stellar">
