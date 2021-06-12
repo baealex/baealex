@@ -1,9 +1,15 @@
 #### 💜 Preferred languages
 
 <p>
-    <img src="http://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white">
-    <img src="http://img.shields.io/badge/Deno-000000?style=flat-square&logo=deno&logoColor=white">
-    <img src="http://img.shields.io/badge/Rust-B6400E?style=flat-square&logo=rust&logoColor=white">
+    <a href="https://www.python.org/">
+        <img src="http://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
+    </a>
+    <a href="https://deno.land/">
+        <img src="http://img.shields.io/badge/Deno-000000?style=flat-square&logo=deno&logoColor=white"/>
+    </a>
+    <a href="https://www.rust-lang.org/">
+        <img src="http://img.shields.io/badge/Rust-B6400E?style=flat-square&logo=rust&logoColor=white"/>
+    </a>
 </p>
 
 #### 🔮 Recent articles
