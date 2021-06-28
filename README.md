@@ -1,4 +1,10 @@
-#### 💜 Preferred languages
+<p align="center">
+    <a href="https://baejino.com">
+        <img src="https://user-images.githubusercontent.com/35596687/123651308-52a8f380-d866-11eb-8628-7a0c5087c542.png"/>
+    </a>
+</p>
+
+#### 💜 선호하는 언어
 
 <p>
     <a href="https://www.python.org/">
@@ -12,7 +18,17 @@
     </a>
 </p>
 
-#### 🔮 Recent articles
+#### 👾 커밋 이모지
+
+- ⭐ : (반짝이라고) 새로운 기능 추가
+- 🔧 : (정밀하라고) 오류 수정
+- 🔨 : (과감하라고) 성능 및 가독성 개선
+- 🎨 : (예뻐지라고) 코드 스타일 수정
+- 👏 : (집중하라고) 패키지 관련 작업
+- ✏️ : (적어보자고) 문서 작성
+
+
+#### 🔮 최근 작성한 게시글
 
 <!-- BLOG-POST-LIST:START -->
 - [풀사이클을 개발을 해봐야 하는 이유](https://blex.me/@baealex/%ED%92%80%EC%82%AC%EC%9D%B4%ED%81%B4)
