@@ -1,9 +1,3 @@
-<p align="center">
-    <a href="https://baejino.com">
-        <img src="https://user-images.githubusercontent.com/35596687/123651308-52a8f380-d866-11eb-8628-7a0c5087c542.png"/>
-    </a>
-</p>
-
 #### 💜 선호하는 언어
 
 <p>
