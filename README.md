@@ -1,26 +1,14 @@
-#### 💜 선호하는 언어
-
 <p>
-    <a href="https://www.python.org/">
-        <img src="http://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
+    <a href="https://baejino.com">
+        <img src="http://img.shields.io/badge/BaeJino-474787?style=flat-square&logo=stellar">
     </a>
-    <a href="https://deno.land/">
-        <img src="http://img.shields.io/badge/Deno-000000?style=flat-square&logo=deno&logoColor=white"/>
+    <a href="https://blex.me/@baealex">
+        <img src="http://img.shields.io/badge/BLOG-black?style=flat-square&logo=bloglovin">
     </a>
-    <a href="https://www.rust-lang.org/">
-        <img src="http://img.shields.io/badge/Rust-B6400E?style=flat-square&logo=rust&logoColor=white"/>
+    <a href="https://www.youtube.com/channel/UCuupY_WlY6cPKEnpNNSVRpA">
+        <img src="https://img.shields.io/badge/Youtube-ff0000?style=flat-square&logo=youtube">
     </a>
 </p>
-
-#### 👾 커밋 이모지
-
-- ⭐ : (반짝이라고) 새로운 기능 추가
-- 🔧 : (정밀하라고) 오류 수정
-- 🔨 : (과감하라고) 성능 및 가독성 개선
-- 🎨 : (예뻐지라고) 코드 스타일 수정
-- 👏 : (집중하라고) 패키지 관련 작업
-- ✏️ : (적어보자고) 문서 작성
-
 
 #### 🔮 최근 작성한 게시글
 
