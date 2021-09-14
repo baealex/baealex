@@ -1,33 +1,43 @@
+
+# URL   : https://programmers.co.kr/learn/courses/30/lessons/60057
+# STATE : DONE(2021-09-14)
+
 def solution(s):
-    min_len = len(s)
+    minimum_length = len(s)
     
-    for i in range(1, int(len(s) / 2) + 1):
-        now_str = ''
-        now_count = 0
-        maked_str = ''
+    for bundle_number in range(1, int(len(s) / 2) + 1):
+        prev_bundle = ''
+        bundle_counter = 0
+
+        compressed_str = ''
     
-        idx = 0
+        prev_slice_pointer = 0
         while True:
-            now_str = s[idx:idx+i]
-            
-            if idx > len(s):
+            if prev_slice_pointer > len(s):
                 break
-            idx += i 
+                
+            next_slice_pointer = prev_slice_pointer + bundle_number
+            prev_bundle = s[prev_slice_pointer:next_slice_pointer]
+
+            prev_slice_pointer = next_slice_pointer
+            next_slice_pointer = next_slice_pointer + bundle_number
+
+            next_bundle = s[prev_slice_pointer:next_slice_pointer]
             
-            if now_str == s[idx:idx+i]:
-                now_count += 1
+            if prev_bundle == next_bundle:
+                bundle_counter += 1
+                continue
+            
+            counter = ''
+            if bundle_counter == 0:
+                counter = ''
             else:
-                count = ''
-                if now_count == 0:
-                    count = ''
-                else:
-                    count = now_count + 1
-                    now_count = 0
-                    
-                maked_str += f'{count}{now_str}'
+                counter = bundle_counter + 1
+                bundle_counter = 0
+                
+            compressed_str += f'{counter}{prev_bundle}'
         
-        maked_len = len(maked_str)
-        if maked_len < min_len:
-            min_len = maked_len
+        if len(compressed_str) < minimum_length:
+            minimum_length = len(compressed_str)
     
-    return min_len
+    return minimum_length
