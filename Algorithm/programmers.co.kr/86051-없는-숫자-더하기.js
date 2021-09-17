@@ -1,0 +1,1 @@
+const solution = (numbers) => (9 * (9 + 1) / 2) -  numbers.reduce((acc, cur) => acc += cur, 0)
