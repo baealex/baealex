@@ -1,16 +1,4 @@
-<p>
-    <a href="https://baejino.com">
-        <img src="http://img.shields.io/badge/BaeJino-474787?style=flat-square&logo=stellar">
-    </a>
-    <a href="https://blex.me/@baealex">
-        <img src="http://img.shields.io/badge/BLOG-black?style=flat-square&logo=bloglovin">
-    </a>
-    <a href="https://www.youtube.com/channel/UCuupY_WlY6cPKEnpNNSVRpA">
-        <img src="https://img.shields.io/badge/Youtube-ff0000?style=flat-square&logo=youtube">
-    </a>
-</p>
-
-#### 🔮 최근 작성한 게시글
+### 🔮 최근 작성한 게시글
 
 <!-- BLOG-POST-LIST:START -->
 - [사이트 보안점검을 해봅시다](https://blex.me/@baealex/%EB%B3%B4%EC%95%88)
@@ -19,3 +7,8 @@
 - [BLEX 2021 8월 개발노트](https://blex.me/@baealex/blex-2021-8%EC%9B%94-%EA%B0%9C%EB%B0%9C%EB%85%B8%ED%8A%B8)
 - [기회를 만드려면](https://blex.me/@baealex/%EA%B8%B0%ED%9A%8C)
 <!-- BLOG-POST-LIST:END -->
+
+### 🍊 최근 게시한 동영상
+
+<!-- YOUTUBE:START -->
+<!-- YOUTUBE:END -->
