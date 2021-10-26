@@ -11,4 +11,9 @@
 ### 🍊 최근 게시한 동영상
 
 <!-- YOUTUBE:START -->
+- [깃허브 블로그 카테고리 생성 방법 | 깃허브 사용법(4)](https://www.youtube.com/watch?v=5DbL0V_07lE)
+- [깃허브 블로그 포스트 작성과 마크다운 | 깃허브 사용법(3)](https://www.youtube.com/watch?v=LyQgkZX2ZaM)
+- [깃허브 블로그 간단한 소개와 설치 | 깃허브 사용법(2)](https://www.youtube.com/watch?v=U-tPlM-h4cY)
+- [깃허브 데스크탑을 이용한 기본적인 파악 | 깃허브 사용법(1)](https://www.youtube.com/watch?v=3X24DcxJCgc)
+- [20만원대 노트북 성능은 어느 정도일까?](https://www.youtube.com/watch?v=Ub79W1aVbTY)
 <!-- YOUTUBE:END -->
