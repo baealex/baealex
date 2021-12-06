@@ -1,4 +1,4 @@
-### 🔮 최근 작성한 게시글
+### 🔮 최근 작성한 블로그
 
 <!-- BLOG-POST-LIST:START -->
 - [VR로 개발하면 어떨까?](https://blex.me/@baealex/vr%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%A9%B4-%EC%96%B4%EB%96%A8%EA%B9%8C)
@@ -8,7 +8,7 @@
 - [NginX를 활용한 Docker 무중단 배포](https://blex.me/@baealex/nginx%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-docker-%EB%AC%B4%EC%A4%91%EB%8B%A8-%EB%B0%B0%ED%8F%AC)
 <!-- BLOG-POST-LIST:END -->
 
-### 🍊 최근 게시한 동영상
+### 🍊 최근 게시한 유튜브
 
 <!-- YOUTUBE:START -->
 - [깃허브 블로그 카테고리 생성 방법 | 깃허브 사용법&lpar;4&rpar;](https://www.youtube.com/watch?v=5DbL0V_07lE)
