@@ -13,4 +13,4 @@ jobs:
         with:
           max_post_count: "5"
           feed_list: "https://blex.me/rss/@baealex"
-          template: "<tr><td><a href="$url">$title</a></td></tr>"
+          template: "<tr><td><a href=\"$url\">$title</a></td></tr>"
