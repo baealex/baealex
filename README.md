@@ -1,5 +1,12 @@
-### 🔮 최근 작성한 블로그
-
+<table>
+  <thead>
+    <tr>
+      <th align="left">
+        <h3>🔮 최근 작성한 블로그</h3>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
 <!-- BLOG-POST-LIST:START -->
 - [VR로 개발하면 어떨까?](https://blex.me/@baealex/vr%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%A9%B4-%EC%96%B4%EB%96%A8%EA%B9%8C)
 - [BLEX 2021 10월 개발노트](https://blex.me/@baealex/blex-2021-10%EC%9B%94-%EA%B0%9C%EB%B0%9C%EB%85%B8%ED%8A%B8-1)
@@ -7,6 +14,8 @@
 - [사이트 보안점검을 해봅시다](https://blex.me/@baealex/%EB%B3%B4%EC%95%88)
 - [NginX를 활용한 Docker 무중단 배포](https://blex.me/@baealex/nginx%EB%A5%BC-%ED%99%9C%EC%9A%A9%ED%95%9C-docker-%EB%AC%B4%EC%A4%91%EB%8B%A8-%EB%B0%B0%ED%8F%AC)
 <!-- BLOG-POST-LIST:END -->
+  </tbody>
+</table>
 
 ### 🍊 최근 게시한 유튜브
 
