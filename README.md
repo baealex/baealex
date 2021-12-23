@@ -4,8 +4,4 @@
 
 ### 🍊 최근 게시한 유튜브
 
-<!-- YOUTUBE:START -->
-- [깃허브 블로그 카테고리 생성 방법 | 깃허브 사용법&lpar;4&rpar;](https://www.youtube.com/watch?v=5DbL0V_07lE)
-- [깃허브 블로그 포스트 작성과 마크다운 | 깃허브 사용법&lpar;3&rpar;](https://www.youtube.com/watch?v=LyQgkZX2ZaM)
-- [깃허브 블로그 간단한 소개와 설치 | 깃허브 사용법&lpar;2&rpar;](https://www.youtube.com/watch?v=U-tPlM-h4cY)
-<!-- YOUTUBE:END -->
+<!-- YOUTUBE:START -->- [2020-04-26 # 깃허브 블로그 카테고리 생성 방법 | 깃허브 사용법&lpar;4&rpar;](https://www.youtube.com/watch?v=5DbL0V_07lE)- [2019-06-01 # 깃허브 블로그 포스트 작성과 마크다운 | 깃허브 사용법&lpar;3&rpar;](https://www.youtube.com/watch?v=LyQgkZX2ZaM)- [2019-05-29 # 깃허브 블로그 간단한 소개와 설치 | 깃허브 사용법&lpar;2&rpar;](https://www.youtube.com/watch?v=U-tPlM-h4cY)- [2019-05-24 # 깃허브 데스크탑을 이용한 기본적인 파악 | 깃허브 사용법&lpar;1&rpar;](https://www.youtube.com/watch?v=3X24DcxJCgc)<!-- YOUTUBE:END -->
