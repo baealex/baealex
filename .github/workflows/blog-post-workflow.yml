@@ -15,4 +15,4 @@ jobs:
           max_post_count: "4"
           feed_list: "https://blex.me/rss/@baealex"
           date_format: "yyyy-mm-dd"
-          template: "- [$date # $title]($url)"
+          template: "$newline- [$date # $title]($url)"
