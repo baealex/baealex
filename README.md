@@ -1,7 +1,7 @@
 <table>
   <thead>
     <tr>
-      <th align="left">
+      <th colspan="2" align="left">
         <h3>🔮 최근 작성한 블로그</h3>
       </th>
     </tr>

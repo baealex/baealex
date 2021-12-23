@@ -14,5 +14,6 @@ jobs:
           max_post_count: "5"
           feed_list: "https://blex.me/rss/@baealex"
           description_max_length: "150"
-          template: "<tr><td><a href=\"$url\">$title<br/><small>$date</small></a></td><td>$description</td></tr>"
+          disable_html_encoding: "true"
+          template: "<tr><td><a href=\"$url\">$title ($date)</a></td><td>$description</td></tr>"
           date_format: "yyyy-mm-dd"
