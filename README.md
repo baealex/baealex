@@ -1,10 +1,10 @@
 ### ✍️ 최근 작성한 글 
 
 <!-- BLEX:START -->
+- [2021-12-25 # Python으로 웹 프론트엔드 개발하기](https://blex.me/@baealex/brython)
 - [2021-11-22 # VR로 개발하면 어떨까?](https://blex.me/@baealex/vr%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%A9%B4-%EC%96%B4%EB%96%A8%EA%B9%8C)
 - [2021-11-01 # BLEX 2021 10월 개발노트](https://blex.me/@baealex/blex-2021-10%EC%9B%94-%EA%B0%9C%EB%B0%9C%EB%85%B8%ED%8A%B8-1)
-- [2021-11-01 # Heroku에서 Docker 배포](https://blex.me/@baealex/heroku%EB%A1%9C-docker-%EB%B0%B0%ED%8F%AC-1)
-- [2021-09-28 # 사이트 보안점검을 해봅시다](https://blex.me/@baealex/%EB%B3%B4%EC%95%88)<!-- BLEX:END -->
+- [2021-11-01 # Heroku에서 Docker 배포](https://blex.me/@baealex/heroku%EB%A1%9C-docker-%EB%B0%B0%ED%8F%AC-1)<!-- BLEX:END -->
 
 ### 🎞️ 최근 게시한 영상
 
