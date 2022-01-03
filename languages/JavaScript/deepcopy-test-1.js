@@ -32,39 +32,37 @@ function deepCopy2(props) {
 function test(label, copyFunc, options) {
     options.disableConsole || console.log(`===== ${label} =====`)
     
-    let x = {
-        y: {
-            t: '111',
-            q: {
-                p: '123'.split(''),
-                z: '345'
-            }
-        }
+const user = {
+    name: 'Jino Bae',
+    favorite: {
+        game: 'The Sims 4',
+        languages: ['Korean', 'English'],
     }
+}
     
-    let y = copyFunc(x)
+    const copyUser = copyFunc(user)
     
-    options.disableConsole || console.log(`before change x : ${JSON.stringify(x)}`)
-    options.disableConsole || console.log(`before change y : ${JSON.stringify(y)}`)
+    options.disableConsole || console.log(`before change user1 : ${JSON.stringify(x)}`)
+    options.disableConsole || console.log(`before change user2 : ${JSON.stringify(y)}`)
     
-    y.y.t = '222'
-    y.y.q.p = '456'.split('')
+    copyUser.favorite.game = 'GTA 5'
+    copyUser.favorite.languages.push('Japanese')
     
-    options.disableConsole || console.log(`after change x : ${JSON.stringify(x)}`)
-    options.disableConsole || console.log(`after change y : ${JSON.stringify(y)}`)
+    options.disableConsole || console.log(`after change user1 : ${JSON.stringify(x)}`)
+    options.disableConsole || console.log(`after change user2 : ${JSON.stringify(y)}`)
 }
 
-function checkPerformance(func, repeat=100) {
+function checkPerformance(label, func, repeat=100) {
     let date = new Date()
 
     for (var i=0; i<repeat; i++) {
         func()
     }
 
-    console.log(`${i}회 반복까지 걸린 시간 : ${new Date() - date}`)
+    console.log(`${label} : ${i}회 반복까지 걸린 시간 : ${new Date() - date}`)
 }
 
 (() => {
-    checkPerformance(() => test('deepCopy1', deepCopy1, { disableConsole: true }), 100000)
-    checkPerformance(() => test('deepCopy2', deepCopy2, { disableConsole: true }), 100000)
+    checkPerformance('deepCopy1', () => test('deepCopy1', deepCopy1, { disableConsole: true }), 100000)
+    checkPerformance('deepCopy2', () => test('deepCopy2', deepCopy2, { disableConsole: true }), 100000)
 })()
