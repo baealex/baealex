@@ -37,32 +37,6 @@ function test(label, copyFunc, options) {
         favorite: {
             game: 'The Sims 4',
             languages: ['Korean', 'English'],
-            friends: [
-                {
-                    name: 'Aram',
-                    favorite: {}
-                },
-                {
-                    name: 'Yudai',
-                    favorite: {}
-                },
-                {
-                    name: 'Aram',
-                    favorite: {}
-                },
-                {
-                    name: 'Yudai',
-                    favorite: {}
-                },
-                {
-                    name: 'Aram',
-                    favorite: {}
-                },
-                {
-                    name: 'Yudai',
-                    favorite: {}
-                }
-            ]
         }
     }
     
