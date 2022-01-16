@@ -23,7 +23,7 @@
     <a href="https://blex.me/@baealex">
         <img src="http://img.shields.io/badge/BLOG-black?style=flat-square&logo=bloglovin">
     </a>
-    <a href="https://www.youtube.com/channel/UCuupY_WlY6cPKEnpNNSVRpA">
+    <a href="https://tv.baejino.com">
         <img src="https://img.shields.io/badge/Youtube-ff0000?style=flat-square&logo=youtube">
     </a>
 </p>
