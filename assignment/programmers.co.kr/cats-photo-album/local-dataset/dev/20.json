@@ -1,0 +1,11 @@
+[
+    {
+        "id": "22",
+        "name": "흰둥이",
+        "type": "FILE",
+        "filePath": "/images/v0-TjU-1H.jpg",
+        "parent": {
+            "id": "20"
+        }
+    }
+]

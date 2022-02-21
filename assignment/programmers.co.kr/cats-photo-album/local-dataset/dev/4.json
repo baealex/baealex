@@ -1,0 +1,11 @@
+[
+    {
+        "id": "21",
+        "name": "세숫대야",
+        "type": "FILE",
+        "filePath": "/images/1mt.jpg",
+        "parent": {
+            "id": "4"
+        }
+    }
+]
