@@ -1,10 +1,10 @@
 ### ✍️ 최근 작성한 글 
 
 <!-- BLEX:START -->
-- [2022-01-03 # 자바스크립트의 복사](https://blex.me/@baealex/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EB%B3%B5%EC%82%AC)
-- [2021-12-25 # Python으로 웹 프론트엔드 개발하기](https://blex.me/@baealex/brython)
-- [2021-11-22 # VR로 개발하면 어떨까?](https://blex.me/@baealex/vr%EB%A1%9C-%EA%B0%9C%EB%B0%9C%ED%95%98%EB%A9%B4-%EC%96%B4%EB%96%A8%EA%B9%8C)
-- [2021-11-01 # BLEX 2021 10월 개발노트](https://blex.me/@baealex/blex-2021-10%EC%9B%94-%EA%B0%9C%EB%B0%9C%EB%85%B8%ED%8A%B8-1)<!-- BLEX:END -->
+- [2022-02-18 # 솔로 워커를 읽고](https://blex.me/@baealex/%EC%86%94%EB%A1%9C-%EC%9B%8C%EC%BB%A4%EB%A5%BC-%EC%9D%BD%EA%B3%A0)
+- [2022-02-17 # 1년동안 hey 메일을 사용하면서](https://blex.me/@baealex/1%EB%85%84%EB%8F%99%EC%95%88-hey-%EB%A9%94%EC%9D%BC%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%A9%B4%EC%84%9C)
+- [2022-01-20 # [JavaScript] bstate의 상태 관리](https://blex.me/@baealex/javascript-bstate%EC%9D%98-%EC%83%81%ED%83%9C-%EA%B4%80%EB%A6%AC)
+- [2022-01-03 # 자바스크립트의 복사](https://blex.me/@baealex/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EB%B3%B5%EC%82%AC)<!-- BLEX:END -->
 
 ### 🎞️ 최근 게시한 영상
 
