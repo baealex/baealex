@@ -5,9 +5,10 @@ export function createVirtualDOM(type, props, ...children) {
 function changed(node1, node2) {
     return (
         typeof node1 !== typeof node2 ||
-        typeof node1 === 'string' &&
-        node1 !== node2 ||
-        node1.type !== node2.type
+        typeof node1 === 'string' && node1 !== node2 ||
+        node1.type !== node2.type ||
+        node1.props?.value === '' && node2.props?.value !== '' ||
+        node1.props?.className !== node2.props?.className
     );
 }
 
@@ -20,9 +21,17 @@ function createElement(node) {
     node.children
         .map(createElement)
         .forEach($el.appendChild.bind($el));
-    
+
+    if (node.props.className) {
+        $el.className = node.props.className;
+    }
+
     if (node.props.onClick) {
         $el.addEventListener('click', node.props.onClick);
+    }
+
+    if (node.props.onChange) {
+        $el.addEventListener('input', node.props.onChange);
     }
 
     return $el;

@@ -1,7 +1,5 @@
-export const appState = (() => {
-    let state = {
-        counter: 0,
-    };
+export const store = (INITIAL_STATE) => {
+    let state = INITIAL_STATE;
     let observers = [];
 
     return {
@@ -19,8 +17,8 @@ export const appState = (() => {
             });
             return key;
         },
-        unsubscribe(targetKey) {
-            observers = observers.filter(({ key }) => key === targetKey);
+        unsubscribe(key) {
+            observers = observers.filter(observer => observer.key === key);
         },
     }
-})();
+};
