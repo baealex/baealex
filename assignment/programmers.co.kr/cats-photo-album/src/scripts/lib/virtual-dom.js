@@ -52,7 +52,6 @@ export function updateElement($parent, newNode, oldNode, index = 0) {
         correctionValue = 0;
         $parent.replaceChild(createElement(newNode), $parent.childNodes[index]);
     } else if (newNode.type) {
-        correctionValue = 0;
         const newLength = newNode.children.length;
         const oldLength = oldNode.children.length;
 

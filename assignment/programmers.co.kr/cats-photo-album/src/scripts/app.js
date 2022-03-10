@@ -1,6 +1,7 @@
 import { createVirtualDOM } from './lib/virtual-dom.js';
 
-import { Node } from './components/node.js';
+import { Breadcrumb } from './components/breadcrumb.js';
+import { Nodes } from './components/nodes.js';
 
 /**
  * @typedef {import('./types').Directory} Directory
@@ -25,42 +26,16 @@ export function App(props) {
         createVirtualDOM(
             'div',
             {},
-            createVirtualDOM(
-                'nav',
-                { className: 'Breadcrumb' },
-                ...props.directories.map((directory, idx) => (
-                    createVirtualDOM(
-                        'div',
-                        {
-                            onClick: async () => {
-                                await props.onClickNav(
-                                    props.directories,
-                                    directory.id,
-                                    idx
-                                );
-                            }
-                        },
-                        directory.name,
-                    )
-                ))
-            ),
-            createVirtualDOM(
-                'div',
-                { className: 'Nodes' },
-                props.directories.length > 1 && (
-                    Node({
-                        type: 'PREV',
-                        onClick: async () => {
-                            await props.onClickPrevNode(props.directories);
-                        }
-                    })
-                ),
-                ...props.nodes.map(node => Node({
-                    name: node.name,
-                    type: node.type,
-                    onClick: async () => await props.onClickNode(node)
-                }))
-            ),
+            Breadcrumb({
+                directories: props.directories,
+                onClick: props.onClickNav,
+            }),
+            Nodes({
+                directories: props.directories,
+                nodes: props.nodes,
+                onClickPrev: props.onClickPrevNode,
+                onClick: props.onClickNode,
+            }),
         )
     )
 }

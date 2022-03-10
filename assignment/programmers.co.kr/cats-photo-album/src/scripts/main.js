@@ -62,13 +62,7 @@ async function handleClickPrevNode(directories) {
             onClickPrevNode: handleClickPrevNode,
         });
 
-        if (prevDOM) {
-            updateElement($app, nextDOM, prevDOM);    
-            prevDOM = nextDOM;
-            return;
-        }
-
-        updateElement($app, nextDOM);
+        updateElement($app, nextDOM, prevDOM);
         prevDOM = nextDOM;
         return;
     });
