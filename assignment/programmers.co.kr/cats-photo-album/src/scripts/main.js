@@ -1,100 +1,85 @@
-import { getDirectoryContent } from './api.js';
-import {
-    Fragment,
-    NavItem,
-    NodeItem,
-} from './components.js';
-import { imagePopup } from './popup.js';
-import { appState } from './state.js';
+import { updateElement } from './lib/virtual-dom.js';
+import { getDirectoryContent } from './module/api.js';
+import { imagePopup } from './module/popup.js';
 
-(async function App() {
-    const $app = document.querySelector('.app');
+import { App } from './app.js';
+import { appState } from './store.js';
 
-    const $nav = document.createElement('nav');
-    $nav.className = 'Breadcrumb';
-    $app.appendChild($nav);
+/**
+ * @typedef {import('./store').State} State
+ */
 
-    const $nodes = document.createElement('div');
-    $nodes.className = 'Nodes';
-    $app.appendChild($nodes);
+async function handleClickNavigation(directories, id, idx) {
+    const lastIndex = directories.length - 1;
+    const lastDir = directories[lastIndex];
 
-    function render(state) {
-        $nav.innerHTML = '';
-        $nav.appendChild(Fragment(state.directories.map((directory, idx) => {
-            return NavItem({
-                name: directory.name,
-                onClick: async () => {
-                    const latest = state.directories.length - 1;
-                    const latestDir = state.directories[latest];
-
-                    if (latestDir.id !== directory.id) {
-                        const nodes = await getDirectoryContent(directory.id);
-                        appState.setState((prevState) => ({
-                            directories: prevState.directories.slice(0, idx + 1),
-                            nodes,
-                        }));
-                    }
-                }
-            })
-        })));
-        
-        $nodes.innerHTML = '';
-        $nodes.appendChild(Fragment([
-            Fragment(state.directories.length > 1 && [
-                NodeItem({
-                    type: 'PREV',
-                    onClick: async () => {
-                        const prev = state.directories.length - 2;
-                        const prevDir = state.directories[prev];
-                        const nodes = await getDirectoryContent(prevDir.id);
-    
-                        appState.setState((prevState) => ({
-                            directories: prevState.directories.slice(0, prev + 1),
-                            nodes,
-                        }));
-                    }
-                })
-            ]),
-            Fragment(state.nodes.map(node => {
-                if (node.type === 'FILE') {
-                    return NodeItem({
-                        name: node.name,
-                        type: node.type,
-                        onClick: () => {
-                            const baseURL = 'https://fe-dev-matching-2021-03-serverlessdeploymentbuck-t3kpj3way537.s3.ap-northeast-2.amazonaws.com/public'
-                            imagePopup.show(baseURL + node.filePath);
-                        },
-                    })
-                }
-                if (node.type === 'DIRECTORY') {
-                    return NodeItem({
-                        name: node.name,
-                        type: node.type,
-                        onClick: async () => {
-                            const nodes = await getDirectoryContent(node.id);
-                            appState.setState((prevState) => ({
-                                directories: prevState.directories.concat({
-                                    id: node.id,
-                                    name: node.name
-                                }),
-                                nodes,
-                            }));
-                        },
-                    })
-                }
-            })),
-        ]))
+    if (lastDir.id !== id) {
+        const nodes = await getDirectoryContent(id);
+        appState.set((prevState) => ({
+            directories: prevState.directories.slice(0, idx + 1),
+            nodes,
+        }));
     }
+}
 
-    appState.appendHandler(render);
+async function handleClickNode(node) {
+    if (node.type === 'FILE') {
+        const baseURL = 'https://fe-dev-matching-2021-03-serverlessdeploymentbuck-t3kpj3way537.s3.ap-northeast-2.amazonaws.com/public'
+        imagePopup.show(baseURL + node.filePath);
+    }
+    if (node.type === 'DIRECTORY') {
+        const nodes = await getDirectoryContent(node.id);
+        appState.set((prevState) => ({
+            directories: prevState.directories.concat({
+                id: node.id,
+                name: node.name
+            }),
+            nodes,
+        }));
+    }
+}
+
+async function handleClickPrevNode(directories) {
+    const prev = directories.length - 2;
+    const prevDir = directories[prev];
+    const nodes = await getDirectoryContent(prevDir.id);
+
+    appState.set((prevState) => ({
+        directories: prevState.directories.slice(0, prev + 1),
+        nodes,
+    }));
+}
+
+(async function() {
+    const $app = document.querySelector('.App');
+    let prevDOM = undefined;
+
+    appState.subscribe((state) => {
+        const nextDOM = App({
+            ...state,
+            onClickNav: handleClickNavigation,
+            onClickNode: handleClickNode,
+            onClickPrevNode: handleClickPrevNode,
+        });
+
+        if (prevDOM) {
+            updateElement($app, nextDOM, prevDOM);    
+            prevDOM = nextDOM;
+            return;
+        }
+
+        updateElement($app, nextDOM);
+        prevDOM = nextDOM;
+        return;
+    });
 
     // initialize to root
     const rootNodes = await getDirectoryContent();
-    appState.setState((prevState) => ({
+    appState.set((/** @type {State} */prevState) => ({
         nodes: rootNodes,
         directories: prevState.directories.concat({
             id: undefined,
-            name: 'root'
+            name: 'root',
         }),
     }));
 })();
