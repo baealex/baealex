@@ -1,0 +1,20 @@
+{
+    "id": 7,
+    "name": "에스프레소 메이커",
+    "price": 50000,
+    "imageUrl": "https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/espresso_maker.png",
+    "productOptions": [
+        {
+            "id": 71,
+            "name": "기본형",
+            "price": 0,
+            "stock": 5
+        },
+        {
+            "id": 72,
+            "name": "한정판",
+            "price": 100000,
+            "stock": 5
+        }
+    ]
+}

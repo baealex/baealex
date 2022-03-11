@@ -1,0 +1,32 @@
+{
+    "id": 10,
+    "name": "각설탕 묶음",
+    "price": 500,
+    "imageUrl": "https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/sugar_kakuzatou.png",
+    "productOptions": [
+        {
+            "id": 21,
+            "name": "10개 묶음",
+            "price": 0,
+            "stock": 60,
+            "created_at": "2021-08-23T23:01:34.916Z",
+            "updated_at": "2021-08-23T23:01:34.920Z"
+        },
+        {
+            "id": 22,
+            "name": "100개 묶음",
+            "price": 4000,
+            "stock": 555,
+            "created_at": "2021-08-23T23:01:45.757Z",
+            "updated_at": "2021-08-23T23:01:49.830Z"
+        },
+        {
+            "id": 23,
+            "name": "1000개 묶음",
+            "price": 45000,
+            "stock": 50,
+            "created_at": "2021-08-23T23:02:45.417Z",
+            "updated_at": "2021-08-23T23:02:45.420Z"
+        }
+    ]
+}

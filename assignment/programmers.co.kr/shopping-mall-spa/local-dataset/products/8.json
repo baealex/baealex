@@ -1,0 +1,24 @@
+{
+    "id": 8,
+    "name": "냉동 샌드위치",
+    "price": 10000,
+    "imageUrl": "https://grepp-cloudfront.s3.ap-northeast-2.amazonaws.com/programmers_imgs/assignment_image/food_sandwitch.png",
+    "productOptions": [
+        {
+            "id": 16,
+            "name": "5개 번들",
+            "price": 0,
+            "stock": 0,
+            "created_at": "2021-08-23T22:57:55.351Z",
+            "updated_at": "2021-08-23T22:57:59.824Z"
+        },
+        {
+            "id": 17,
+            "name": "20개 번들",
+            "price": 25000,
+            "stock": 111,
+            "created_at": "2021-08-23T22:59:58.129Z",
+            "updated_at": "2021-08-23T22:59:58.132Z"
+        }
+    ]
+}
