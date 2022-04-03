@@ -1,10 +1,10 @@
 ### ✍️ 최근 작성한 글 
 
 <!-- BLEX:START -->
+- [2022-04-02 # BLEX 2022 3월 개발노트](https://blex.me/@baealex/blex-2022-3%EC%9B%94-%EA%B0%9C%EB%B0%9C%EB%85%B8%ED%8A%B8)
 - [2022-03-31 # [리뷰] 메타버스를 디자인하라](https://blex.me/@baealex/ux-for-xr-review)
 - [2022-03-05 # [리뷰] 소문난 명강의 : 레트로의 유니티 게임 프로그래밍 에센스&lpar;개정판&rpar;](https://blex.me/@baealex/unity-programming-essence-review)
-- [2022-03-02 # GitHub Action으로 Yew.rs 배포하는 방법](https://blex.me/@baealex/github-action%EC%9C%BC%EB%A1%9C-yew-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)
-- [2022-02-18 # 솔로 워커를 읽고](https://blex.me/@baealex/%EC%86%94%EB%A1%9C-%EC%9B%8C%EC%BB%A4%EB%A5%BC-%EC%9D%BD%EA%B3%A0)<!-- BLEX:END -->
+- [2022-03-02 # GitHub Action으로 Yew.rs 배포하는 방법](https://blex.me/@baealex/github-action%EC%9C%BC%EB%A1%9C-yew-%EB%B0%B0%ED%8F%AC%ED%95%98%EA%B8%B0)<!-- BLEX:END -->
 
 ### 🎞️ 최근 게시한 영상
 
