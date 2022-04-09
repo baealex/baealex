@@ -1,4 +1,4 @@
-import { useRouter } from '../router.js';
+import { useRouter } from '../lib/router.js';
 import { moneyFormat } from '../utils.js';
 
 export async function Home() {
