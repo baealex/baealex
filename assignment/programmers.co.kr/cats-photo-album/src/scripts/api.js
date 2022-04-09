@@ -9,7 +9,7 @@ function sleep(ms) {
 async function Requests(url) {
     loading.start();
     try {
-        await sleep(Math.random() * 4000);
+        await sleep(Math.random() * 2000);
         const response = await fetch(url);
         loading.end();
         return response;

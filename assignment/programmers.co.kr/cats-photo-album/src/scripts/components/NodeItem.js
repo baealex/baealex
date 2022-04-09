@@ -27,33 +27,3 @@ export function NodeItem(props) {
     node.addEventListener('click', () => props.onClick())
     return node;
 }
-
-/**
- * @typedef {{
- *  name: string
- *  onClick: () => void;
- * }} NavItemProps
- */
-
-/**
- * @param {NavItemProps} props 
- * @return {HTMLDivElement}
- */
-export function NavItem(props) {
-    const div = document.createElement('div');
-    div.textContent = props.name;
-
-    div.addEventListener('click', () => props.onClick())
-    return div;
-}
-/**
- * @param {HTMLElement[]} items
- * @return {DocumentFragment}
- */
-export function Fragment(items) {
-    const fragment = document.createDocumentFragment();
-    if (items) {
-        items.forEach(item => fragment.appendChild(item));
-    }
-    return fragment;
-}

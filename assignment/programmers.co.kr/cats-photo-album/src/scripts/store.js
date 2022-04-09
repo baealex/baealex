@@ -20,21 +20,21 @@ export const appState = (() => {
         directories: [],
         nodes: [],
     };
-    const handlers = [];
+    const observers = [];
 
     return {
         /**
          * @param {(state: State) => void)} func 
          */
-        appendHandler(func) {
-            handlers.push(func)
+        subscribe(func) {
+            observers.push(func)
         },
         /**
          * @param {(state: State) => State)} next 
          */
-        setState(next) {
+        set(next) {
             state = next(state);
-            handlers.forEach(handler => handler(state));
+            observers.forEach(observer => observer(state));
         }
     }
 })();
