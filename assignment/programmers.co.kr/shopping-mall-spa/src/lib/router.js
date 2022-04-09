@@ -32,11 +32,11 @@ export class Router {
         if (!isPopState) {
             history.pushState(null, null, path);
         }
-        
+
         if (this.staticMapper[path]) {
             const page = await this.staticMapper[path]();
-            this.$el.innerHTML = await page.initialRender();
-            page.addEventListener();
+            this.$el.innerHTML = await page.render();
+            page.mount();
             return;
         }
 
@@ -44,8 +44,8 @@ export class Router {
             if (path.startsWith(key)) {
                 const query = path.replace(key, '');
                 const page = await this.dynamicMapper[path.replace(query, '')](query);
-                this.$el.innerHTML = await page.initialRender();
-                page.addEventListener();
+                this.$el.innerHTML = await page.render();
+                page.mount();
                 return;
             }
         }

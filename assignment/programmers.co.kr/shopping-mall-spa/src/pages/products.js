@@ -15,42 +15,7 @@ export async function Products(id) {
     const state = [];
 
     return {
-        initialRender() {
-            return `
-                <div class="ProductDetailPage">
-                    <h1>${data.name} 상품 정보</h1>
-                    <div class="ProductDetail">
-                        <img src="${data.imageUrl}">
-                        <div class="ProductDetail__info">
-                            <h2>${data.name}</h2>
-                            <div class="ProductDetail__price">10,000원~</div>
-                            <select>
-                                <option>선택하세요.</option>
-                                ${data.productOptions.map(option => (`
-                                    <option value="${option.id}" ${option.stock <= 0 ? ` disabled`: ``}>
-                                        ${option.stock <= 0
-                                            ? `(품절)`
-                                            : ``}
-                                        ${option.name}
-                                        ${option.price > 0
-                                            ? `(+${moneyFormat(option.price)})`
-                                            : ``}
-                                    </option>
-                                `)).join('')}
-                            </select>
-                            <div class="ProductDetail__selectedOptions">
-                            <h3>선택된 상품</h3>
-                            <ul>
-                            </ul>
-                            <div class="ProductDetail__totalPrice">0원</div>
-                            <button class="OrderButton">주문하기</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        },
-        addEventListener() {
+        mount() {
             const $select = document.querySelector('select');
             const $list = document.querySelector('ul');
             const $totalPrice = document.querySelector('.ProductDetail__totalPrice');
@@ -114,6 +79,41 @@ export async function Products(id) {
                 })
                 router.push('/cart');
             });
+        },
+        render() {
+            return `
+                <div class="ProductDetailPage">
+                    <h1>${data.name} 상품 정보</h1>
+                    <div class="ProductDetail">
+                        <img src="${data.imageUrl}">
+                        <div class="ProductDetail__info">
+                            <h2>${data.name}</h2>
+                            <div class="ProductDetail__price">10,000원~</div>
+                            <select>
+                                <option>선택하세요.</option>
+                                ${data.productOptions.map(option => (`
+                                    <option value="${option.id}" ${option.stock <= 0 ? ` disabled`: ``}>
+                                        ${option.stock <= 0
+                                            ? `(품절)`
+                                            : ``}
+                                        ${option.name}
+                                        ${option.price > 0
+                                            ? `(+${moneyFormat(option.price)})`
+                                            : ``}
+                                    </option>
+                                `)).join('')}
+                            </select>
+                            <div class="ProductDetail__selectedOptions">
+                            <h3>선택된 상품</h3>
+                            <ul>
+                            </ul>
+                            <div class="ProductDetail__totalPrice">0원</div>
+                            <button class="OrderButton">주문하기</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
     }
 }

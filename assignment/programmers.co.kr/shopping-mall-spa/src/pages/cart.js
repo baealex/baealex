@@ -35,7 +35,14 @@ export async function Cart() {
     }, 0);
 
     return {
-        initialRender() {
+        mount() {
+            document.querySelector('.OrderButton').addEventListener('click', () => {
+                alert('주문되었습니다');
+                removeCartItem();
+                router.push('/');
+            })
+        },
+        render() {
             return `
                 <div class="CartPage">
                     <h1>장바구니</h1>
@@ -58,13 +65,6 @@ export async function Cart() {
                     </div>
                 </div>
             `
-        },
-        addEventListener() {
-            document.querySelector('.OrderButton').addEventListener('click', () => {
-                alert('주문되었습니다');
-                removeCartItem();
-                router.push('/');
-            })
         }
     }
 }

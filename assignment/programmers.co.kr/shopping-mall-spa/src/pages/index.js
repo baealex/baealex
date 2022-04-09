@@ -6,7 +6,14 @@ export async function Home() {
     const data = await response.json();
     
     return {
-        initialRender() {
+        mount() {
+            document.querySelectorAll('li').forEach(li => li.addEventListener('click', (e) => {
+                const id = li.dataset.id;
+                const router = useRouter();
+                router.push('/products/' + id);
+            }));
+        },
+        render() {
             return `
                 <div class="ProductListPage">
                     <h1>상품목록</h1>
@@ -23,13 +30,6 @@ export async function Home() {
                     </ul>
                 </div>
             `;
-        },
-        addEventListener() {
-            document.querySelectorAll('li').forEach(li => li.addEventListener('click', (e) => {
-                const id = li.dataset.id;
-                const router = useRouter();
-                router.push('/products/' + id);
-            }));
         }
     }
 }
