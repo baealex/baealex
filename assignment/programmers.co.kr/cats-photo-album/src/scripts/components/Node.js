@@ -8,24 +8,24 @@ export function Node($app) {
     $nodes.className = 'Nodes';
     $app.appendChild($nodes);
     
-    this.render = (props, appState) => {
+    this.render = (state, setState) => {
         $nodes.replaceChildren(Fragment([
-            Fragment(props.directories.length > 1 && [
+            Fragment(state.directories.length > 1 && [
                 NodeItem({
                     type: 'PREV',
                     onClick: async () => {
-                        const prev = props.directories.length - 2;
-                        const prevDir = props.directories[prev];
+                        const prev = state.directories.length - 2;
+                        const prevDir = state.directories[prev];
                         const nodes = await getDirectoryContent(prevDir.id);
     
-                        appState.set((prevState) => ({
+                        setState((prevState) => ({
                             directories: prevState.directories.slice(0, prev + 1),
                             nodes,
                         }));
                     }
                 })
             ]),
-            Fragment(props.nodes.map(node => {
+            Fragment(state.nodes.map(node => {
                 if (node.type === 'FILE') {
                     return NodeItem({
                         name: node.name,
@@ -42,7 +42,7 @@ export function Node($app) {
                         type: node.type,
                         onClick: async () => {
                             const nodes = await getDirectoryContent(node.id);
-                            appState.set((prevState) => ({
+                            setState((prevState) => ({
                                 directories: prevState.directories.concat({
                                     id: node.id,
                                     name: node.name

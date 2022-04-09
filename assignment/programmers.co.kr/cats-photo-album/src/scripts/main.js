@@ -9,8 +9,8 @@ import { appState } from './store.js';
     const $nodes = new Node($app);
 
     function render(state) {
-        $nav.render(state, appState);
-        $nodes.render(state, appState);
+        $nav.render(state, appState.set);
+        $nodes.render(state, appState.set);
     }
 
     appState.subscribe(render);
