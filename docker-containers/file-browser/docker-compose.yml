@@ -5,10 +5,9 @@ services:
     image: filebrowser/filebrowser
     container_name: filebrowser
     volumes:
-      - ./srv:/srv
-      - ./filebrowser.db:/database.db
-      - ./.filebrowser.json:/.filebrowser.json
+      - ./data:/data
+      - ./config:/config
     restart: unless-stopped
-    user: 
+    user: "${UID}:${GID}"
     ports:
       - 12345:80
