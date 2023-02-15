@@ -1,8 +1,9 @@
-⭐ = Feature
-🔧 = Fix
-🏭 = Refactor
-✨ = Style
-📦 = Chore
-📚 = Docs
-👣 = Move
-🔥 = Delete
+⭐ = Create new feature
+🔧 = Fix bug
+🏭 = Improve performance and readability
+✨ = Improve only readability
+🧪 = Replenish test case
+📦 = Do miscellaneous work (script, package)
+📚 = Write documents
+👣 = Change source tree
+🔥 = Remove source code
