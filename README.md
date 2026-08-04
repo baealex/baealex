@@ -1,4 +1,23 @@
-### 📚 최근에 작성한 글
+# Jino Bae
+
+**Product engineer building software that stays useful.**
+
+I'm a frontend-focused product engineer in Seoul. I take rough ideas past the first version, from interface decisions to the systems that keep them running.
+
+My independent work focuses on self-hosted tools for writing and thinking. I care about clear interfaces, deliberate product choices, and long-term maintenance.
+
+[Website](https://baejino.com) · [Writing](https://blex.me/@baealex) · [Email](mailto:im@baejino.com)
+
+## Ongoing products
+
+[BLEX](https://github.com/baealex/BLEX) has been running since 2019. [Ocean Brain](https://github.com/baealex/ocean-brain) has passed [10K Docker pulls](https://hub.docker.com/r/baealex/ocean-brain). Those are modest numbers, not finish lines. I still build, use, and maintain both products.
+
+- **[BLEX](https://github.com/baealex/BLEX)** — A writing-first publishing platform for self-hosted blogs. [Visit BLEX](https://blex.me)
+- **[Ocean Brain](https://github.com/baealex/ocean-brain)** — A self-hosted writing space for connected notes and AI workflows. [Try the demo](https://demo-ocean-brain.baejino.com)
+
+If you're building a product where interface quality and long-term maintainability both matter, [let's talk](mailto:im@baejino.com).
+
+## Recent writing
 
 <!-- BLEX:START -->
 - [2026-06-25 # 포기하지 않는 소프트웨어](https://blex.me/@baealex/%ED%8F%AC%EA%B8%B0%ED%95%98%EC%A7%80-%EC%95%8A%EB%8A%94-%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4)
